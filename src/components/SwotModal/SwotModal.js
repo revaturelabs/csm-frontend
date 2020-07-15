@@ -2,9 +2,6 @@ import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
 
 const SwotModal = (props) => {
-  const fakeObj = {
-    name: "Associate kid",
-  };
 
   return (
     <>
@@ -16,11 +13,16 @@ const SwotModal = (props) => {
           </Button>
         }
       >
-        <Modal.Header>SWOT Analysis for: {fakeObj.name}</Modal.Header>
+        <Modal.Header>SWOT Analysis for: </Modal.Header>
         <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}
             {/* general notes for associate container */}
+            <Modal.Header>Notes</Modal.Header>
+            <Modal.Content>
+              <textarea id='generalNotes'></textarea>
+              <button>Submit</button>
+            </Modal.Content>
             {/* button to trigger spider graph */}
         </Modal.Content>
       </Modal>

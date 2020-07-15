@@ -17,7 +17,7 @@ const SwotModal = (props) => {
         }
       >
         <Modal.Header>
-          SWOT Analysis for: {swotState.associate.name}
+          SWOT Analysis for: 
         </Modal.Header>
         <Modal.Content>
           {/* categories list on left */}

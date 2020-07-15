@@ -1,7 +1,10 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
+import { useSelector, useDispatch } from "react-redux";
 
 const SwotModal = (props) => {
+  const swotState = useSelector((state) => state.swotReducer);
+  const dispatch = useDispatch();
 
   return (
     <>

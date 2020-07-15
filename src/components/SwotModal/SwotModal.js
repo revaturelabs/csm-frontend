@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
-import SwotTable from '../SwotTable/SwotTable';
+import { useSelector, useDispatch } from "react-redux";
 
 const SwotModal = (props) => {
-  const fakeObj = {
-    name: "Associate kid",
-  };
+  const swotState = useSelector((state) => state.swotReducer);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -17,7 +16,9 @@ const SwotModal = (props) => {
           </Button>
         }
       >
-        <Modal.Header>SWOT Analysis for: {fakeObj.name}</Modal.Header>
+        <Modal.Header>
+          SWOT Analysis for: 
+        </Modal.Header>
         <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}

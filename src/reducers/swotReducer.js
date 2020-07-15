@@ -2,13 +2,13 @@ const initialState = {
     associate: {
         name: 'associate'
     },
-    genNotes: '',
+    notes: '',
 }
 
 const swotReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'updateNotes':
-            return Object.assign({}, state, {notes : action.updateNotes})
+            return Object.assign({}, state, {notes: action.notes})
         default:
             return state;
     }

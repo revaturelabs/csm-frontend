@@ -21,11 +21,7 @@ const SwotModal = (props) => {
             {/* categories list on left */}
             {/* SWOT quadrants*/}
             {/* general notes for associate container */}
-            <Modal.Header>Notes</Modal.Header>
-            <Modal.Content>
-              <textarea id='generalNotes'></textarea>
-              <button>Submit</button>
-            </Modal.Content>
+            <textarea onChange={(e) => dispatch({type: 'updateNotes', notes: e.target.value})}></textarea>
             {/* button to trigger spider graph */}
         </Modal.Content>
       </Modal>

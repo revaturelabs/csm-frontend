@@ -1,0 +1,14 @@
+.drag-drop-zone {
+    padding: 2rem;
+    text-align: center;
+    background: lightgrey;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 10px darkgrey;
+}
+.drag-drop-zone p {
+    color: black
+}
+
+.drag-drop-zone.inside-drag-area {
+    opacity: .7;
+}

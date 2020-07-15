@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
+import SwotTable from '../SwotTable/SwotTable';
 
 const SwotModal = (props) => {
   const fakeObj = {
@@ -20,6 +21,7 @@ const SwotModal = (props) => {
         <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}
+            <SwotTable></SwotTable>
             {/* general notes for associate container */}
             {/* button to trigger spider graph */}
         </Modal.Content>

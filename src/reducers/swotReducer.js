@@ -8,10 +8,10 @@ const initialState = {
   }, 
   dropDepth: 0,
   dropZone: '',
-  Strengths_modal: false,
-  Weaknesses_modal: false,
-  Opportunities_modal: false,
-  Threats_modal: false,
+  StrengthsModal: false,
+  WeaknessesModal: false,
+  OpportunitiesModal: false,
+  ThreatsModal: false,
   currentNote: '',
   currentCategory: ''
 };

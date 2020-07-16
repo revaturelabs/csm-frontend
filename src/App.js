@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+<<<<<<< HEAD
 import DisplayAssociates from './components/DisplayAssociates/DisplayAssociates'
 
 function App() {
@@ -22,6 +23,15 @@ function App() {
     //     </a>
     //   </header>
     // </div>
+=======
+import Routing from './components/Routing/Routing';
+
+function App() {
+  return (
+    <div>
+      <Routing></Routing>
+    </div>
+>>>>>>> 2fe32a64e099a34d48265e72963a87cfd7c255c5
   );
 }
 

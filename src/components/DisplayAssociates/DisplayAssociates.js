@@ -3,18 +3,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Table, Icon, Popup, Modal, Input } from 'semantic-ui-react';
 import './DisplayAssociates.css';
+<<<<<<< HEAD
 import AssociateService from '../../services/associate.service.js';
 
 const DisplayAssociates = (props) => {
     const state = useSelector(state => state);
+=======
+import DisplayAssociate from './DisplayAssociate';
+import AssociateService from '../../services/associate.service.js';
+
+const DisplayAssociates = (props) => {
+    const associatesState = useSelector(state => state.associateReducer);
+>>>>>>> 2fe32a64e099a34d48265e72963a87cfd7c255c5
     const dispatch = useDispatch();
     const history = useHistory();
     const associateService = new AssociateService();
 
-    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         console.log("useEffect")
+<<<<<<< HEAD
 
         getAssociatesInformation();
     }, []);
@@ -28,12 +36,25 @@ const DisplayAssociates = (props) => {
     const handleClickOpen = () => {
         setOpen(true);
     };
+=======
+>>>>>>> 2fe32a64e099a34d48265e72963a87cfd7c255c5
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const data = { email: 'echavarria.f@gmail.com', name: 'Felix Echavarria', batch: 'WVU' };
+        getAssociatesInformation();
+    }, []);
 
+<<<<<<< HEAD
+=======
+    // TODO: Get real manager id
+    const testManager = {id: '{managerId}'}
+
+    async function getAssociatesInformation() {
+        let resp = await associateService.getAssociatesByManager(testManager.id)
+        console.log(resp)
+        dispatch({ type: 'updateAssociates', associates: resp.data })
+        console.log(associatesState.associates)
+    }
+
+>>>>>>> 2fe32a64e099a34d48265e72963a87cfd7c255c5
     return (
         <div>
             <header>List of Associates</header>
@@ -48,6 +69,7 @@ const DisplayAssociates = (props) => {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
+<<<<<<< HEAD
                         {/* {Array.isArray(state.associates) ? state.associates.map(
                             (request) => {
                                 return ( */}
@@ -94,6 +116,10 @@ const DisplayAssociates = (props) => {
                         {/*  )
                              }
                          ) : null} */}
+=======
+                        {Array.isArray(associatesState.associates) ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
+                        }): null }
+>>>>>>> 2fe32a64e099a34d48265e72963a87cfd7c255c5
                     </Table.Body>
                 </Table>
             </div>

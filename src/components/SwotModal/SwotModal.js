@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
-import SwotTable from '../SwotTable/SwotTable'
-import './SwotModal.css';
-
+import SwotNotes from "../SwotNotes/SwotNotes";
+import SwotTable from "../SwotTable/SwotTable";
+import "./SwotModal.css";
 
 const SwotModal = (props) => {
   const swotState = useSelector((state) => state.swotReducer);

@@ -17,30 +17,38 @@ const SwotModal = (props) => {
     }
     elements.sort();
     dispatch({type: "updateCategories", getCategories: elements})
-  }, []);
-    return (
-      <>
-        <Modal
-          size="small"
-          trigger={
-            <Button primary icon>
-              SWOT <Icon name="right chevron" />
-            </Button>
-          }
-        >
-          <Modal.Header>
-            SWOT Analysis for:
-          </Modal.Header>
-          <Modal.Content>
-            <Categories></Categories>
+  }, []);  const list_drag = event => {
+    event.dataTransfer.setData('text', event.target.id);
+  }
+  return (
+    <>
+      <Modal
+        id='swot-modal'
+        size='fullscreen'
+        trigger={
+          <Button primary icon>
+            Proceed <Icon name="right chevron" />
+          </Button>
+        }
+      >
+        <Modal.Header>
+          SWOT Analysis for:
+        </Modal.Header>
+        <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}
+            <ul>
+              <li id='dragElt' draggable onDragStart={list_drag}>
+                Drag ME
+              </li>
+            </ul>
+            <SwotTable></SwotTable>
             {/* general notes for associate container */}
             {/* button to trigger spider graph */}
-          </Modal.Content>
-        </Modal>
-      </>
-    );
+        </Modal.Content>
+      </Modal>
+    </>
+  );
 };
 
 export default SwotModal;

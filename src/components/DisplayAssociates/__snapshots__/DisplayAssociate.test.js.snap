@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component renders 1`] = `
+<tr
+  className=""
+>
+  <td
+    className=""
+  >
+    1
+  </td>
+  <td
+    className=""
+  >
+    TestName
+  </td>
+  <td
+    className=""
+  >
+    test-batch
+  </td>
+  <div
+    class="circular ui icon button"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <i
+      class="icon eye"
+    />
+  </div>
+</tr>
+`;

@@ -15,7 +15,7 @@ const Categories = (props) => {
                     <Search></Search>
                     <List as="ul" style={{ "margin-left": 0 }}>
                         {   displayCategories.map((category) =>
-                                <Card style={{ "margin-top":10, "margin-bottom": 10, maxWidth: 75 }} raised="true"><List.Item draggable >{category}</List.Item></Card>
+                                <Card style={{ "margin-top":10, "margin-bottom": 10, maxWidth: 75 }} raised="true"><List.Item name="category" draggable >{category}</List.Item></Card>
                             )
                         }
                     </List>

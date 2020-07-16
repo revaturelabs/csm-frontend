@@ -12,6 +12,13 @@ class AssociateService {
             withCredentials: true
         });
     }
+    getAssociatesInformation() {
+        return axios({
+            method: 'GET',
+            url: `${this.URI}/associates`,
+            withCredentials: true
+        });
+    }
 }
 
 export default AssociateService;

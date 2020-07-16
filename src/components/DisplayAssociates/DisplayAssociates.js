@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Button, Table, Icon, Popup, Modal, Input } from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
-import './DisplayAssociates.css'
+import './DisplayAssociates.css';
+import AssociateService from '../../services/associate.service.js';
 
 const DisplayAssociates = (props) => {
     const state = useSelector(state => state);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const associateService = new AssociateService();
 
     const [open, setOpen] = React.useState(false);
+
+    useEffect(() => {
+        console.log("useEffect")
+
+        getAssociatesInformation();
+    }, []);
+
+    async function getAssociatesInformation() {
+        let resp = await associateService.getAssociatesInformation()
+        console.log(resp)
+        dispatch({ type: 'setAssociatesInformation', requests: resp.data })
+    }
 
     const handleClickOpen = () => {
         setOpen(true);

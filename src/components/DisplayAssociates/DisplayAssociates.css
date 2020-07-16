@@ -3,6 +3,7 @@ header{
     font-size: 2em;
     font-weight: bold;
     margin: 10px;
+    margin-bottom: 25px;
     text-align: center;
     text-shadow: 2px 2px #4d94ff;
 }
@@ -13,10 +14,6 @@ Table{
 
 #data{
     text-align: center;
-}
-
-thead{
-    background-color: #F26925;
 }
 
 #table{

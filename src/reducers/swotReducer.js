@@ -1,11 +1,13 @@
-const initialState = {
+let initialState = {
+  categories: [],
+  displayCategories: [],
   SWOT: {
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
     Threats: [],
     Notes: ''
-  }, 
+  },
   dropDepth: 0,
   dropZone: '',
   StrengthsModal: false,
@@ -22,6 +24,10 @@ const swotReducer = (state = initialState, action) => {
   // console.log(state)
   // console.log(action)
   switch (action.type) {
+    case 'updateCategories':
+        return Object.assign({}, state, { categories: action.getCategories })
+    case 'updateDisplayCategories':
+        return Object.assign({}, state, { displayCategories: action.getDisplayCategories })
     case 'updateDropZone':
       return Object.assign({}, state, {dropZone: action.dropZone})
     case 'updateDropDepth':

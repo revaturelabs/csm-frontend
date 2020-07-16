@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
-import './ModalNotes'
 import ModalNotes from "./ModalNotes";
 
 const SwotModal = (props) => {

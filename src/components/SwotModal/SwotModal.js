@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
-import ModalNotes from "../ModalNotes/ModalNotes";
+import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
 import "./SwotModal.css";
 

@@ -1,122 +1,54 @@
-import React from 'react';
-// import { Button } from '@material-ui/core/Button';
-import { Table, Tooltip } from '@material-ui/core';
-import { TableRow } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { IconButton } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import './DisplayAssociates.css'
-import EditIcon from '@material-ui/icons/Edit';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Button, Table, Icon, Popup, Modal, Input } from 'semantic-ui-react';
+import './DisplayAssociates.css';
+import DisplayAssociate from './DisplayAssociate';
+import AssociateService from '../../services/associate.service.js';
 
 const DisplayAssociates = (props) => {
-    const state = useSelector(state => state);
+    const associatesState = useSelector(state => state.associateReducer);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const associateService = new AssociateService();
 
-    const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    useEffect(() => {
+        console.log("useEffect")
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const data = { email: 'echavarria.f@gmail.com', name: 'Felix Echavarria', batch: 'WVU' };
+        getAssociatesInformation();
+    }, []);
 
-    const renderHeader = () => {
-        let headerElement = ['email', 'name', 'batch', 'actions']
+    // TODO: Get real manager id
+    const testManager = {id: '{managerId}'}
 
-        return headerElement.map((key, index) => {
-            return <th key={index}>{key.toUpperCase()}</th>
-        })
+    async function getAssociatesInformation() {
+        let resp = await associateService.getAssociatesByManager(testManager.id)
+        console.log(resp)
+        dispatch({ type: 'updateAssociates', associates: resp.data })
+        console.log(associatesState.associates)
     }
 
     return (
         <div>
             <header>List of Associates</header>
             <div id="table">
-                <Table responsive='lg' hover>
-                    <thead>{renderHeader()}
-                    </thead>
-                    <tbody id="data">
-                        {Array.isArray(state.associates) ? state.associates.map(
-                            (request) => {
-                                return (
-                                    <TableRow hover>
-                                        <td>{request.email}</td>
-                                        <td>{request.name}</td>
-                                        <td>{request.batch}</td>
-                                        {/* <td>{data.email}</td>
-                            <td>{data.name}</td>
-                            <td>{data.batch}</td> */}
-                                        <Tooltip title="View Information" arrow>
-                                            <IconButton variant='contained' color='primary' onClick={handleClickOpen}
-                                            >
-                                                <VisibilityIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip title="Edit Information" arrow>
-                                            <IconButton variant='contained' color='primary' onClick={handleClickOpen}
-                                            >
-                                                <EditIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                                            <DialogTitle id="form-dialog-title">View All The Information</DialogTitle>
-                                            <DialogContent>
-                                                <DialogContentText>
-                                                    Here we'll see all the information correspondent to an employee.
-                                    </DialogContentText>
-                                                <TextField
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="email"
-                                                    label="Email Address"
-                                                    type="email"
-                                                    defaultValue={data.email}
-                                                    fullWidth
-                                                />
-                                                <TextField
-                                                    margin="dense"
-                                                    id="name"
-                                                    label="Name"
-                                                    type="text"
-                                                    defaultValue={data.name}
-                                                    fullWidth
-                                                />
-                                                <TextField
-                                                    margin="dense"
-                                                    id="batch"
-                                                    label="Batch"
-                                                    type="text"
-                                                    defaultValue={data.batch}
-                                                    fullWidth
-                                                />
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <Button onClick={handleClose} variant="contained" color="primary">
-                                                    Accept
-                                    </Button>
-                                                <Button onClick={handleClose} variant="contained" color="secondary">
-                                                    Cancel
-                                    </Button>
-                                            </DialogActions>
-                                        </Dialog>
-                                    </TableRow>
-                                )
-                            }
-                        ) : null}
-                    </tbody>
+                <Table selectable color={"black"}>
+                    <Table.Header className="head">
+                        <Table.Row>
+                            <Table.HeaderCell>Email</Table.HeaderCell>
+                            <Table.HeaderCell>Name</Table.HeaderCell>
+                            <Table.HeaderCell>Batch</Table.HeaderCell>
+                            <Table.HeaderCell>Actions</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {Array.isArray(associatesState.associates) ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
+                        }): null }
+                    </Table.Body>
                 </Table>
             </div>
-        </div>
+        </div >
     )
 }
 

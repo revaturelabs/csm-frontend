@@ -13,6 +13,8 @@ const SwotTable = props => {
                   <Table.Cell>
                     <SwotQuadrant name='Strengths'></SwotQuadrant>
                   </Table.Cell>
+                </Table.Row>
+                <Table.Row>
                   <Table.Cell>
                     <SwotQuadrant name='Weaknesses'></SwotQuadrant>
                   </Table.Cell>
@@ -21,6 +23,8 @@ const SwotTable = props => {
                   <Table.Cell>
                     <SwotQuadrant name='Opportunities'></SwotQuadrant>
                   </Table.Cell>
+                </Table.Row>
+                <Table.Row>
                   <Table.Cell>
                     <SwotQuadrant name='Threats'></SwotQuadrant>
                   </Table.Cell>

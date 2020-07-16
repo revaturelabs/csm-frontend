@@ -26,13 +26,13 @@ const swotReducer = (state = initialState, action) => {
     case 'updateDropDepth':
       return Object.assign({}, state, {dropDepth: action.dropDepth})
     case 'updateStrengths':
-      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Strengths, action.data]} )})
+      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: action.data} )})
     case 'updateWeaknesses':
-      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Weaknesses, action.data]} )})
+      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Weaknesses: action.data} )})
     case 'updateOpportunities':
-      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Opportunities, action.data]} )})
+      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Opportunities: action.data} )})
     case 'updateThreats':
-      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Threats, action.data]} )})
+      return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Threats: action.data} )})
     case 'toggleStrengthsModal':
       return Object.assign({}, state, {StrengthsModal: action.toggle})
     case 'toggleWeaknessesModal':
@@ -41,7 +41,7 @@ const swotReducer = (state = initialState, action) => {
       return Object.assign({}, state, {OpportunitiesModal: action.toggle})
     case 'toggleThreatsModal':
       return Object.assign({}, state, {ThreatsModal: action.toggle})
-    case 'updateNote':
+    case 'updateCurrentNote':
       return Object.assign({}, state, {currentNote: action.note})
     case 'updateCategory':
       return Object.assign({}, state, {currentCategory: action.category})

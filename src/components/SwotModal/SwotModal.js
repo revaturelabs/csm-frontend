@@ -29,7 +29,7 @@ const SwotModal = (props) => {
             {/* categories list on left */}
             {/* SWOT quadrants*/}
             <ul>
-              <li id='drag_elt' draggable onDragStart={list_drag}>
+              <li id='dragElt' draggable onDragStart={list_drag}>
                 Drag ME
               </li>
             </ul>

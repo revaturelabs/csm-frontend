@@ -11,19 +11,19 @@ const SwotQuadrant = (props) => {
     const handleDragEnter = event => {
         event.preventDefault();
         event.stopPropagation();
-        dispatch({type: 'update_drop_depth', dropDepth: swotState.dropDepth + 1})
+        dispatch({type: 'updateDropDepth', dropDepth: swotState.dropDepth + 1})
     };
     const handleDragLeave = event => {
         event.preventDefault();
         event.stopPropagation();
-        dispatch({type: 'update_drop_depth', dropDepth: swotState.dropDepth - 1})
+        dispatch({type: 'updateDropDepth', dropDepth: swotState.dropDepth - 1})
         if (swotState.dropDepth > 0) return
-        dispatch({type: 'update_drop_zone', dropZone: ''})
+        dispatch({type: 'updateDropZone', dropZone: ''})
     };
     const handleDragOver = event => {
         event.preventDefault();
         event.stopPropagation();
-        dispatch({type: 'update_drop_zone', dropZone: props.name})
+        dispatch({type: 'updateDropZone', dropZone: props.name})
     }
     const handleDrop = event => {
         event.preventDefault();
@@ -33,7 +33,7 @@ const SwotQuadrant = (props) => {
         console.log(props.name)
         console.log(event.dataTransfer.getData('text'))
         dispatch({type: 'updateCategory', category: event.dataTransfer.getData('text')})
-        dispatch({type: 'toggle_' + props.name + '_modal', toggle: true})
+        dispatch({type: 'toggle' + props.name + 'Modal', toggle: true})
     }
 
     const updateNote = event => {
@@ -41,9 +41,9 @@ const SwotQuadrant = (props) => {
     }
 
     const setCategory = event => {
-        const _type = 'update_' + props.name
-        dispatch({type: _type, data: {category: swotState.current_category, note: swotState.current_note}})
-        dispatch({type: 'toggle_' + props.name + '_modal', toggle: false})
+        const _type = 'update' + props.name
+        dispatch({type: _type, data: {category: swotState.currentCategory, note: swotState.currentNote}})
+        dispatch({type: 'toggle' + props.name + 'Modal', toggle: false})
         dispatch({type: 'updateNote', note: ''})
         dispatch({type: 'updateCategory', category: ''})
     }
@@ -51,16 +51,16 @@ const SwotQuadrant = (props) => {
     return (
         <>
             <Modal
-                open={swotState[props.name+'_modal']}
+                open={swotState[props.name+'Modal']}
                     
                 size='mini'
             >    
-                <Modal.Header>Add a note for {swotState.current_category}</Modal.Header>
+                <Modal.Header>Add a note for {swotState.currentCategory}</Modal.Header>
                 <Modal.Content>
                     <Form>
                         <TextArea placeholder='Add note for selected category'
                         onChange={updateNote}
-                        value={swotState.current_note}/>
+                        value={swotState.currentNote}/>
                     </Form>
                     <Button color='green'
                     onClick={setCategory}>
@@ -68,14 +68,15 @@ const SwotQuadrant = (props) => {
                     </Button>
                 </Modal.Content>
             </Modal>
-            <div className={'drag-drop-zone'}
-            id={props.name + '_zone'}
+            <div className={'dragDropZone'}
+            id={props.name + 'Zone'}
             onDrop={event => handleDrop(event)}
             onDragOver={event => handleDragOver(event)}
             onDragEnter={event => handleDragEnter(event)}
             onDragLeave={event => handleDragLeave(event)}
             >
-                <p>Add categories to {props.name}</p>                
+                <p>Add categories to {props.name}</p>
+
             </div>
         </>
     )

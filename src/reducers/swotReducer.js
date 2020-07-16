@@ -12,8 +12,8 @@ const initialState = {
   Weaknesses_modal: false,
   Opportunities_modal: false,
   Threats_modal: false,
-  current_note: '',
-  current_category: ''
+  currentNote: '',
+  currentCategory: ''
 };
 
 const swotReducer = (state = initialState, action) => {
@@ -21,30 +21,30 @@ const swotReducer = (state = initialState, action) => {
   // console.log(state)
   // console.log(action)
   switch (action.type) {
-    case 'update_drop_zone':
+    case 'updateDropZone':
       return Object.assign({}, state, {dropZone: action.dropZone})
-    case 'update_drop_depth':
+    case 'updateDropDepth':
       return Object.assign({}, state, {dropDepth: action.dropDepth})
-    case 'update_Strengths':
+    case 'updateStrengths':
       return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Strengths, action.data]} )})
-    case 'update_Weaknesses':
+    case 'updateWeaknesses':
       return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Weaknesses, action.data]} )})
-    case 'update_Opportunities':
+    case 'updateOpportunities':
       return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Opportunities, action.data]} )})
-    case 'update_Threats':
+    case 'updateThreats':
       return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Strengths: [...state.SWOT.Threats, action.data]} )})
-    case 'toggle_Strengths_modal':
-      return Object.assign({}, state, {Strengths_modal: action.toggle})
-    case 'toggle_Weaknesses_modal':
-      return Object.assign({}, state, {Weaknesses_modal: action.toggle})
-    case 'toggle_Opportunities_modal':
-      return Object.assign({}, state, {Opportunities_modal: action.toggle})
-    case 'toggle_Threats_modal':
-      return Object.assign({}, state, {Threats_modal: action.toggle})
+    case 'toggleStrengthsModal':
+      return Object.assign({}, state, {StrengthsModal: action.toggle})
+    case 'toggleWeaknessesModal':
+      return Object.assign({}, state, {WeaknessesModal: action.toggle})
+    case 'toggleOpportunitiesModal':
+      return Object.assign({}, state, {OpportunitiesModal: action.toggle})
+    case 'toggleThreatsModal':
+      return Object.assign({}, state, {ThreatsModal: action.toggle})
     case 'updateNote':
-      return Object.assign({}, state, {current_note: action.note})
+      return Object.assign({}, state, {currentNote: action.note})
     case 'updateCategory':
-      return Object.assign({}, state, {current_category: action.category})
+      return Object.assign({}, state, {currentCategory: action.category})
     default:
       return state;
   }

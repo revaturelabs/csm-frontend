@@ -1,13 +1,21 @@
+<<<<<<< HEAD
 let initialState = {
   categories: [],
   displayCategories: [],
+=======
+const initialState = {
+>>>>>>> a73228d462be0419868f099f40c63d49f4b344f0
   SWOT: {
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
     Threats: [],
     Notes: ''
+<<<<<<< HEAD
   },
+=======
+  }, 
+>>>>>>> a73228d462be0419868f099f40c63d49f4b344f0
   dropDepth: 0,
   dropZone: '',
   StrengthsModal: false,
@@ -24,10 +32,13 @@ const swotReducer = (state = initialState, action) => {
   // console.log(state)
   // console.log(action)
   switch (action.type) {
+<<<<<<< HEAD
     case 'updateCategories':
         return Object.assign({}, state, { categories: action.getCategories })
     case 'updateDisplayCategories':
         return Object.assign({}, state, { displayCategories: action.getDisplayCategories })
+=======
+>>>>>>> a73228d462be0419868f099f40c63d49f4b344f0
     case 'updateDropZone':
       return Object.assign({}, state, {dropZone: action.dropZone})
     case 'updateDropDepth':

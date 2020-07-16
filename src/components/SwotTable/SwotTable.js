@@ -1,10 +1,13 @@
 import React from "react";
+import './SwotTable.css';
 import {Table} from "semantic-ui-react";
 import SwotQuadrant from '../SwotQuadrant/SwotQuadrant';
 
 const SwotTable = props => {
     return (
-        <Table>
+        <Table id='quadrant-table'
+        attached='bottom'
+        size='large'>
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>

@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Modal, Icon } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
+import './ModalNotes'
+import ModalNotes from "./ModalNotes";
 
 const SwotModal = (props) => {
   const swotState = useSelector((state) => state.swotReducer);
@@ -21,7 +23,7 @@ const SwotModal = (props) => {
             {/* categories list on left */}
             {/* SWOT quadrants*/}
             {/* general notes for associate container */}
-            <textarea onChange={(e) => dispatch({type: 'updateNotes', notes: e.target.value})}></textarea>
+            <ModalNotes/>
             {/* button to trigger spider graph */}
         </Modal.Content>
       </Modal>

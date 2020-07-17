@@ -34,7 +34,6 @@ const SwotModal = (props) => {
               </li>
             </ul>
             <SwotTable></SwotTable>
-            <SwotNotes></SwotNotes>
             {/* general notes for associate container */}
             {/* button to trigger spider graph */}
         </Modal.Content>

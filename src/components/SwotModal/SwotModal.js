@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Modal, Icon, Grid } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
 import "./SwotModal.css";
@@ -10,6 +10,7 @@ import "./SwotModal.css";
 const SwotModal = (props) => {
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
+  const swotState = useSelector((state) => state.swotReducer);
   useEffect(() => {
     async function getCategories() {
       let elements = [];
@@ -24,13 +25,31 @@ const SwotModal = (props) => {
     getCategories();
   }, [categoryService, dispatch]);
 
+  const showSWOTModal = () => {
+    dispatch({type: 'toggleSwotModal', toggle: true})
+  }
+  const closeSWOTModal = () => {
+    dispatch({type: 'toggleSwotModal', toggle: false})
+  }
+
+  const addSWOT = () => {
+    // Add code to actually PUT the SWOT
+    closeSWOTModal()
+  }
+
   return (
     <>
       <Modal
         id="swot-modal"
         size="fullscreen"
+        open={swotState.swotModal}
+        onClose={
+          closeSWOTModal
+        }
         trigger={
-          <Button primary icon>
+          <Button primary icon
+          onClick={showSWOTModal}
+          >
             Proceed <Icon name="right chevron" />
           </Button>
         }
@@ -48,6 +67,20 @@ const SwotModal = (props) => {
               <Grid.Row>
                 <SwotNotes />
               </Grid.Row>
+              <Grid.Row>
+              <Button
+                color='instagram'
+                onClick={addSWOT}
+              >
+                  Add SWOT Analysis to Associate
+              </Button>
+              <Button
+                color='red'
+                onClick={closeSWOTModal}
+              >
+                  Cancel
+              </Button>
+              </Grid.Row>
             </Grid.Column>
           </Grid>
           {/* <ul>
@@ -57,6 +90,7 @@ const SwotModal = (props) => {
           </ul> */}
 
           {/* button to trigger spider graph */}
+          
         </Modal.Content>
       </Modal>
     </>

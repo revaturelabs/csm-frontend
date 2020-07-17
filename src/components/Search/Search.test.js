@@ -4,14 +4,14 @@ import Search from './Search.js';
 import { useDispatch } from "react-redux";
 
 describe('Test Search.js', () => {
-  it('Should render Search.js correctly without props.', () => {
-    const component = shallow(<MyComponent/>);
+    it('Should render Search.js correctly without props.', () => {
+      const component = shallow(<MyComponent/>);
 
-    expect(component).toMatchSnapshot();
-  });
-  it('Should render with props. Define props for your object below.', () => {
-    const strings = ['one', 'two'];
-    const component = shallow(<MyComponent list={strings} />);
-    expect(component).toMatchSnapshot();
-  });
+      expect(component).toMatchSnapshot();
+    });
+    it('Should render with props. Define props for your object below.', () => {
+      const strings = ['one', 'two'];
+      const component = shallow(<MyComponent list={strings} />);
+      expect(component).toMatchSnapshot();
+    });
 });

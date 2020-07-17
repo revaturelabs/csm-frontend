@@ -10,19 +10,19 @@ const SpiderChart = (props) => {
     let Scores = [];
 
     var name_score = [
-        { Name: "JavaScript", Score: 65 },
-        { Name: "Java", Score: 70 },
-        { Name: "SQL", Score: 80 },
-        { Name: "Servlet", Score: 81 },
-        { Name: "Hibernate", Score: 56 },
-        { Name: "Spring", Score: 80 },
-        { Name: "Microservices", Score: 75 }];
+        { Name: "JavaScript", Score: 70 },
+        { Name: "Java", Score: 83 },
+        { Name: "SQL", Score: 84 },
+        { Name: "Servlet", Score: 85 },
+        { Name: "Hibernate", Score: 99 },
+        { Name: "Spring", Score: 86 },
+        { Name: "Microservices", Score: 87 }];
 
     for (let index = 0; index < name_score.length; index++) {
         Scores[index] = name_score[index].Score;
         Names[index] = name_score[index].Name
     }
-    
+
     const spiderState = useSelector(state => state.spiderReducer);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -43,7 +43,8 @@ const SpiderChart = (props) => {
                 borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 2,
                 // data: [65, 70, 80, 81, 56, 80, 75]
-                data: Scores
+                data: Scores,
+                pointRadius: 5
             }
         ]
 
@@ -69,11 +70,42 @@ const SpiderChart = (props) => {
                         legend: {
                             display: true,
                             psotion: 'left',
-
+                        },
+                        scale: {
+                            reverse: false,
+                            gridLines: {
+                                color: [
+                                    'black',
+                                    'red',
+                                    'orange',
+                                    'yellow',
+                                    'green',
+                                    'blue',
+                                    'indigo',
+                                    'violet'
+                                ]
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                max: 100
+                            },
+                            pointLabels: {
+                                fontSize: 16
+                            }
+                        },
+                        tooltips: {
+                            xPadding: 20,
+                            yPadding: 10,
+                            displayColors: true,
+                            bodyFontSize: 16,
+                            bodyFontStyle: 'bold',
+                        },
+                        annotation: {
+                            annotations: 'line',
                         }
                     }}
                 />
-                <Table selectable color={"black"}>
+                {/* <Table selectable color={"black"}>
                     <Table.Header className="head">
                         <Table.Row>
                             <Table.HeaderCell>Subject</Table.HeaderCell>
@@ -82,9 +114,9 @@ const SpiderChart = (props) => {
                     </Table.Header>
                     <Table.Body>
                         {/* <Table.Cell>{Names}</Table.Cell>
-                        <Table.Cell>{Scores}</Table.Cell> */}
+                        <Table.Cell>{Scores}</Table.Cell> 
                     </Table.Body>
-                </Table>
+                </Table> */}
             </div>
         </>
     )

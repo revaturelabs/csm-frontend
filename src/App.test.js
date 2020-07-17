@@ -1,9 +1,13 @@
 import React from 'react';
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { render } from '@testing-library/react';
+import { useDispatch } from 'react-redux';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+function App() {
+  return (
+    <Router>
+      <Route path="/modalTest" component={SwotModal}/>
+    </Router>
+  );
+}

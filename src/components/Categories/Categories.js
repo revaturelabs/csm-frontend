@@ -25,7 +25,7 @@ const Categories = (props) => {
     <>
       <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical>
         <Menu.Item>
-          <Search />
+          <Search/>
         </Menu.Item>
         <Menu.Item>
           <List as="ul" style={{ marginLeft: 0 }}>

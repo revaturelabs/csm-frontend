@@ -2,7 +2,7 @@ import React from 'react'
 import { Input } from 'semantic-ui-react'
 import { useSelector, useDispatch } from "react-redux";
 
-const InputExampleInput = (props) => {
+const Search = (props) => {
 		const dispatch = useDispatch();
 		const categories = useSelector((state) => state.swotReducer.categories);
 		const find = () => {
@@ -22,4 +22,4 @@ const InputExampleInput = (props) => {
 		return  <Input id="search" fluid onChange={find} icon="search" placeholder='Search...' />
 }
 
-export default InputExampleInput
+export default Search

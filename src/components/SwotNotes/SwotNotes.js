@@ -1,9 +1,8 @@
 import React from "react";
 import { Form, TextArea } from "semantic-ui-react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const SwotNotes = (props) => {
-  const noteState = useSelector((state) => state.swotReducer);
   const dispatch = useDispatch();
 
   return (

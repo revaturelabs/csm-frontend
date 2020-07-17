@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Menu, List, Segment, Card } from "semantic-ui-react";
+import { Menu, List, Card } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import Search from "../Search/Search.js";
 
@@ -28,9 +28,9 @@ const Categories = (props) => {
           <Search />
         </Menu.Item>
         <Menu.Item>
-          <List as="ul" style={{ "margin-left": 0 }}>
+          <List as="ul" style={{ marginLeft: 0 }}>
             {displayCategories.map((category) => (
-              <Card key={category} style={{ marginBottom: 10 }} raised="true">
+              <Card key={category} raised="true">
                 <List.Item id={category} name="category" draggable onDragStart={listDrag}>
                   {category}
                 </List.Item>

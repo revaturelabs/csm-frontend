@@ -22,7 +22,7 @@ const SwotModal = (props) => {
       dispatch({ type: "updateCategories", getCategories: elements });
     }
     getCategories();
-  }, []);
+  }, [categoryService, dispatch]);
 
   return (
     <>

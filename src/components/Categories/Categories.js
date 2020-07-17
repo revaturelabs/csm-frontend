@@ -19,7 +19,7 @@ const Categories = (props) => {
       type: "updateDisplayCategories",
       getDisplayCategories: categories,
     });
-  }, []);
+  }, [dispatch, categories]);
 
   return (
     <>
@@ -30,7 +30,7 @@ const Categories = (props) => {
         <Menu.Item>
           <List as="ul" style={{ marginLeft: 0 }}>
             {displayCategories.map((category) => (
-              <Card key={category} raised="true">
+              <Card key={category} raised={true}>
                 <List.Item
                   id={category}
                   name="category"

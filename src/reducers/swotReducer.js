@@ -53,7 +53,7 @@ const swotReducer = (state = initialState, action) => {
     case 'updateCategory':
       return Object.assign({}, state, {currentCategory: action.category})
     case 'updateNotes':
-            return Object.assign({}, state, {notes: action.notes})
+        return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Notes: action.notes} )})
     default:
       return state;
   }

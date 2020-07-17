@@ -19,7 +19,7 @@ const InputExampleInput = (props) => {
 				}
 				dispatch({type: "updateDisplayCategories", getDisplayCategories: ele})
 		}
-		return  <Input id="search" onChange={find} icon="search" style={{ "margin-top": 10, maxWidth: 80 }} placeholder='Search...' />
+		return  <Input id="search" fluid onChange={find} icon="search" placeholder='Search...' />
 }
 
 export default InputExampleInput

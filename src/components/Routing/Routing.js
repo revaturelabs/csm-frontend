@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import DisplayAssociates from '../DisplayAssociates/DisplayAssociates';
-import SpiderChart from '../Charts/Chart';
+import SpiderChart from '../SpiderCharts/SpiderChart';
 
 const Routing = (props) => {
   return (

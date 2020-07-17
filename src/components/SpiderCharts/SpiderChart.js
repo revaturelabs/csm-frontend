@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import { Chart } from 'chart.js';
 import { Radar } from 'react-chartjs-2'
 import { Table } from 'semantic-ui-react';
-import './Chart.css'
-import SpiderService from '../../services/spider.service.js';
+import './SpiderChart.css'
 
 const SpiderChart = (props) => {
     let Names = [];

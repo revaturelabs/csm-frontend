@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { Button, Modal, Icon, Grid } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
+import SwotService from "../../services/swot.service.js";
 import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
 import "./SwotModal.css";
 
 const SwotModal = (props) => {
+  const swotService = new SwotService();
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
-  const swotState = useSelector((state) => state.swotReducer);
-  const modalState = useSelector((state) => state.swotModalReducer)
+  const SWOT = useSelector((state) => state.swotReducer.SWOT)
+  const modalState = useSelector((state) => state.swotReducer.swotModal)
   useEffect(() => {
     async function getCategories() {
       let elements = [];
@@ -33,9 +35,14 @@ const SwotModal = (props) => {
     dispatch({type: 'toggleSwotModal', toggle: false})
   }
 
-  const addSWOT = () => {
-    // Add code to actually PUT the SWOT
-    closeSWOTModal()
+  const addSWOT = async () => {
+    const resp = await swotService.sendSWOT(props.associate.ID, SWOT)
+    if (resp.status === 200) {
+      closeSWOTModal()
+    } else {
+      alert('Adding SWOT has failed in the database')
+    }
+    
   }
 
   return (
@@ -84,12 +91,6 @@ const SwotModal = (props) => {
               </Grid.Row>
             </Grid.Column>
           </Grid>
-          {/* <ul>
-            <li id="dragElt" draggable onDragStart={list_drag}>
-              Drag ME
-            </li>
-          </ul> */}
-
           {/* button to trigger spider graph */}
           
         </Modal.Content>

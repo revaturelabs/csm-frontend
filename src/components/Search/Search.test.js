@@ -14,4 +14,12 @@ describe('Test Search.js', () => {
       const component = shallow(<MyComponent list={strings} />);
       expect(component).toMatchSnapshot();
     });
+    it('Should be possible to activate button with Spacebar. Define user input below.', () => {
+        const component = mount(<MyComponent />);
+        component
+          .find('button#my-button-one')
+          .simulate('keydown', { keyCode: 32 });
+        expect(component).toMatchSnapshot();
+        component.unmount();
+    });
 });

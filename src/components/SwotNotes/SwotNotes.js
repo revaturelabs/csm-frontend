@@ -7,10 +7,15 @@ const SwotNotes = (props) => {
 
   return (
     <>
-        <Form>
-            <label>Notes</label>
-            <TextArea placeholder='Notes...' onChange={(e) => dispatch({type: 'updateNotes', notes: e.target.value})}/>
-        </Form>
+      <Form>
+        <label>Notes</label>
+        <TextArea
+          placeholder="Notes..."
+          onChange={(e) =>
+            dispatch({ type: "updateNotes", notes: e.target.value })
+          }
+        />
+      </Form>
     </>
   );
 };

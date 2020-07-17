@@ -31,7 +31,12 @@ const Categories = (props) => {
           <List as="ul" style={{ marginLeft: 0 }}>
             {displayCategories.map((category) => (
               <Card key={category} raised="true">
-                <List.Item id={category} name="category" draggable onDragStart={listDrag}>
+                <List.Item
+                  id={category}
+                  name="category"
+                  draggable
+                  onDragStart={listDrag}
+                >
                   {category}
                 </List.Item>
               </Card>

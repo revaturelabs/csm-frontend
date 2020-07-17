@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { Button, Modal, Icon, Grid } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
 import "./SwotModal.css";
 
 const SwotModal = (props) => {
-  var state = useSelector((state) => state);
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
   useEffect(() => {
@@ -24,7 +23,7 @@ const SwotModal = (props) => {
     }
     getCategories();
   }, []);
-  
+
   return (
     <>
       <Modal

@@ -52,9 +52,11 @@
     ]
   },
   "devDependencies": {
+    "babel-jest": "^26.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
+    "jest": "^26.1.0",
     "puppeteer": "^5.1.0"
   }
 }

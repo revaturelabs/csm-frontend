@@ -40,11 +40,6 @@ const SwotModal = (props) => {
         <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}
-            <ul>
-              <li id='dragElt' draggable onDragStart={list_drag}>
-                Drag ME
-              </li>
-            </ul>
             <SwotTable></SwotTable>
             {/* general notes for associate container */}
             {/* button to trigger spider graph */}

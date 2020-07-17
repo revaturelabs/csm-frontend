@@ -3,7 +3,14 @@ import './SwotTable.css';
 import {Table} from "semantic-ui-react";
 import SwotQuadrant from '../SwotQuadrant/SwotQuadrant';
 
-const SwotTable = props => {
+
+/**
+ * SwotTable is the parent and wrapper component for the SwotQuadrants.
+ * It builds the layout of the quadrants, and also names them based on the sections 
+ * of SWOT analysis
+ * It expects no props, and uses no data from the store
+ */
+const SwotTable = () => {
     return (
         <Table id='quadrant-table'
         attached='bottom'

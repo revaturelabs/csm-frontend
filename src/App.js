@@ -7,7 +7,8 @@ import SpiderChart from './components/Charts/Chart'
 function App() {
   return (
     <div>
-      <Routing></Routing>
+      {/* <Routing></Routing> */}
+      <SpiderChart></SpiderChart>
     </div>
   );
 }

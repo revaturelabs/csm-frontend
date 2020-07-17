@@ -19,7 +19,7 @@ const Categories = (props) => {
       type: "updateDisplayCategories",
       getDisplayCategories: categories,
     });
-  }, [dispatch, categories]);
+  }, [dispatch]);
 
   return (
     <>

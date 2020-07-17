@@ -14,7 +14,7 @@ let initialState = {
   WeaknessesModal: false,
   OpportunitiesModal: false,
   ThreatsModal: false,
-  swotModal: false,
+  // swotModal: false,
   currentNote: '',
   currentCategory: '',
   notes: ''
@@ -55,8 +55,8 @@ const swotReducer = (state = initialState, action) => {
       return Object.assign({}, state, {currentCategory: action.category})
     case 'updateNotes':
         return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Notes: action.notes} )})
-    case 'toggleSwotModal':
-        return Object.assign({}, state, {swotModal: action.toggle})
+    // case 'toggleSwotModal':
+    //     return Object.assign({}, state, {swotModal: action.toggle})
     default:
       return state;
   }

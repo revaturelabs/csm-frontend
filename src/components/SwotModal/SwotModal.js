@@ -11,6 +11,7 @@ const SwotModal = (props) => {
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
   const swotState = useSelector((state) => state.swotReducer);
+  const modalState = useSelector((state) => state.swotModalReducer)
   useEffect(() => {
     async function getCategories() {
       let elements = [];
@@ -23,7 +24,7 @@ const SwotModal = (props) => {
       dispatch({ type: "updateCategories", getCategories: elements });
     }
     getCategories();
-  }, [categoryService, dispatch]);
+  }, [ dispatch]);
 
   const showSWOTModal = () => {
     dispatch({type: 'toggleSwotModal', toggle: true})
@@ -42,7 +43,7 @@ const SwotModal = (props) => {
       <Modal
         id="swot-modal"
         size="fullscreen"
-        open={swotState.swotModal}
+        open={modalState}
         onClose={
           closeSWOTModal
         }

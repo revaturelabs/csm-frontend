@@ -42,7 +42,7 @@ const SwotModal = (props) => {
               <Categories />
             </Grid.Column>
             <Grid.Column width={12}>
-              <Grid.Row>
+              <Grid.Row style={{ height: '65vh', overflowY: 'scroll', overflowX: 'hidden' }}>
                 <SwotTable />
               </Grid.Row>
               <Grid.Row>

@@ -14,7 +14,7 @@ const SwotTable = () => {
     return (
         <Table id='quadrant-table'
         attached='bottom'
-        size='large'>
+        size='small'>
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>

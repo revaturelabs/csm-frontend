@@ -40,7 +40,10 @@ const SwotModal = (props) => {
         <Modal.Content>
             {/* categories list on left */}
             {/* SWOT quadrants*/}
-            <SwotTable></SwotTable>
+            <span style={{ display: "flex", "flex-direction": "row" }}>
+                <Categories></Categories>
+                <SwotTable></SwotTable>
+            </span>
             {/* general notes for associate container */}
             {/* button to trigger spider graph */}
         </Modal.Content>

@@ -9,6 +9,11 @@ import './Chart.css'
 const SpiderChart = (props) => {
 
     const state = {
+        // TODO: 
+        // We need to extract from DB:
+        // labels
+        // dataset.label
+        // dataset.data
         labels: ['JavaScript', 'Java', 'SQL', 'Servlet', 'Hibernate', 'Spring',
             'Microservices'],
         datasets: [
@@ -26,6 +31,10 @@ const SpiderChart = (props) => {
     return (
         <>
             <div id='chart'>
+            {/* TODO: 
+                We need to extract from DB:
+                title
+                data */}
                 <h2 id='title'>J2EE - Technical Status</h2>
                 <Radar
                     type='radar'
@@ -43,10 +52,16 @@ const SpiderChart = (props) => {
                         }
                     }}
                 />
+                <Table>
+                    <Table.Row>
+                        <Table.Cell>Subject</Table.Cell>
+                        <Table.Cell>Score</Table.Cell>
+                    </Table.Row>
                 <Table.Row key="technology.ID">
                     <Table.Cell>{props.technology.Name}</Table.Cell>
                     <Table.Cell>{props.technology.Score}</Table.Cell>
                 </Table.Row>
+                </Table>
             </div>
         </>
     )

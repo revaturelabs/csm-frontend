@@ -29,4 +29,12 @@ describe('Test Search.js', () => {
           .simulate('click');
         expect(clickFn).toHaveBeenCalled();
     });
+    it('should set storage on save button click', () => {
+        mockTryGetValue.mockReturnValueOnce(true);
+        const component = mount(<MyComponent />);
+        component.find('button#my-button-three').simulate('click');
+        expect(mockTryGetValue).toHaveBeenCalled();
+        expect(component).toMatchSnapshot();
+        component.unmount();
+    }); 
 });

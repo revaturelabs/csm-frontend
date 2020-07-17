@@ -44,7 +44,10 @@ const SwotQuadrant = (props) => {
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    dispatch({ type: "updateDropZone", dropZone: props.name });
+    if (props.name === swotState.dropZone) {
+      dispatch({ type: "updateDropZone", dropZone: props.name });
+    }
+    
   };
 
   /**

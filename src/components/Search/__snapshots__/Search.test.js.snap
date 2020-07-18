@@ -8,50 +8,56 @@ exports[`Search unit test Mounting, testing user input, and dismounting the comp
   onChange={[MockFunction]}
   placeholder="Search..."
 >
-  <div
-    className="ui input"
+  <Input
+    fluid={true}
+    icon="search"
+    id="search"
+    onChange={[Function]}
+    placeholder="Search..."
+    type="text"
   >
-    <input
-      fluid="true"
-      icon="search"
-      id="search"
-      name="search"
-      onChange={[Function]}
-      placeholder="Search..."
-      value=""
-    />
-  </div>
+    <div
+      className="ui fluid icon input"
+    >
+      <input
+        id="search"
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+      />
+      <Icon
+        as="i"
+        name="search"
+      >
+        <i
+          aria-hidden="true"
+          className="search icon"
+          onClick={[Function]}
+        />
+      </Icon>
+    </div>
+  </Input>
 </Search>
 `;
 
 exports[`Search unit test Rendering component with props that match the original component. 1`] = `
-<div
-  className="ui input"
->
-  <input
-    fluid="true"
-    icon="search"
-    id="search"
-    name="search"
-    onChange={[Function]}
-    placeholder="Search..."
-    value=""
-  />
-</div>
+<Input
+  fluid={true}
+  icon="search"
+  id="search"
+  onChange={[Function]}
+  placeholder="Search..."
+  type="text"
+/>
 `;
 
 exports[`Search unit test Rendering component without props. 1`] = `
-<div
-  className="ui input"
->
-  <input
-    fluid="true"
-    icon="search"
-    id="search"
-    name="search"
-    onChange={[Function]}
-    placeholder="Search..."
-    value=""
-  />
-</div>
+<Input
+  fluid={true}
+  icon="search"
+  id="search"
+  onChange={[Function]}
+  placeholder="Search..."
+  type="text"
+/>
 `;

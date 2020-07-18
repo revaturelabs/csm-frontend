@@ -13,7 +13,7 @@ const Search = (props) => {
 				pattern = pattern.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 				for (category of categories) {
 						if(category.toLowerCase().search(pattern.toLowerCase()) > -1) {
-								ele.push(category);
+								elements.push(category);
 						}
 				}
 				dispatch({type: "updateDisplayCategories", getDisplayCategories: elements})

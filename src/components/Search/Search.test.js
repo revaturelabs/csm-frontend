@@ -6,8 +6,6 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
-import initialState from '../../testImports/swotStoreTest.js';
-import swotReducer from '../../testImports/swotStoreTest.js';
 import Search from './Search';
 
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature

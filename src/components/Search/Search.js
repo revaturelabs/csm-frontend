@@ -18,7 +18,7 @@ const Search = (props) => {
 				}
 				dispatch({type: "updateDisplayCategories", getDisplayCategories: elements})
 		}
-		return <div className="ui input"><input id="search" name="search" fluid="true" onChange={ find } icon="search" placeholder='Search...' value="" /></div>
+		return  <Input id="search" fluid onChange={ find } icon="search" placeholder='Search...' />
 }
 
 export default Search

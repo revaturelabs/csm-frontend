@@ -5,6 +5,7 @@ import "./SwotCategory.css";
 
 /**
  *  Representation for a single category and it's associated notes in the SWOT Analysis Widget
+ * @param {Object} props  The values passed to the component by its parent
  * @param {string} props.category The category being displayed by this SwotCategory Instance
  * @param {string} props.note The note associated with the category
  * @param {CallableFunction} props.editHandler The function to be called when the edit button is clicked

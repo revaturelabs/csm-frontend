@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import Categories from './Categories';
 
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature

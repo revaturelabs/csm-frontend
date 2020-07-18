@@ -28,9 +28,10 @@ describe("Swot Category unit tests", () => {
     it('Handles calling the proper handler following a delete button press', () => {
         const category="TEST VALUE";
         const note='Test note for testing';
-        const editHandler=jest.fn();
-        const deleteHandler = jest.fn();
-        const component = mount(<SwotCategory category={category} note={note} editHandler={editHandler} deleteHandler={deleteHandler}></SwotCategory>)
+        const mockEditHandler=jest.fn();
+        const mockDeleteHandler = jest.fn();
+        const component = mount(<SwotCategory category={category} note={note} editHandler={mockEditHandler} deleteHandler={mockDeleteHandler}></SwotCategory>)
+        component.unmount();
 
     })
 

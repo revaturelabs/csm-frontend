@@ -62,4 +62,5 @@ const swotReducer = (state = initialState, action) => {
   }
 };
 
-export default swotReducer;
+export { swotReducer };
+export { initialState };

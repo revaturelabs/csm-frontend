@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, useShallowEqualSelector } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
 import initialState from '../../testImports/swotStoreTest.js';
@@ -44,7 +44,7 @@ describe("Search unit test", () => {
   	});
 
   	it('Testing find function call.', () => {
-        const dispatch = jest.fn();
+        const mockedDispatch = jest.fn();
 		const { useSelector, useDispatch } = require("react-redux");
         useSelector.mockImplementation((callback) => {
             return callback({
@@ -54,12 +54,7 @@ describe("Search unit test", () => {
     	        },
             });
 		});
-        useDispatch.mockReturnValue(dispatch);
-        const id="search";
-        const find = jest.fn();
-        const icon="search";
-        const placeholder='Search...';
-        const event = {target: {name: "search", value: "A"}};
+        useDispatch.mockReturnValue(mockedDispatch);
         const component = mount(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
         component.find('input').simulate('change', event);
         expect(dispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})

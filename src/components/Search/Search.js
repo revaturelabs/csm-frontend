@@ -13,12 +13,12 @@ const Search = (props) => {
 				pattern = pattern.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 				for (category of categories) {
 						if(category.toLowerCase().search(pattern.toLowerCase()) > -1) {
-								ele.push(category);
+								elements.push(category);
 						}
 				}
 				dispatch({type: "updateDisplayCategories", getDisplayCategories: elements})
 		}
-		return  <Input id="search" fluid onChange={ find } icon="search" placeholder='Search...' />
+		return <div className="ui input"><input id="search" name="search" fluid="true" onChange={ find } icon="search" placeholder='Search...' value="" /></div>
 }
 
 export default Search

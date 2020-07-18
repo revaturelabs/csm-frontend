@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount, render } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { Provider } from 'react-redux';
-import { Provider } from 'react-redux'
-import reducer from '../../reducers/swotReducer';
-import state from '../../testImports/swotStoreTest.js';
+import configureStore from 'redux-mock-store';
+import reducer from '../../reducers';
+import store from '../../testImports/swotStoreTest.js';
 import Search from './Search';
 
 jest.mock("react-redux", () => ({
@@ -27,7 +27,7 @@ describe('Search unit test', () => {
 				const find = jest.fn();
 				const icon="search";
 				const placeholder='Search...';
-			  const component = shallow(<Search id={id} icon={icon} fluid onChange={find} placeholder={placeholder} />);
+			  const component = shallow(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
 			  expect(component).toMatchSnapshot();
 		});
 
@@ -36,7 +36,7 @@ describe('Search unit test', () => {
 				const find = jest.fn();
 				const icon="search";
 				const placeholder='Search...';
-				const component = mount(<Search id={id} icon={icon} fluid onChange={find} placeholder={placeholder} />);
+				const component = mount(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
 			  component.find('#search').value;
 				component.simulate('keypress', { keyCode: 'A' });
 				component.simulate('keypress', { keyCode: 'W' });
@@ -52,8 +52,9 @@ describe('Search unit test', () => {
 				const find = jest.fn();
 				const icon="search";
 				const placeholder='Search...';
-				const component = mount(<Search id={id} icon={icon} fluid onChange={find} placeholder={placeholder} />);
-		    component.find('input').simulate('change', {target: {value: 'AWS'}});
+				const event = {target: {name: "search", value: "AWS"}};
+				const component = mount(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
+				component.find('input').simulate('change', event);
 		    expect(find).toHaveBeenCalled();
 	  });
 

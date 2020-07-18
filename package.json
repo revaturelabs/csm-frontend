@@ -39,11 +39,22 @@
       "last 1 safari version"
     ],
     "setupFiles": [
-      "./src/setupTests.js"
+      "./src/setupTests.js",
+      "./__mocks__/client.js"
     ]
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-app": "^7.0.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.5.0",
+    "jsdom": "^16.3.0",
+    "jsdom-global": "3.0.2"
+  }
 }

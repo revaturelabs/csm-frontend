@@ -5,12 +5,12 @@ import DisplayAssociates from '../DisplayAssociates/DisplayAssociates';
 import Login from '../Login/Login'
 
 const Routing = (props) => {
-  return (
-    <Router>
-      <Route exact path='/promotedlastweek' component={DisplayAssociates} />
-      <Route exact path='/login' component={Login} />
-    </Router>
-  )
+    return (
+        <Router>
+            <Route exact path='/promotedlastweek' component={DisplayAssociates} />
+            <Route exact path='/login' component={Login} />
+        </Router>
+    )
 }
 
 export default Routing;

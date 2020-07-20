@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
@@ -10,13 +10,22 @@ const Login = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userService = new ManagerService();
+    const managerService = new ManagerService();
 
     const login = async () => {
-        let loggedUser = await userService.login(state.email)
-        sessionStorage.setItem('loggedUser', JSON.stringify(loggedUser.data));
-        dispatch({ type: 'login', user: loggedUser.data })
-        history.push('/')
+        let manager = await managerService.login(state.email)
+        dispatch({ type: 'login', manager: manager.data }) 
+        history.push('/') //this may change, will need to talk to derek's team.
+    }
+
+    const handleEnter = (e) => { 
+        if (e.key === 'Enter') { 
+            login() 
+        }
+    }
+
+    const handleInput = (e) => {
+        dispatch({ type: 'handleEmail', email: e.target.value })
     }
 
     return (
@@ -29,7 +38,14 @@ const Login = (props) => {
                 </Header>
                 <Form id='form'>
                     <Segment stacked>
-                        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+                        <Form.Input 
+                            fluid 
+                            icon='user' 
+                            iconPosition='left' 
+                            placeholder='E-mail address' 
+                            onChange={handleInput}
+                            onKeyDown={handleEnter}
+                        />
 
                         <Button id='btn' fluid onClick={login} >
                             Login

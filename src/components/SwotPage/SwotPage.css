@@ -1,0 +1,11 @@
+#SwotDiv {
+    margin: 0 auto;
+}
+#associateNameHeader {
+    text-align: center !important;
+    padding: 5px;
+}
+#swotContainer {
+    max-width: 85%;
+    width: 1800px;
+}

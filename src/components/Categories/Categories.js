@@ -23,7 +23,7 @@ const Categories = (props) => {
 
   return (
     <>
-      <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical>
+      <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical fluid>
         <Menu.Item>
           <Search/>
         </Menu.Item>

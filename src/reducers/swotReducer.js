@@ -1,4 +1,5 @@
 let initialState = {
+  associate: {},
   categories: ['test cat'],
   displayCategories: [],
   SWOT: {
@@ -25,6 +26,8 @@ const swotReducer = (state = initialState, action) => {
   // console.log(state)
   // console.log(action)
   switch (action.type) {
+    case 'updateSWOT':
+        return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT ) })
     case 'updateCategories':
         return Object.assign({}, state, { categories: action.getCategories })
     case 'updateDisplayCategories':

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, TextArea } from "semantic-ui-react";
+import { Form, TextArea, Header } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 
 const SwotNotes = (props) => {
@@ -8,7 +8,7 @@ const SwotNotes = (props) => {
   return (
     <>
       <Form>
-        <label>Notes</label>
+        <Header as='h3'>Notes</Header>
         <TextArea
           placeholder="Notes..."
           onChange={(e) =>

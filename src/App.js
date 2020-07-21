@@ -1,14 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Routing from './components/Routing/Routing';
-import Login from './components/Login/Login'
+import SpiderCharts from './components/SpiderCharts/SpiderChart'
 
 function App() {
   return (
     <div>
       {/* <Routing></Routing> */}
-      <Login></Login>
+      <SpiderCharts></SpiderCharts>
     </div>
   );
 }

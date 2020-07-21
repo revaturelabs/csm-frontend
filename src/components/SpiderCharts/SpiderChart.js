@@ -7,21 +7,27 @@ import './SpiderChart.css'
 
 const SpiderChart = (props) => {
     let Names = [];
+    let Names2 = [];
     let Scores = [];
+    let Scores2 = [];
 
     var name_score = [
-        { Name: "JavaScript", Score: 70 },
-        { Name: "Java", Score: 83 },
-        { Name: "SQL", Score: 84 },
-        { Name: "Servlet", Score: 85 },
-        { Name: "Hibernate", Score: 99 },
-        { Name: "Spring", Score: 86 },
-        { Name: "Microservices", Score: 87 }];
+        { Name: "JavaScript", Score: 75 },
+        { Name: "Java", Score: 75 },
+        { Name: "SQL", Score: 75 },
+        { Name: "Servlet", Score: 75 },
+        { Name: "Hibernate", Score: 75 },
+        { Name: "Spring", Score: 75 },
+        { Name: "Microservices", Score: 75 }];
 
     for (let index = 0; index < name_score.length; index++) {
         Scores[index] = name_score[index].Score;
-        Names[index] = name_score[index].Name
+        Names[index] = name_score[index].Name;
+        Names2[index] = name_score[index].Name;
+        Scores2[index] = name_score[index].Score+10;
     }
+    console.log(Scores);
+    console.log(Scores2);
 
     const spiderState = useSelector(state => state.spiderReducer);
     const dispatch = useDispatch();
@@ -33,8 +39,7 @@ const SpiderChart = (props) => {
         // labels
         // dataset.label
         // dataset.data
-        // labels: ['JavaScript', 'Java', 'SQL', 'Servlet', 'Hibernate', 'Spring',
-        //     'Microservices'],
+        // and the average of the batch
         labels: Names,
         datasets: [
             {
@@ -42,9 +47,17 @@ const SpiderChart = (props) => {
                 backgroundColor: 'rgba(0,0,255,0.5)',
                 borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 2,
-                // data: [65, 70, 80, 81, 56, 80, 75]
                 data: Scores,
                 pointRadius: 5
+            },
+            {
+                label: 'Batch Average',
+                backgroundColor: 'rgba(255,0,0,0.5)',
+                borderColor: 'rgba(0,0,0,0.1)',
+                borderWidth: 2,
+                data: Scores2,
+                pointRadius: 5
+
             }
         ]
 
@@ -105,18 +118,6 @@ const SpiderChart = (props) => {
                         }
                     }}
                 />
-                {/* <Table selectable color={"black"}>
-                    <Table.Header className="head">
-                        <Table.Row>
-                            <Table.HeaderCell>Subject</Table.HeaderCell>
-                            <Table.HeaderCell>Score</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {/* <Table.Cell>{Names}</Table.Cell>
-                        <Table.Cell>{Scores}</Table.Cell> 
-                    </Table.Body>
-                </Table> */}
             </div>
         </>
     )

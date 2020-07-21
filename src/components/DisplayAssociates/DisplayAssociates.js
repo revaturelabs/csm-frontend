@@ -34,7 +34,13 @@ const DisplayAssociates = (props) => {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {associatesState.associates.length > 0 ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
+                        {associatesState.associates.length > 0 ? associatesState.associates.map((associate) => { 
+                            return ( 
+                                <DisplayAssociate 
+                                    associate={associate}
+                                    key={associate.ID}
+                                /> 
+                            )
                         }): null }
                     </Table.Body>
                 </Table>

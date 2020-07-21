@@ -1,21 +1,11 @@
 import React from 'react';
-import { Table, Popup, Modal } from 'semantic-ui-react';
+import { Table, Popup } from 'semantic-ui-react';
 import './DisplayAssociates.css';
 
 const DisplayAssociate = (props) => {
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <Table.Row key="associate.ID">
+    <Table.Row>
       <Table.Cell>{props.associate.ID}</Table.Cell>
       <Table.Cell>{props.associate.Name}</Table.Cell>
       <Table.Cell>{props.associate.batch}</Table.Cell>
@@ -24,11 +14,6 @@ const DisplayAssociate = (props) => {
           <i class="icon eye"></i>
         </div>
       } />
-      <Modal
-        open={open}
-        onClose={handleClose}>
-        {/* TODO: Add components for SWOT */}
-      </Modal>
     </Table.Row>
   )
 }

@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import DisplayAssociates from '../DisplayAssociates/DisplayAssociates';
 import SpiderChart from '../SpiderCharts/SpiderChart';
 import QC from '../QC/qc'
+import Login from '../Login/Login'
 
 const Routing = (props) => {
   return (
@@ -11,8 +12,9 @@ const Routing = (props) => {
       <Route exact path='/promotedlastweek' component={DisplayAssociates} />
       <Route exact path='/spidercharts' component={SpiderChart} />
       <Route exact path='/qcdata' component={QC} />
+      <Route exact path='/login' component={Login} />
     </Router>
-  )
+    )
 }
 
 export default Routing;

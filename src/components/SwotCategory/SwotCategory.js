@@ -30,7 +30,7 @@ const SwotCategory = (props) => {
     if (event.target.id === "edit") {
       props.editHandler(props.category);
     } else {
-      props.deleteHandler();
+      props.deleteHandler(props.key);
     }
   };
   /**

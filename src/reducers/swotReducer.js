@@ -1,5 +1,9 @@
 let initialState = {
+<<<<<<< HEAD
   categories: ['AWS', 'JavaScript'],
+=======
+  categories: ['test cat'],
+>>>>>>> c9c9b607d3d0a4790e1cc329b3582d23778f4133
   displayCategories: [],
   // disabled: true, Front End - Add Category feature. Button state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020

@@ -7,7 +7,7 @@ function spiderReducer(state = initialState, action) {
     console.log(action);
     switch(action.type) {
         case 'getTechnologies':
-            return Object.assign({}, state, {associates: action.associates})
+            return Object.assign({}, state, {technologies: action.technologies})
         default:
             return state;
     }

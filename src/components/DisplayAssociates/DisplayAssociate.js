@@ -15,7 +15,7 @@ const DisplayAssociate = (props) => {
   };
 
   return (
-    <Table.Row key="associate.ID">
+    <Table.Row key={props.associate.ID}>
       <Table.Cell>{props.associate.ID}</Table.Cell>
       <Table.Cell>{props.associate.Name}</Table.Cell>
       <Table.Cell>{props.associate.batch}</Table.Cell>

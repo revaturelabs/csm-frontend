@@ -14,3 +14,9 @@
     max-width: 50% !important;
     width: 50% !important;
 }
+
+#cell1 {
+    min-width: 50% !important;
+    max-width: 50% !important;
+    width: 50% !important; 
+}

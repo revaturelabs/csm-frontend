@@ -37,6 +37,7 @@ const SwotPage = (props) => {
      */
     const closeSWOT = () => {
         const data = {
+            date: null,
             Strengths: [],
             Weaknesses: [],
             Opportunities: [],

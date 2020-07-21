@@ -8,7 +8,8 @@ const SwotNotes = (props) => {
   return (
     <>
       <Form>
-        <Header as='h3'>Notes</Header>
+        <Header as='h3'
+        style={{padding: '10px'}}>Notes</Header>
         <TextArea
           placeholder="Notes..."
           onChange={(e) =>

@@ -18,7 +18,8 @@ const SwotTable = () => {
               <Table.Body>
                 <Table.Row 
                 id='row1'>
-                  <Table.Cell>
+                  <Table.Cell
+                  id='cell1'>
                     <SwotQuadrant name='Strengths'></SwotQuadrant>
                   </Table.Cell>
                   <Table.Cell>

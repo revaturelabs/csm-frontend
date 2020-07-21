@@ -3,6 +3,7 @@ let initialState = {
   categories: ['test cat'],
   displayCategories: [],
   SWOT: {
+    date: null,
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],

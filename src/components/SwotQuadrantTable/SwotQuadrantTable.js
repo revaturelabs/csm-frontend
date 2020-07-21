@@ -24,10 +24,10 @@ const SwotQuadrantTable = (props) => {
             <Item.Group>
                 {
                     swotState.SWOT[props.name].map ?
-                        swotState.SWOT[props.name].map((item) => {
+                        swotState.SWOT[props.name].map((item, index) => {
                             return (
                                 <SwotCategory 
-                                key={item.category} 
+                                key={index} 
                                 category={item.category} 
                                 note={item.note} 
                                 editHandler={props.editHandler} 

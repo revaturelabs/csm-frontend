@@ -1,11 +1,11 @@
 import React from "react";
 import "./SwotQuadrant.css";
-import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import SwotQuadrantTable from "../SwotQuadrantTable/SwotQuadrantTable";
+import SwotNoteModal from "../SwotNoteModal/SwotNoteModal";
 
 /**
- *
+ * @param {Object} props The state that has been given to the Swot Quadrant from the Swot Quadrant Table
  * @param {string} props.name This is the name of the section of SWOT Analysis that the Quadrant represents
  */
 const SwotQuadrant = (props) => {
@@ -23,6 +23,7 @@ const SwotQuadrant = (props) => {
     event.stopPropagation();
     dispatch({ type: "updateDropDepth", dropDepth: swotState.dropDepth + 1 });
   };
+
   /**
    * Tracks that the object being dragged has left the drop zone.
    * @param {Event} event The object being dragged has crossed into the drop zone border from the drop zone,
@@ -37,6 +38,7 @@ const SwotQuadrant = (props) => {
     if (swotState.dropDepth > 0) return;
     dispatch({ type: "updateDropZone", dropZone: "" });
   };
+
   /**
    * Tracks the name of the drop zone the dragged object is currently hovering over
    * @param {Event} event The dragged object is hovering over a drop zone
@@ -44,7 +46,7 @@ const SwotQuadrant = (props) => {
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    if (props.name === swotState.dropZone) {
+    if (props.name !== swotState.dropZone) {
       dispatch({ type: "updateDropZone", dropZone: props.name });
     }
     
@@ -87,109 +89,27 @@ const SwotQuadrant = (props) => {
   };
 
   /**
-   * Handles dispatching the current note to the store
-   * @param {Event} event The note field of the note modal has changed
-   */
-  const updateNote = (event) => {
-    dispatch({ type: "updateCurrentNote", note: event.target.value });
-  };
-
-  /**
-   * Cleans up the store and the removes the note modal from the screen,
-   * This is done by:
-   *  1. Toggling the modal's open value to false
-   *  2. Clearing the currentNote field in the store
-   *  3. Clearing the currentCategory field in the store
-   */
-  const close = () => {
-    dispatch({ type: "toggle" + props.name + "Modal", toggle: false });
-    dispatch({ type: "updateCurrentNote", note: "" });
-    dispatch({ type: "updateCategory", category: "" });
-  };
-
-  /**
-   * Handles adding the new category to the list of categories in the store
-   * 1. Copies the list of categories for the appropriate SWOT section
-   * 2. Checks the list for the current category
-   *      A. IF NOT PRESENT:
-   *          i. Appends category object to list
-   *      B. IF PRESENT:
-   *          i. Updates category object already present in list with new note
-   * 3. Dispatches new array to store to change appropriate SWOT section's array
-   * 4. Closes the modal
-   */
-  const setCategory = () => {
-    const _type = "update" + props.name;
-    let new_arr = [...swotState.SWOT[props.name]];
-
-    const exists = swotState.SWOT[props.name].find(
-      (element) => element.category === swotState.currentCategory
-    );
-
-    if (exists === undefined) {
-      new_arr.push({
-        category: swotState.currentCategory,
-        note: swotState.currentNote,
-      });
-    } else {
-      let index = swotState.SWOT[props.name].findIndex(
-        (element) => element.category === swotState.currentCategory
-      );
-      new_arr[index].note = swotState.currentNote;
-    }
-
-    dispatch({ type: _type, data: new_arr });
-    close();
-  };
-
-  /**
    * Deletes the current category from the SWOT section's category list
    * 1. Copies the appropriate SWOT section's array
    * 2. Gets index of category to be removed
    * 3. Slices array at index
    * 4. Dispatches new array
    */
-  const deleteCategory = () => {
+  const deleteCategory = (index) => {
     const _type = "update" + props.name;
     let new_arr = [...swotState.SWOT[props.name]];
-    let index = swotState.SWOT[props.name].findIndex(
-      (element) => element.category === swotState.currentCategory
-    );
     new_arr.splice(index, 1);
     dispatch({ type: _type, data: new_arr });
   };
 
   /**
-   * The notes modal is defaulted to being closed.
-   * It's title contains the current category,
-   * It's body has the category's note
-   * The modal has 2 buttons:
-   *  1. Add Note: This adds the category to the given SWOT section, with the current note
-   *  2. Cancel: Cancels the operation, leaving the section in it's previous state
-   *
+   * 
    * The SWOT section has the section's name, as well as the list of the section's categories
    * The section is a droppable area, including the category items already present in the section
    */
   return (
     <>
-      <Modal open={swotState[props.name + "Modal"]} size="small">
-        <Modal.Header>Add a note for {swotState.currentCategory}</Modal.Header>
-        <Modal.Content>
-          <Form>
-            <TextArea
-              placeholder="Add note for selected category"
-              onChange={updateNote}
-              value={swotState.currentNote}
-            />
-          </Form>
-          <Button color="blue" onClick={setCategory}>
-            Add Note
-          </Button>
-          <Button color="red" onClick={close}>
-            Cancel
-          </Button>
-        </Modal.Content>
-      </Modal>
+      <SwotNoteModal name={props.name}></SwotNoteModal>
       <div
         className={"dragDropZone"}
         id={props.name + "Zone"}

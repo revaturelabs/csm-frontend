@@ -1,5 +1,5 @@
 let initialState = {
-  categories: [],
+  categories: ['test cat'],
   displayCategories: [],
   SWOT: {
     Strengths: [],

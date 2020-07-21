@@ -11,11 +11,12 @@ import SwotCategory from './SwotCategory';
 jest.mock('react-redux');
 
 describe("Swot Category unit tests", () => {
+
     it('Rendering component without props.', () => {
         const component = shallow(<SwotCategory/>);
         expect(component).toMatchSnapshot();
     });
-    
+
     it('Rendering component with props for category and note.', () => {
         const category="TEST VALUE";
         const note='Test note for testing';
@@ -28,9 +29,7 @@ describe("Swot Category unit tests", () => {
         const note='Test note for testing';
         const editHandler=jest.fn();
         const deleteHandler = jest.fn();
-        const component = mount(<SwotCategory category={category} note={note} editHandler={editHandler} deleteHandler={deleteHandler}></SwotCategory>)
-
+        const component = mount(<SwotCategory category={category} note={note} editHandler={editHandler} deleteHandler={deleteHandler}></SwotCategory>);
     })
-
 
 })

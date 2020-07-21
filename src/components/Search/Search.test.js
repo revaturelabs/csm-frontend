@@ -41,20 +41,40 @@ describe("Search unit test", () => {
         component.unmount();
   	});
 
-  	it('Testing find function call.', () => {
-        const mockedDispatch = jest.fn();
-		const { useSelector, useDispatch } = require("react-redux");
-        useSelector.mockImplementation((callback) => {
-            return callback({
-    	        swotReducer: {
-                    categories: ["AWS", "Python", "JavaScript"],
-                    displayCategories: []
-    	        },
-            });
-		});
-        useDispatch.mockReturnValue(mockedDispatch);
-        const component = mount(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
-        component.find('input').simulate('change', event);
-        expect(dispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
-  	});
+  	// it('Testing find function call.', () => {
+    //     const { useSelector, useDispatch } = require("react-redux")
+    //     const mockedDispatch = jest.fn();
+    //     const findPattern = jest.fn();
+    //     mockedDispatch.mockImplementation(useDispatch());
+    //     findPattern.mockImplementation((event) => {
+    //         let category = '';
+    //         let elements = [];
+    //         // let re = /^[^`~!@#$%^&*()_+={}\[\]|\\:;“’<,>.?๐฿]*$/;
+    //         let pattern = event.target.value;
+    //         pattern = pattern.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
+    //         for (category of categories) {
+    //                 if(category.toLowerCase().search(pattern.toLowerCase()) > -1) {
+    //                         elements.push(category);
+    //                 }
+    //         }
+    //         dispatch({type: "updateDisplayCategories", getDisplayCategories: elements})
+    //     });
+    //     useSelector.mockImplementation((callback) => {
+    //         return callback({
+    // 	        swotReducer: {
+    //                 categories: ["AWS", "Python", "JavaScript"],
+    //                 displayCategories: []
+    // 	        },
+    //         });
+	// 	});
+    //     useDispatch.mockReturnValue(mockedDispatch);
+    //     const id="search";
+    //     const icon="search";
+    //     const placeholder='Search...';
+    //     const event = {target: {class: "input", value: "A"}};
+    //     const component = mount(<Search id={id} icon={icon} fluid="true" onChange={findPattern} placeholder={placeholder} />);
+    //     component.find('input').simulate('change', event);
+    //     expect(findPattern.mock.instances.length).toBe(1);
+    //     expect(mockedDispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
+    // });
 });

@@ -10,6 +10,44 @@ import Categories from './Categories';
 jest.mock('react-redux');
 
 describe("Search unit test", () => {
+    let wrapper;
+    let useEffect;
+    let store;
+
+    const mockUseEffect = () => {
+        useEffect.mockImplementationOnce(f => f());
+    };
+
+    beforeEach(() => {
+        /* mocking store */
+        store = configureStore([thunk])({
+            swotReducer: {
+                categories: ["AWS", "Python", "JavaScript"],
+                displayCategories: []
+            },
+        });
+
+        /* mocking useEffect */
+        useEffect = jest.spyOn(React, "useEffect");
+        mockUseEffect(); // 2 times
+        mockUseEffect(); //
+
+        /* mocking useDispatch on our mock store */
+        jest
+            .spyOn(ReactReduxHooks, "useDispatch")
+            .mockImplementation(() => store.dispatch);
+
+        /* shallow rendering */
+        wrapper = shallow(<RecipeList store={store} />);
+    });
+
+    describe("on mount", () => {
+        it("Dispatch search action to store."), () => {
+            const actions = store.getActions();
+            expect(actions).toEqual([{type: "SEARCH", query: "all" },
+            { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript" ]});
+        }
+    });
 
   	it('Rendering component without props.', () => {
 		const { useSelector } = require("react-redux");
@@ -40,36 +78,35 @@ describe("Search unit test", () => {
   	});
 
   	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-		const { useSelector } = require("react-redux");
+        const { useSelector, useDispatch } = require("react-redux");
+        spyOn(React, 'useEffect'). mockImplementation(f => f());
 		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"]
-				},
-			});
-		});
+            dispatch({
+                type: "updateDisplayCategories",
+                getDisplayCategories: categories,
+            })
+        }, [dispatch]);
 		const component = mount(<Categories/>);
 		expect(component).toMatchSnapshot();
 		component.unmount();
   	});
 
-  	it('Testing find function call.', () => {
-		const dispatch = jest.fn();
-		const { useSelector, useDispatch } = require("react-redux");
-		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"]
-				},
-			});
-		});
-		useDispatch.mockReturnValue(dispatch);
-		const event = {target: {name: "search", value: "A"}};
-		const component = mount(<Categories/>);
-		component.find('input').simulate('change', event);
-		expect(dispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
-  	});
+  	// it('Testing find function call.', () => {
+	// 	const dispatch = jest.fn();
+	// 	const { useSelector, useDispatch } = require("react-redux");
+	// 	useSelector.mockImplementation((callback) => {
+	// 		return callback({
+	// 			swotReducer: {
+	// 				categories: [],
+	// 				displayCategories: ["AWS", "Python", "JavaScript"]
+	// 			},
+	// 		});
+	// 	});
+	// 	useDispatch.mockReturnValue(dispatch);
+	// 	const event = {target: {name: "search", value: "A"}};
+	// 	const component = mount(<Categories/>);
+	// 	component.find('input').simulate('change', event);
+	// 	expect(dispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
+  	// });
 
 });

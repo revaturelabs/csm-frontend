@@ -45,10 +45,12 @@ const SwotCharts = (props) => {
                     <Grid columns={2} divided>
                         <Grid.Column>
                             <Header>Spider Chart</Header>
+                            <img src={require('./spiderExample.PNG')}/>
                             {/* Insert Spider Chart Component */}
                         </Grid.Column>
                         <Grid.Column>
                             <Header>QC Notes</Header>
+                            <img src={require('./QCNotesExample.PNG')}/>
                             {/* Insert QC Notes Component */}
                         </Grid.Column>
                     </Grid>

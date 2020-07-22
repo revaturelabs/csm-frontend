@@ -86,9 +86,6 @@ let initialState = {
 };
 
 const swotReducer = (state = initialState, action) => {
-  // console.log('In the swotReducer')
-  // console.log(state)
-  // console.log(action)
   switch (action.type) {
     case "updateStartDate":
       return action.startDate > state.endDate

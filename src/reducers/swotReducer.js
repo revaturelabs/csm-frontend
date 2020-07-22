@@ -1,10 +1,6 @@
 let initialState = {
-<<<<<<< HEAD
-  categories: ['AWS', 'JavaScript'],
-=======
   associate: {},
   categories: ['test cat'],
->>>>>>> 009d1eeedbfba83435d4ae705c02a796293560ff
   displayCategories: [],
   date: new Date(),
   SWOT: {

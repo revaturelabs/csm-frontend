@@ -7,7 +7,6 @@ function App() {
   return (
     <Router>
       <Route path="/editSwot" component={SwotPage}/>
-      <Route path='/SWOTs' component={'/'}/>
       <Route path='/gridTest' component={ViewSwots}/>
     </Router>
   );

@@ -24,7 +24,7 @@ let initialState = {
   currentCategory: '',
   notes: '',
   currentSwots: [{
-    date: 'Person1',
+    date: 'Date1',
     Strengths: [{
       category: "Python",
       note: 'he good at python'
@@ -43,7 +43,7 @@ let initialState = {
     }],
     Notes: ''
   },{
-    date: 'Person2',
+    date: 'Date2',
     Strengths: [{
       category: "HTML",
       note: 'he good at HTML'
@@ -62,7 +62,7 @@ let initialState = {
     }],
     Notes: ''
   },{
-    date: 'Person3',
+    date: 'Date3',
     Strengths: [{
       category: "PyMongo",
       note: 'he good at pymongo'

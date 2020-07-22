@@ -1,0 +1,25 @@
+#flexbox {
+	flex-flow: default;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
+	background: #B9B9BA;
+}
+
+#name {
+	flex-basis: auto;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#startDate {
+	flex-basis: auto;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#endDate {
+	flex-basis: auto;
+	margin-left: 5%;
+	margin-right: 5%;
+}

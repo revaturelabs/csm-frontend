@@ -1,10 +1,10 @@
-import React from 'react'
-import { Input, Button } from 'semantic-ui-react'
+import React from 'react';
+import { Input, Button } from 'semantic-ui-react';
 import { useSelector, useDispatch } from "react-redux";
 
 const Search = (props) => {
 		const dispatch = useDispatch();
-		const dates = useSelector((state) => state.swotReducer.dates);
+		const categories = useSelector((state) => state.swotReducer.categories);
 		const findPattern = (event) => {
 				let category = '';
 				let elements = [];
@@ -24,4 +24,4 @@ const Search = (props) => {
 		)
 }
 
-export default Search
+export default Search;

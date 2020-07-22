@@ -6,6 +6,7 @@ import SwotService from "../../services/swot.service.js";
 import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
+import SwotsBar from "../SwotsBar/SwotsBar";
 import "./SwotModal.css";
 
 const SwotModal = (props) => {
@@ -42,11 +43,11 @@ const SwotModal = (props) => {
     } else {
       alert('Adding SWOT has failed in the database')
     }
-    
   }
 
   return (
     <>
+    <SwotsBar/>
       <Modal
         id="swot-modal"
         size="fullscreen"
@@ -92,7 +93,7 @@ const SwotModal = (props) => {
             </Grid.Column>
           </Grid>
           {/* button to trigger spider graph */}
-          
+
         </Modal.Content>
       </Modal>
     </>

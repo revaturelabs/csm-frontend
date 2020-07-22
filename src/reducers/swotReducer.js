@@ -1,6 +1,7 @@
 let initialState = {
   categories: ['AWS', 'JavaScript'],
   displayCategories: [],
+  date: new Date(),
   SWOT: {
     Strengths: [],
     Weaknesses: [],
@@ -24,6 +25,10 @@ const swotReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'updateCategories':
         return Object.assign({}, state, {categories: action.getCategories})
+    case 'updateStartDate':
+        return Object.assign({}, state, {startDate: action.getStartDate})
+    case 'updateEndDate':
+        return Object.assign({}, state, {endDate: action.getEndDate})
     case 'updateDisplayCategories':
         return Object.assign({}, state, {displayCategories: action.getDisplayCategories})
     case 'updateDisabledField':

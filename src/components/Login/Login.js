@@ -5,15 +5,16 @@ import './Login.css';
 import ManagerService from '../../services/manager.service'
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
+
 const Login = (props) => {
-    const state = useSelector(state => state);
+    const managerState = useSelector(state => state.managerReducer);
     const dispatch = useDispatch();
     const history = useHistory();
 
     const managerService = new ManagerService();
 
     const login = async () => {
-        let manager = await managerService.login(state.email)
+        let manager = await managerService.login(managerState.email)
         dispatch({ type: 'login', manager: manager.data }) 
         history.push('/') // this may change
     }

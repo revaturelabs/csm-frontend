@@ -47,7 +47,7 @@ const SwotPage = (props) => {
           }
         dispatch({type: 'updateSWOT', SWOT: data})
         // URL for view swot page goes here
-        history.push('/SWOTs')
+        history.push('/gridTest')
     }
     
     /**

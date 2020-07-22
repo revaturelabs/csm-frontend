@@ -12,10 +12,8 @@ const DisplayAssociates = (props) => {
     const history = useHistory();
     const associateService = new AssociateService();
 
-
     useEffect(() => {
-        console.log("useEffect")
-
+        console.log("useEffect");
         getAssociatesInformation();
     }, []);
 
@@ -43,8 +41,9 @@ const DisplayAssociates = (props) => {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {Array.isArray(associatesState.associates) ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
-                        }): null }
+                        {/* {Array.isArray(associatesState.associates) ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
+                        }): null } */}
+                        <DisplayAssociate/>
                     </Table.Body>
                 </Table>
             </div>

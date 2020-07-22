@@ -32,27 +32,27 @@ const Categories = (props) => {
 
   return (
     <>
-      <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical fluid>
-        <Menu.Item>
-          <Search />
-        </Menu.Item>
-        <Menu.Item>
-          <List as="ul" style={{ marginLeft: 0 }}>
-            {displayCategories.map((category) => (
-              <Card key={category.categoryId} raised={true}>
-                <List.Item
-                  id={category.skillCategory}
-                  name="category"
-                  draggable
-                  onDragStart={listDrag}
-                >
-                  {category.skillCategory}
-                </List.Item>
-              </Card>
-            ))}
-          </List>
-        </Menu.Item>
-      </Menu>
+        <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical fluid>
+            <Menu.Item>
+                <Search />
+            </Menu.Item>
+            <Menu.Item>
+                <List as="ul" style={{ marginLeft: 0 }}>
+                    {displayCategories.map((category) => (
+                        <Card key={category.categoryId} raised={true}>
+                            <List.Item
+                              id={category.skillCategory}
+                              name="category"
+                              draggable
+                              onDragStart={listDrag}
+                            >
+                              {category.skillCategory}
+                            </List.Item>
+                        </Card>
+                    ))}
+                </List>
+            </Menu.Item>
+        </Menu>
     </>
   );
 };

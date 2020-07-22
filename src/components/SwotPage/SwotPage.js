@@ -48,7 +48,7 @@ const SwotPage = (props) => {
         dispatch({type: 'updateSWOT', SWOT: data})
         history.push('/viewSwots')
     }
-    
+
     /**
      * @todo Refactor functionality
      */
@@ -58,7 +58,7 @@ const SwotPage = (props) => {
             closeSWOT()
         } else {
             alert('Adding SWOT has failed in the database')
-        }   
+        }
     }
 
     return (
@@ -69,15 +69,15 @@ const SwotPage = (props) => {
                         id='associateNameHeader'
                         fluid
                 >Add SWOT Analysis for {associate.name}</Header>
-                <Grid
-                >
-                    <Grid.Column width={3}
-                    >
-                        <Categories />
+                <Grid>
+                    <Grid.Column width={3}>
+                        <div id="sticky">
+                            <Categories />
+                        </div>
                     </Grid.Column>
-                    
+
                     <Grid.Column width={13}>
-                        <Grid.Row 
+                        <Grid.Row
                         style={{ overflowY: 'scroll', overflowX: 'hidden' }}>
                             <SwotTable />
                         </Grid.Row>
@@ -103,10 +103,10 @@ const SwotPage = (props) => {
                                 Cancel
                             </Button>
                         </Grid.Row>
-                        
+
                     </Grid.Column>
                 </Grid>
-        </Container>            
+        </Container>
     )
 }
 export default SwotPage;

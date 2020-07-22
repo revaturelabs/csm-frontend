@@ -7,6 +7,7 @@ import SwotService from "../../services/swot.service.js";
 import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
+import SwotCharts from "../SwotCharts/SwotCharts";
 import "./SwotPage.css";
 
 
@@ -99,6 +100,9 @@ const SwotPage = (props) => {
                             >
                                 Cancel
                             </Button>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <SwotCharts />
                         </Grid.Row>
                     </Grid.Column>
                 </Grid>

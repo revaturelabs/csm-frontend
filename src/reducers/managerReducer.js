@@ -1,5 +1,5 @@
 const initialState = {
-    manager: {id: ''},
+    manager: {_id: '', username: ''},
     email: ''
 }
 

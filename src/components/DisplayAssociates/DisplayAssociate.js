@@ -42,7 +42,7 @@ export default class DisplayAssociate extends Component {
           <span>{this.pro_date}</span>
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
-          <SpiderChart />
+          <SpiderChart spider_batch={axiosResp.batch_spider} spider_associate={axiosResp.associate_spider}/>
           <QC qc={axiosResp.qc} />
         </Accordion.Content>
       </Accordion>

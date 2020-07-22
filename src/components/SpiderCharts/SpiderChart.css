@@ -1,8 +1,8 @@
 #chart{
     width: 50%;
     height: 400px;
-    border: solid rgb(180, 179, 179) 0.5px;
     margin-left: 50px;
+    margin-right: 10px;
     margin-top: 25px;
 }
 

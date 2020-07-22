@@ -83,11 +83,11 @@ const QC = (props) => {
 
   //render() {
   return (
-    <div>
-      <div>
-        <h2>Line Example</h2>
+    <div id='chart'>
+      {/* <div> */}
+      <h2 id='title'>Line Example</h2>
         <Line data={data} />
-      </div>
+      {/* </div> */}
       {/* <div>
         <h2>Notes</h2>
         {skills.map(a => (

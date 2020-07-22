@@ -9,27 +9,48 @@ import AccordionExampleStyled from './qcnotes';
 
 const QC = (props) => {
 
-  const qcState = useSelector(state => state.qcReducer);
+  const evalState = useSelector(state => state.evalReducer);
   const dispatch = useDispatch();
-  const skills = [{
-    'skill': 'Java',
-    'score': '10',
-    'note': 'notes'
-  },
-  {
-    'skill': 'Python',
-    'score': '8',
-    'note': 'notes'
-  },
-  {
-    'skill': 'HTML',
-    'score': '8',
-    'note': 'notes'
-  },
-  ]
+  const qcSkills = []
+  const qcData = []
+
+  useEffect( () => {
+    for (const qcEval of props.qc) {
+        // console.log(qcEval)
+        qcSkills.push(qcEval.skill)
+        var qcScore
+        switch (qcEval.score.toLowerCase()) {
+            case 'poor':
+                qcScore = 1;
+                break;
+            case 'average':
+              qcScore = 2;
+              break;
+            //case 'top performer'
+            //  qcScore = 3;
+            //  break;
+            case 'superstar':
+                qcScore = 4;
+                break;
+            default: // the data is null if invalid
+                qcScore = null;  // should leave a gap in line
+                break;
+        }
+        // console.log(qcScore)
+        qcData.push(qcScore)
+        
+    }
+
+    dispatch({type :'setQCLabels', qcLabels : qcSkills})
+    dispatch({type :'setQCValues', qcValues : qcData})
+  }, []);
+
+
+
 
   const data = {
-    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
+
+    labels: evalState.qcLabels,//qcSkills, //['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
     datasets: [
       {
         label: 'QC Data',
@@ -50,11 +71,10 @@ const QC = (props) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
+        data: evalState.qcValues//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
       }
     ]
   };
-
 
 
 

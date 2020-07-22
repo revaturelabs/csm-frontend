@@ -26,8 +26,6 @@ const SpiderChart = (props) => {
         Names2[index] = name_score[index].Name;
         Scores2[index] = name_score[index].Score+10;
     }
-    console.log(Scores);
-    console.log(Scores2);
 
     const spiderState = useSelector(state => state.spiderReducer);
     const dispatch = useDispatch();

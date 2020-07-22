@@ -28,14 +28,18 @@ export default class DisplayAssociate extends Component {
         <Accordion.Title
           active={activeIndex === 0}
           index={0}
-          onClick={this.handleClick}>
+          onClick={this.handleClick}
+          className='title'>
           <Icon name='dropdown' />
           {this.props.title}
           {/* <div className='id'>{props.associate.ID}</div>
           <div className='name'>{props.associate.Name}</div>
           <div className='batch'>{props.associate.batch}</div>
           <div className='pro_date'>{props.associate.pro_date}</div> */}
-          <div className='id'>{this.id} | {this.name} | {this.batch} | {this.pro_date}</div>
+          <span className='id'>{this.id}</span>
+          <span> {this.name}</span>
+          <span>{this.batch}</span>
+          <span>{this.pro_date}</span>
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
           <SpiderChart />

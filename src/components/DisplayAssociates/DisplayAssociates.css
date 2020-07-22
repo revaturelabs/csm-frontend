@@ -8,23 +8,33 @@ header{
     text-shadow: 2px 2px #4d94ff;
 }
 
-Table{
-    margin-top: 25px;
-}
 
-#data{
-    text-align: center;
-}
 
-#table{
-    width: 80%;
+.accordion{
+    width: 100% !important;
+    margin: 0 auto;
     align-self: center;
 }
 
 .title{
     font-weight: bold;
+
+}
+
+.title > span {
+    margin-left: 10px;
 }
 
 .info{
     font-weight: normal;
+}
+
+.accordion .content.active{
+    display: flex !important ;
+    flex-flow: row nowrap;
+    
+}
+
+.accordion .content.active > div {
+    width: 35%;
 }

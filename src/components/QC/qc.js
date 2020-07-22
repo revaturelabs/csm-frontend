@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Line } from 'react-chartjs-2'
 import { Accordion } from 'semantic-ui-react';
-import AccordionExampleStyled  from './qcnotes';
+import AccordionExampleStyled from './qcnotes';
 //import { Table } from 'semantic-ui-react';
 //import './Chart.css'
 
 const QC = (props) => {
 
-const qcState = useSelector(state => state.qcReducer);
-const dispatch = useDispatch();
-const skills = [    {
+  const qcState = useSelector(state => state.qcReducer);
+  const dispatch = useDispatch();
+  const skills = [{
     'skill': 'Java',
     'score': '10',
     'note': 'notes'
@@ -26,9 +26,9 @@ const skills = [    {
     'score': '8',
     'note': 'notes'
   },
-]
+  ]
 
-const data = {
+  const data = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
     datasets: [
       {
@@ -59,27 +59,27 @@ const data = {
 
 
   //export default React.createClass({
-    //displayName: 'LineExample',
-  
-    //render() {
-      return (
-        <div>
-        <div style={{width: "60%", marginLeft: "25px"}}>
-          <h2>Line Example</h2>
-          <Line data={data} />
-        </div>
-        <div>
-            <h2>Notes</h2>
-            {skills.map(a => (
-        <AccordionExampleStyled
-        title={a.skill}
-        note={a.note}
-        score={a.score} />
-        ))}
-        </div>
-        </div>
+  //displayName: 'LineExample',
 
-      );
+  //render() {
+  return (
+    <div>
+      <div>
+        <h2>Line Example</h2>
+        <Line data={data} />
+      </div>
+      {/* <div>
+        <h2>Notes</h2>
+        {skills.map(a => (
+          <AccordionExampleStyled
+            title={a.skill}
+            note={a.note}
+            score={a.score} />
+        ))}
+      </div> */}
+    </div>
+
+  );
 
 }
 

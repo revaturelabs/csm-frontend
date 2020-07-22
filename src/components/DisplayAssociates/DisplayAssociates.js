@@ -59,24 +59,25 @@ export default class DisplayAssociates extends Component {
         return (
             <div>
                 <header>List of Associates</header>
-                <div id="table">
-                    <Accordion>
-                        <Accordion.Title
-                            active={activeIndex === 0}
-                            index={0}
-                            onClick={this.handleClick}>
-                            <Icon name='dropdown' />
-                            {/* {this.props.title} */}
-                            <div className='title'>{this.batchName} </div>
-                            <div className='info'>Trainer: {this.trainer} </div>
-                            <div className='info'>Promotion Date: {this.pro_date}</div> 
-                            <div className='info'>Numeber of Associates: {this.no_associates}</div>
-                        </Accordion.Title>
-                        <Accordion.Content active={activeIndex === 0}>
-                            <DisplayAssociate />
-                        </Accordion.Content>
-                    </Accordion>
-                </div>
+
+                <Accordion styled>
+                    <Accordion.Title
+                        active={activeIndex === 0}
+                        index={0}
+                        onClick={this.handleClick}
+                        className="title">
+                        <Icon name='dropdown' />
+                        {/* {this.props.title} */}
+                        <span className='title'>{this.batchName} </span>
+                        <span className='info'>{this.trainer} </span>
+                        <span className='info'>{this.pro_date} </span> 
+                        <span className='info'>{this.no_associates} Associates</span>
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 0}>
+                        <DisplayAssociate />
+                    </Accordion.Content>
+                </Accordion>
+
             </div >
         )
     }

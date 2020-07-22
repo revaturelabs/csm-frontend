@@ -3,9 +3,11 @@ import { combineReducers } from "redux";
 // import reducer2... etc.
 import associateReducer from './associateListReducer'
 import batchReducer from './batchReducer'
+import evalReducer from './evalReducer'
 export default combineReducers({
     associateReducer,
-    batchReducer
+    batchReducer, 
+    evalReducer
   //  reducer2
 })
 

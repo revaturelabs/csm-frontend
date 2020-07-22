@@ -30,3 +30,5 @@ class AssociateService {
 }
 
 export default AssociateService;
+
+

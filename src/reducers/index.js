@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import swotReducer from "./swotReducer";
-// import reducer2... etc.
+import managerReducer from './managerReducer'
+export default combineReducers({
+    managerReducer,
+    swotReducer
+})
 
-/* export default combineReducers({
-    reducer1,
-    reducer2
-})*/
-export default combineReducers({swotReducer})
+

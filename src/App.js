@@ -1,14 +1,12 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import SwotPage from './components/SwotPage/SwotPage';
-import ViewSwots from './components/ViewSwots/ViewSwots';
+import './App.css';
+import Routing from './components/Routing/Routing';
 
 function App() {
   return (
-    <Router>
-      <Route path="/editSwot" component={SwotPage}/>
-      <Route path='/gridTest' component={ViewSwots}/>
-    </Router>
+    <div>
+      <Routing></Routing>
+    </div>
   );
 }
 

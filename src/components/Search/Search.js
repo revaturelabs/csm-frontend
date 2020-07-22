@@ -39,8 +39,8 @@ const Search = (props) => {
 		// }
 		return (
 			<>
-				// Front End - Add Category feature. Button deactivated due to user feedback from Emily EJ Baillie on 21 July 2020.
-				// <Button id="createCategory" disabled={disabled} onClick={addCategory} fluid>Create Category</Button>
+				{/* Front End - Add Category feature. Button deactivated due to user feedback from Emily EJ Baillie on 21 July 2020.
+				 <Button id="createCategory" disabled={disabled} onClick={addCategory} fluid>Create Category</Button>*/}
 				<Input id="search" fluid onChange={findPattern} icon="search" placeholder='Search...' />
 			</>
 		)

@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
+import { useHistory } from 'react-router-dom';
 
 const SwotsGrid = (props) => {
   const currentSwots = useSelector((state) => state.swotReducer.currentSwots);
   const dispatch = useDispatch();
 
+  const history = useHistory();
   //   useEffect(() => {
   // fetch associates
   // dispatch in to state (swotReducer.currentSwots or whatever name works)
   //   }, [])
+
+  const setCurrentSwot = (swot) => {
+      dispatch({type: 'updateSWOT', SWOT: swot})
+      history.push('/editSWOT')
+  }
 
   return (
     <Container>
@@ -23,12 +30,13 @@ const SwotsGrid = (props) => {
           <Grid.Column>
             <Segment>
               <Grid>
+                  <Button onClick={() => setCurrentSwot(swot) }>{swot.date}</Button>
                 <Grid.Row columns={2}>
                   <Grid.Column>
                     <Card>
                       <Card.Content>
                         <Card.Header>Strengths</Card.Header>
-                        <Card.Description>Python</Card.Description>
+                        <Card.Description>{swot.Strengths[0].category}</Card.Description>
                       </Card.Content>
                     </Card>
                   </Grid.Column>
@@ -36,7 +44,7 @@ const SwotsGrid = (props) => {
                     <Card>
                       <Card.Content>
                         <Card.Header>Weaknesses</Card.Header>
-                        <Card.Description>Python</Card.Description>
+                        <Card.Description>{swot.Weaknesses[0].category}</Card.Description>
                       </Card.Content>
                     </Card>
                   </Grid.Column>
@@ -46,7 +54,7 @@ const SwotsGrid = (props) => {
                     <Card>
                       <Card.Content>
                         <Card.Header>Opportunities</Card.Header>
-                        <Card.Description>Python</Card.Description>
+                        <Card.Description>{swot.Opportunities[0].category}</Card.Description>
                       </Card.Content>
                     </Card>
                   </Grid.Column>
@@ -54,7 +62,7 @@ const SwotsGrid = (props) => {
                     <Card>
                       <Card.Content>
                         <Card.Header>Threats</Card.Header>
-                        <Card.Description>Python</Card.Description>
+                        <Card.Description>{swot.Threats[0].category}</Card.Description>
                       </Card.Content>
                     </Card>
                   </Grid.Column>

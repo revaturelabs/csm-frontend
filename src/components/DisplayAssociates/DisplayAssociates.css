@@ -21,6 +21,10 @@ Table{
     align-self: center;
 }
 
-.id{
-    
+.title{
+    font-weight: bold;
+}
+
+.info{
+    font-weight: normal;
 }

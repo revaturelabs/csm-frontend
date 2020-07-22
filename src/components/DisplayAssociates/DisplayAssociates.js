@@ -49,6 +49,9 @@ export default class DisplayAssociates extends Component {
     // }
 
     batchName='Python'
+    trainer='Richard Orr'
+    pro_date='07/31/2020'
+    no_associates=17
 
     render() {
         const { activeIndex } = this.state;
@@ -64,7 +67,10 @@ export default class DisplayAssociates extends Component {
                             onClick={this.handleClick}>
                             <Icon name='dropdown' />
                             {/* {this.props.title} */}
-                            {this.batchName}
+                            <div className='title'>{this.batchName} </div>
+                            <div className='info'>Trainer: {this.trainer} </div>
+                            <div className='info'>Promotion Date: {this.pro_date}</div> 
+                            <div className='info'>Numeber of Associates: {this.no_associates}</div>
                         </Accordion.Title>
                         <Accordion.Content active={activeIndex === 0}>
                             <DisplayAssociate />

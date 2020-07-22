@@ -104,6 +104,7 @@ const SwotPage = (props) => {
                                 Cancel
                             </Button>
                         </Grid.Row>
+                        
                     </Grid.Column>
                 </Grid>
         </Container>            

@@ -4,6 +4,9 @@
     background: lightgrey;
     border-radius: 0.5rem;
     box-shadow: 5px 5px 10px darkgrey;
+    height: 500px;
+    max-height: 33%;
+    overflow-y: scroll;
 }
 .dragDropZone p {
     color: black

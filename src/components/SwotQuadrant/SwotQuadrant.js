@@ -10,6 +10,7 @@ import SwotNoteModal from "../SwotNoteModal/SwotNoteModal";
  */
 const SwotQuadrant = (props) => {
   const swotState = useSelector((state) => state.swotReducer);
+  const edit = useSelector((state) => state.swotReducer.editable)
   const dispatch = useDispatch();
 
   /**
@@ -59,7 +60,10 @@ const SwotQuadrant = (props) => {
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    createModal(event.dataTransfer.getData("text"));
+    if (edit) {
+      createModal(event.dataTransfer.getData("text"));
+    }
+    
   };
 
   /**

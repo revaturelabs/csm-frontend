@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Item } from "semantic-ui-react";
 import "./SwotCategory.css";
 
@@ -13,7 +13,7 @@ import "./SwotCategory.css";
  */
 const SwotCategory = (props) => {
   const dispatch = useDispatch();
-
+  const edit = useSelector((state) => state.swotReducer.editable)
   /**
    * Handles setting the store to contain the current category and calling the appropriate fn
    * Based on the id of the event that has been passed in
@@ -49,12 +49,20 @@ const SwotCategory = (props) => {
         <Item.Description>
           <p>{props.note}</p>
           <br></br>
-          <Button color="blue" id={"edit"} onClick={handlerWrapper}>
-            Edit
-          </Button>
-          <Button color="red" id={"delete"} onClick={handlerWrapper}>
-            Delete
-          </Button>
+          {
+            edit ?
+            <>
+            <Button color="blue" id={"edit"} onClick={handlerWrapper}>
+              Edit
+            </Button>
+            <Button color="red" id={"delete"} onClick={handlerWrapper}>
+              Delete
+            </Button>
+            </>
+            :
+            <></>
+          }
+          
         </Item.Description>
       </Item.Content>
     </Item>

@@ -19,6 +19,7 @@ const SwotPage = (props) => {
     const categoryService = new CategoryService();
     const SWOT = useSelector((state) => state.swotReducer.SWOT)
     const associate = useSelector((state) => state.swotReducer.associate)
+    const edit = useSelector((state) => state.swotReducer.editable)
     useEffect(() => {
       async function getCategories() {
         let elements = [];
@@ -68,7 +69,7 @@ const SwotPage = (props) => {
                 <Header as='h1'
                         id='associateNameHeader'
                         fluid
-                >Add SWOT Analysis for {associate.name}</Header>
+                >SWOT Analysis for {associate.name}</Header>
                 <Grid
                 >
                     <Grid.Column width={3}
@@ -90,18 +91,31 @@ const SwotPage = (props) => {
                             <SwotCharts />
                         </Grid.Row>
                         <Grid.Row>
-                            <Button
-                                color='instagram'
-                                onClick={addSWOT}
-                            >
-                                Add SWOT Analysis to Associate
-                            </Button>
-                            <Button
-                                color='red'
-                                onClick={closeSWOT}
-                            >
-                                Cancel
-                            </Button>
+                            {
+                                edit ?
+                                    <>
+                                    <Button
+                                        color='instagram'
+                                        onClick={addSWOT}
+                                    >
+                                        Add SWOT Analysis to Associate
+                                    </Button>
+                                    <Button
+                                        color='red'
+                                        onClick={closeSWOT}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    </>
+                                :
+                                    <Button
+                                        color='red'
+                                        onClick={closeSWOT}
+                                    >
+                                        Back
+                                    </Button>
+                            }
+                            
                         </Grid.Row>
                         
                     </Grid.Column>

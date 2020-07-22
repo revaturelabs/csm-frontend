@@ -6,6 +6,7 @@ let initialState = {
   // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   startDate: new Date(),
   endDate: new Date(),
+  editable: true,
   SWOT: {
     date: null,
     Strengths: [],
@@ -100,6 +101,8 @@ const swotReducer = (state = initialState, action) => {
         : Object.assign({}, state, { endDate: action.endDate });
     case "updateSWOT":
       return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT) });
+    case "updateEditable":
+      return Object.assign({}, state, {editable: action.editable});
     case "updateCategories":
       return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":

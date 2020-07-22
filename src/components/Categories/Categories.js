@@ -21,31 +21,31 @@ const Categories = (props) => {
         });
     }, [dispatch]);
 
-    return (
-        <>
-            <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical>
-                <Menu.Item>
-                    <Search/>
-                </Menu.Item>
-                <Menu.Item>
-                    <List as="ul" style={{ marginLeft: 0 }}>
-                        {displayCategories.map((category) => (
-                            <Card key={category} raised={true}>
-                                <List.Item
-                                    id={category}
-                                    name="category"
-                                    draggable
-                                    onDragStart={listDrag}
-                                >
-                                    {category}
-                                </List.Item>
-                            </Card>
-                        ))}
-                    </List>
-                </Menu.Item>
-            </Menu>
-        </>
-    );
+  return (
+    <>
+      <Menu style={{ height: "75vh", overflowY: "scroll" }} vertical fluid>
+        <Menu.Item>
+          <Search/>
+        </Menu.Item>
+        <Menu.Item>
+          <List as="ul" style={{ marginLeft: 0 }}>
+            {displayCategories.map((category) => (
+              <Card key={category} raised={true}>
+                <List.Item
+                  id={category}
+                  name="category"
+                  draggable
+                  onDragStart={listDrag}
+                >
+                  {category}
+                </List.Item>
+              </Card>
+            ))}
+          </List>
+        </Menu.Item>
+      </Menu>
+    </>
+  );
 };
 
 export default Categories;

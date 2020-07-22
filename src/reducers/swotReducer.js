@@ -1,13 +1,11 @@
 let initialState = {
-<<<<<<< HEAD
-  categories: ['AWS', 'JavaScript'],
-=======
+  associate: {},
   categories: ['test cat'],
->>>>>>> c9c9b607d3d0a4790e1cc329b3582d23778f4133
   displayCategories: [],
   // disabled: true, Front End - Add Category feature. Button state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   SWOT: {
+    date: null,
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
@@ -21,6 +19,7 @@ let initialState = {
   OpportunitiesModal: false,
   ThreatsModal: false,
   swotModal: false,
+  swotCharts: false,
   currentNote: '',
   currentCategory: '',
   notes: ''
@@ -31,6 +30,8 @@ const swotReducer = (state = initialState, action) => {
   // console.log(state)
   // console.log(action)
   switch (action.type) {
+    case 'updateSWOT':
+        return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT ) })
     case 'updateCategories':
         return Object.assign({}, state, {categories: action.getCategories})
     case 'updateDisplayCategories':
@@ -67,6 +68,8 @@ const swotReducer = (state = initialState, action) => {
         return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Notes: action.notes} )})
     case 'toggleSwotModal':
         return Object.assign({}, state, {swotModal: action.toggle})
+    case 'toggleSwotCharts':
+      return Object.assign({}, state, {swotCharts: action.toggle})
     default:
       return state;
   }

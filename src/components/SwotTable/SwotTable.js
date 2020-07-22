@@ -16,23 +16,25 @@ const SwotTable = () => {
         attached='bottom'
         size='small'>
               <Table.Body>
-                <Table.Row>
-                  <Table.Cell>
+                <Table.Row 
+                id='row1'>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Strengths'></SwotQuadrant>
                   </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                  <Table.Cell>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Weaknesses'></SwotQuadrant>
                   </Table.Cell>
                 </Table.Row>
-                <Table.Row>
-                  <Table.Cell>
+                <Table.Row
+                id='row2'>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Opportunities'></SwotQuadrant>
                   </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                  <Table.Cell>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Threats'></SwotQuadrant>
                   </Table.Cell>
                 </Table.Row>

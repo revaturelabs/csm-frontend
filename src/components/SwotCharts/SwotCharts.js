@@ -37,7 +37,7 @@ const SwotCharts = (props) => {
                 onClick={handleClick}
                 >
                     <Icon name='dropdown' />
-                    Charts
+                    Additional Associate Information
                 </Accordion.Title>
                 <Accordion.Content
                 active={chartState}

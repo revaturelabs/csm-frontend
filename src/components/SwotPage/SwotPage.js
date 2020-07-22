@@ -88,6 +88,9 @@ const SwotPage = (props) => {
                             <SwotNotes />
                         </Grid.Row>
                         <Grid.Row>
+                            <SwotCharts />
+                        </Grid.Row>
+                        <Grid.Row>
                             <Button
                                 color='instagram'
                                 onClick={addSWOT}
@@ -101,9 +104,7 @@ const SwotPage = (props) => {
                                 Cancel
                             </Button>
                         </Grid.Row>
-                        <Grid.Row>
-                            <SwotCharts />
-                        </Grid.Row>
+                        
                     </Grid.Column>
                 </Grid>
         </Container>            

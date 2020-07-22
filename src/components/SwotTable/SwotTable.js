@@ -19,19 +19,22 @@ const SwotTable = () => {
                 <Table.Row 
                 id='row1'>
                   <Table.Cell
-                  id='cell1'>
+                  className='cell'>
                     <SwotQuadrant name='Strengths'></SwotQuadrant>
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Weaknesses'></SwotQuadrant>
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row
                 id='row2'>
-                  <Table.Cell>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Opportunities'></SwotQuadrant>
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell
+                  className='cell'>
                     <SwotQuadrant name='Threats'></SwotQuadrant>
                   </Table.Cell>
                 </Table.Row>

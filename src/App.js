@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import SwotModal from './components/SwotModal/SwotModal';
+import SwotPage from './components/SwotPage/SwotPage';
+import ViewSwots from './components/ViewSwots/ViewSwots';
 
 function App() {
   return (
     <Router>
-      <Route path="/modalTest" component={SwotModal}/>
+      <Route path="/editSwot" component={SwotPage}/>
+      <Route path='/gridTest' component={ViewSwots}/>
     </Router>
   );
 }

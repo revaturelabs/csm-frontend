@@ -5,7 +5,8 @@ class CategoryService {
         /**
          * @todo Replace with deployed ip
          */
-        this.Categories_URI = 'http://localhost:5000/categories';
+        // this.Categories_URI = 'http://localhost:5000/categories';
+        this.Categories_URI = 'http://34.82.182.44/mock/category/category';
         this.Batch_Categories_URI = 'http://localhost:5000/categories'
     }
 

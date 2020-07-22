@@ -9,7 +9,7 @@ class SwotService {
     }
 
     sendSWOT(user_id, SWOT) {
-        return axios.put(this.URI + '/' + user_id.toString(), SWOT)
+        return axios.post(this.URI + '/' + user_id.toString(), SWOT)
     }
 }
 

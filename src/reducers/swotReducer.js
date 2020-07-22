@@ -1,8 +1,14 @@
 let initialState = {
+<<<<<<< HEAD
   categories: ['AWS', 'JavaScript'],
+=======
+  associate: {},
+  categories: ['test cat'],
+>>>>>>> 009d1eeedbfba83435d4ae705c02a796293560ff
   displayCategories: [],
   date: new Date(),
   SWOT: {
+    date: null,
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
@@ -16,13 +22,74 @@ let initialState = {
   OpportunitiesModal: false,
   ThreatsModal: false,
   swotModal: false,
+  swotCharts: false,
   currentNote: '',
   currentCategory: '',
-  notes: ''
+  notes: '',
+  currentSwots: [{
+    date: 'Date1',
+    Strengths: [{
+      category: "Python",
+      note: 'he good at python'
+    }],
+    Weaknesses: [{
+      category: "React",
+      note: 'he not good at react'
+    }],
+    Opportunities: [{
+      category: "Flask",
+      note: 'he have potential for flask'
+    }],
+    Threats: [{
+      category: "CSS",
+      note: 'he cant css'
+    }],
+    Notes: ''
+  },{
+    date: 'Date2',
+    Strengths: [{
+      category: "HTML",
+      note: 'he good at HTML'
+    }],
+    Weaknesses: [{
+      category: "MongoDB",
+      note: 'he not good at MongoDB'
+    }],
+    Opportunities: [{
+      category: "Kubernetes",
+      note: 'he have potential for kubernetes'
+    }],
+    Threats: [{
+      category: "Docker",
+      note: 'he weirdly cant docker'
+    }],
+    Notes: ''
+  },{
+    date: 'Date3',
+    Strengths: [{
+      category: "PyMongo",
+      note: 'he good at pymongo'
+    }],
+    Weaknesses: [{
+      category: "JavaScript",
+      note: 'he not good at javascript'
+    }],
+    Opportunities: [{
+      category: "Jenkins",
+      note: 'he have potential for jenkins'
+    }],
+    Threats: [{
+      category: "Bootstrap",
+      note: 'he cant bootstrap'
+    }],
+    Notes: ''
+  }]
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'updateSWOT':
+        return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT ) })
     case 'updateCategories':
         return Object.assign({}, state, {categories: action.getCategories})
     case 'updateStartDate':
@@ -63,6 +130,8 @@ const swotReducer = (state = initialState, action) => {
         return Object.assign({}, state, {SWOT: Object.assign({}, state.SWOT, {Notes: action.notes} )})
     case 'toggleSwotModal':
         return Object.assign({}, state, {swotModal: action.toggle})
+    case 'toggleSwotCharts':
+      return Object.assign({}, state, {swotCharts: action.toggle})
     default:
       return state;
   }

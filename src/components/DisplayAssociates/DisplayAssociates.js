@@ -1,54 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, Table, Icon, Popup, Modal, Input } from 'semantic-ui-react';
+import { Accordion, Icon } from 'semantic-ui-react';
 import './DisplayAssociates.css';
 import DisplayAssociate from './DisplayAssociate';
 import AssociateService from '../../services/associate.service.js';
+import BatchService from '../../services/batch.service.js';
+import { render } from '@testing-library/react';
 
-const DisplayAssociates = (props) => {
-    const associatesState = useSelector(state => state.associateReducer);
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const associateService = new AssociateService();
+export default class DisplayAssociates extends Component {
+    state = { activeIndex: -1 }
+    // associatesState = useSelector(state => state.associateReducer);
+    // batchesState = useSelector(state => state.batchReducer);
+    // dispatch = useDispatch();
+    // history = useHistory();
+    // associateService = new AssociateService();
+    // batchService = new BatchService();
 
-    useEffect(() => {
-        console.log("useEffect");
-        getAssociatesInformation();
-    }, []);
+    // useEffect(() => {
+    //     console.log("useEffect");
+    //     getAssociatesInformation();
+    // }, []);
 
-    // TODO: Get real manager id
-    const testManager = {id: '{managerId}'}
+    handleClick = (e, titleProps) => {
+        const { index } = titleProps
+        const { activeIndex } = this.state
+        const newIndex = activeIndex === index ? -1 : index
 
-    async function getAssociatesInformation() {
-        let resp = await associateService.getAssociatesByManager(testManager.id)
-        console.log(resp)
-        dispatch({ type: 'updateAssociates', associates: resp.data })
-        console.log(associatesState.associates)
+        this.setState({ activeIndex: newIndex })
     }
 
-    return (
-        <div>
-            <header>List of Associates</header>
-            <div id="table">
-                <Table selectable color={"black"}>
-                    <Table.Header className="head">
-                        <Table.Row>
-                            <Table.HeaderCell>Email</Table.HeaderCell>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Batch</Table.HeaderCell>
-                            <Table.HeaderCell>Actions</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {/* {Array.isArray(associatesState.associates) ? associatesState.associates.map((associate) => { return ( <DisplayAssociate associate={associate}/> )
-                        }): null } */}
-                        <DisplayAssociate/>
-                    </Table.Body>
-                </Table>
-            </div>
-        </div >
-    )
-}
+    // TODO: Get real manager id
+    testManager = { id: '{managerId}' };
 
-export default DisplayAssociates;
+    // async function getAssociatesInformation() {
+    //     let resp = await associateService.getAssociatesByManager(testManager.id)
+    //     console.log(resp)
+    //     dispatch({ type: 'updateAssociates', associates: resp.data })
+    //     console.log(associatesState.associates)
+    // }
+
+    // async function getBatches() {
+    //     let resp = await batchService.getBatches()
+    //     console.log(resp)
+    //     dispatch({ type: 'updateBatches', batches: resp.data })
+    //     console.log(associatesState.associates)
+
+    // }
+
+    batchName='Python'
+
+    render() {
+        const { activeIndex } = this.state;
+
+        return (
+            <div>
+                <header>List of Associates</header>
+                <div id="table">
+                    <Accordion>
+                        <Accordion.Title
+                            active={activeIndex === 0}
+                            index={0}
+                            onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            {/* {this.props.title} */}
+                            {this.batchName}
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 0}>
+                            <DisplayAssociate />
+                        </Accordion.Content>
+                    </Accordion>
+                </div>
+            </div >
+        )
+    }
+}

@@ -7,9 +7,9 @@ import DisplayAssociates from './components/DisplayAssociates/DisplayAssociates'
 function App() {
   return (
     <div>
-      <Routing></Routing>
+      {/* <Routing></Routing> */}
       {/* <SpiderCharts></SpiderCharts> */}
-      {/* <DisplayAssociates></DisplayAssociates> */}
+      <DisplayAssociates></DisplayAssociates>
     </div>
   );
 }

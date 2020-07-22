@@ -69,7 +69,7 @@ const data = {
           <Line data={data} />
         </div>
         <div>
-            <p>Notes</p>
+            <h2>Notes</h2>
             {skills.map(a => (
         <AccordionExampleStyled
         title={a.skill}

@@ -5,7 +5,7 @@ import SpiderChart from '../SpiderCharts/SpiderChart'
 import QC from '../QC/qc'
 
 export default class DisplayAssociate extends Component {
-  state = { activeIndex: 0 }
+  state = { activeIndex: -1 }
 
   id = 'echavarria.f@gmail.com';
   name = 'Felix Echavarria';

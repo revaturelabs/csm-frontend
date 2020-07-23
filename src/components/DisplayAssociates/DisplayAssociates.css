@@ -29,12 +29,12 @@ header{
     font-weight: normal;
 }
 
-.accordion .content.active{
+.accordion.associate-accordion .content.active {
     display: flex !important ;
     flex-flow: row nowrap;
     
 }
 
-.accordion .content.active > div {
-    width: 35%;
+.accordion .content.active > .associate-chart {
+    /* width: 35%; */
 }

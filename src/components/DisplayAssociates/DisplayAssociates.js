@@ -8,77 +8,138 @@ import AssociateService from '../../services/associate.service.js';
 import BatchService from '../../services/batch.service.js';
 import { render } from '@testing-library/react';
 
-export default class DisplayAssociates extends Component {
-    state = { activeIndex: -1 }
-    // associatesState = useSelector(state => state.associateReducer);
-    // batchesState = useSelector(state => state.batchReducer);
-    // dispatch = useDispatch();
-    // history = useHistory();
-    // associateService = new AssociateService();
-    // batchService = new BatchService();
+const DisplayAssociates = (props) => {
+    const associatesState = useSelector(state => state.associateReducer);
+    const batchesState = useSelector(state => state.batchReducer);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const associateService = new AssociateService();
+    const batchService = new BatchService();
+    const [activeIndex, setActiveIndex] = useState(-1);
 
-    // useEffect(() => {
-    //     console.log("useEffect");
-    //     getAssociatesInformation();
-    // }, []);
+    useEffect(() => { getBatch(); }, []);
 
-    handleClick = (e, titleProps) => {
+    const handleClick = (e, titleProps) => {
         const { index } = titleProps
-        const { activeIndex } = this.state
         const newIndex = activeIndex === index ? -1 : index
 
-        this.setState({ activeIndex: newIndex })
+        setActiveIndex(newIndex)
     }
 
-    // TODO: Get real manager id
-    testManager = { id: '{managerId}' };
-
-    // async function getAssociatesInformation() {
-    //     let resp = await associateService.getAssociatesByManager(testManager.id)
-    //     console.log(resp)
-    //     dispatch({ type: 'updateAssociates', associates: resp.data })
-    //     console.log(associatesState.associates)
-    // }
-
-    // async function getBatches() {
-    //     let resp = await batchService.getBatches()
-    //     console.log(resp)
-    //     dispatch({ type: 'updateBatches', batches: resp.data })
-    //     console.log(associatesState.associates)
-
-    // }
-
-    batchName='Python'
-    trainer='Richard Orr'
-    pro_date='07/31/2020'
-    no_associates=17
-
-    render() {
-        const { activeIndex } = this.state;
-
-        return (
-            <div>
-                <header>List of Associates</header>
-
-                <Accordion styled>
-                    <Accordion.Title
-                        active={activeIndex === 0}
-                        index={0}
-                        onClick={this.handleClick}
-                        className="title">
-                        <Icon name='dropdown' />
-                        {/* {this.props.title} */}
-                        <span className='title'>{this.batchName} </span>
-                        <span className='info'>{this.trainer} </span>
-                        <span className='info'>{this.pro_date} </span> 
-                        <span className='info'>{this.no_associates} Associates</span>
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 0}>
-                        <DisplayAssociate />
-                    </Accordion.Content>
-                </Accordion>
-
-            </div >
-        )
+    const getBatch = async() => {
+        let resp = await batchService.getBatches()
+        dispatch({ type: 'updateBatches', batches: resp.data })
+        console.log(batchesState.batches)
     }
+
+    // test data only
+    const testData = [
+        {
+            batchID: 1,
+            batchName: '2005 Python',
+            skill: 'Big Data',
+            manager: 'Julie',
+            trainer: [
+                {
+                    role: '',
+                    employee: {
+                        email: 'richard.orr@test',
+                        firstName: 'Richard', 
+                        lastName: 'Orr',
+                    },
+                }
+            ],
+            promotionDate: '5/5/2020', //I forget the date format
+            associates: [
+                {
+                    name: 'Test',
+                    userID: 'test@test.test',
+                },
+                {
+                    name: 'Test',
+                    userID: 383838
+                },
+            ]
+        },
+        {
+            batchID: 2,
+            batchName: '2006 Java',
+            skill: 'Big Data',
+            manager: 'Julie',
+            trainer: [
+                {
+                    role: '',
+                    employee: {
+                        email: 'john.doe@test',
+                        firstName: 'John',
+                        lastName: 'Doe',
+                    }
+                }
+            ],
+            promotionDate: '5/5/2020', //I forget the date format
+            associates: [
+                {
+                    name: 'Test',
+                    email: 'test@test.test',
+                    userID: 383838
+                },
+                {
+                    name: 'Test',
+                    email: 'test@test.test',
+                    userID: 383838
+                },
+            ]
+        }
+    ]
+
+    return (
+        <div>
+            <header>List of Associates</header>
+
+            {testData.length > 0 ? testData.map((batch, ind) => {
+                return (
+                    <Accordion styled className='batch-accordion' key={batch.batchID}>
+                        <Accordion.Title
+                            active={activeIndex === ind}
+                            index={ind}
+                            onClick={handleClick}
+                            className="title">
+                            <Icon name='dropdown' />
+                            {/* keys below may change with backend response */}
+                            <span className='title'>{batch.batchName} </span> 
+                            {batch.trainer.length > 0 ? batch.trainer.map( (trainer) => {
+                                return(
+                                    <span className='info'>
+                                        {trainer.employee.firstName} {trainer.employee.lastName}
+                                    </span>
+                                )
+                            }) : null }
+                            <span className='info'>{batch.promotionDate} </span> 
+                            <span className='info'>
+                                {batch.associates.length} Associates
+                            </span>
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === ind}>
+                            {batch.associates.length > 0 ? batch.associates.map(
+                                (associate) => {
+                                    return (
+                                        <DisplayAssociate key={associate.userID}
+                                            associate={associate}
+                                            manager={batch.manager}
+                                            batchName={batch.batchName}
+                                            batchProDate={batch.promotionDate}
+                                        />
+                                    )
+                                })
+                            : null }
+                        </Accordion.Content>
+                    </Accordion>
+                )
+            })
+        : null }
+
+        </div >
+    )
 }
+
+export default DisplayAssociates;

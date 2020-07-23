@@ -1,51 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
 import './DisplayAssociates.css';
 import SpiderChart from '../SpiderCharts/SpiderChart'
 import QC from '../QC/qc'
 
-export default class DisplayAssociate extends Component {
-  state = { activeIndex: -1 }
+const DisplayAssociate = (props) => {
+  const [assocActiveIndex, setAssocActiveIndex] = useState(-1);
+  // state = { activeIndex: -1 }
 
-  id = 'echavarria.f@gmail.com';
-  name = 'Felix Echavarria';
-  batch = 'Python WVU'
-  pro_date = '07/31/2020'
+  // id = 'echavarria.f@gmail.com';
+  // name = 'Felix Echavarria';
+  // batch = 'Python WVU'
+  // pro_date = '07/31/2020'
 
-  handleClick = (e, titleProps) => {
+  const handleClick = (e, titleProps) => {
     const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
+    const newIndex = assocActiveIndex === index ? -1 : index
+    setAssocActiveIndex(newIndex)
+    
+    // const { index } = titleProps
+    // const { activeIndex } = this.state
+    // const newIndex = activeIndex === index ? -1 : index
 
-    this.setState({ activeIndex: newIndex })
+    // this.setState({ activeIndex: newIndex })
   }
 
-  render() {
-    const { activeIndex } = this.state;
-
-    return (
-      <Accordion styled>
-        <Accordion.Title
-          active={activeIndex === 0}
-          index={0}
-          onClick={this.handleClick}
-          className='title'>
-          <Icon name='dropdown' />
-          {this.props.title}
-          {/* <div className='id'>{props.associate.ID}</div>
-          <div className='name'>{props.associate.Name}</div>
-          <div className='batch'>{props.associate.batch}</div>
-          <div className='pro_date'>{props.associate.pro_date}</div> */}
-          <span className='id'>{this.id}</span>
-          <span> {this.name}</span>
-          <span>{this.batch}</span>
-          <span>{this.pro_date}</span>
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 0}>
-          <SpiderChart />
-          <QC />
-        </Accordion.Content>
-      </Accordion>
-    )
-  }
+  return (
+    <Accordion styled className='associate-accordion'>
+      <Accordion.Title
+        active={assocActiveIndex === 0}
+        index={0}
+        onClick={handleClick}
+        className='title'>
+        <Icon name='dropdown' />
+        {/* These keys may change */}
+        <span className='id'>{props.associate.name}</span>
+        <span className='name'>{props.associate.email}</span>
+        <span className='batch'>{props.batchName}</span>
+        <span className='pro_date'>Promoted: {props.batchProDate}</span>
+      </Accordion.Title>
+      <Accordion.Content active={assocActiveIndex === 0}>
+        {/* placeholder for the evaluation
+          <SpiderChart className='associate-chart'/>
+          <QC className='associate-chart'/> 
+        */}
+      </Accordion.Content>
+    </Accordion>
+  )
 }
+
+export default DisplayAssociate;

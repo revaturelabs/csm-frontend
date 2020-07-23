@@ -16,6 +16,7 @@ const Search = (props) => {
 								elements.push(category);
 						}
 				}
+			dispatch({type: 'updateDisplayCategories', displayCategories: elements})
 		}
 		return (
 			<>

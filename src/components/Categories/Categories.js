@@ -20,8 +20,8 @@ const Categories = (props) => {
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-      console.log('HERE', resp.data)
-      const lst = [...resp.data, {categoryId: 41, skillCategory: 'Other', active:'true' }]
+      const otherId = resp.length + 1;
+      const lst = [...resp.data, {categoryId: otherId, skillCategory: 'Other', active:'true' }]
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: lst,

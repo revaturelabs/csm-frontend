@@ -1,12 +1,13 @@
 let initialState = {
   associate: {},
-  categories: ["test cat"],
+  categories: [],
   displayCategories: [],
   // disabled: true, Front End - Add Category feature. Button state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   startDate: new Date(),
   endDate: new Date(),
   editable: true,
+  moveType: 'create',
   SWOT: {
     date: null,
     Strengths: [],
@@ -103,6 +104,8 @@ const swotReducer = (state = initialState, action) => {
       return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT) });
     case "updateEditable":
       return Object.assign({}, state, {editable: action.editable});
+    case "updateMoveType":
+      return Object.assign({}, state, {moveType: action.move});
     case "updateCategories":
       return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":

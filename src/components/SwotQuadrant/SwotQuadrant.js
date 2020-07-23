@@ -60,8 +60,18 @@ const SwotQuadrant = (props) => {
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    if (edit) {
-      createModal(event.dataTransfer.getData("text"));
+    const data = event.dataTransfer.getData('text')
+    const section = data.split('~')[0]
+    const category = data.split('~')[1]
+    let type = 'create'
+    if (edit && (section !== props.name)) {
+      console.log(section)
+      if (section !== 'NONE') {
+        deleteCategory(section)
+        type = 'move'
+      } 
+      dispatch({type: 'updateMoveType', move: type})
+      createModal(category);
     }
     
   };
@@ -99,10 +109,18 @@ const SwotQuadrant = (props) => {
    * 3. Slices array at index
    * 4. Dispatches new array
    */
-  const deleteCategory = (index) => {
-    const _type = "update" + props.name;
-    let new_arr = [...swotState.SWOT[props.name]];
+  const deleteCategory = (section, category) => {
+    console.log(category)
+    const index = swotState.SWOT[section].findIndex((elt) => {
+      console.log(elt)
+      return elt.category == category
+    })
+    console.log(index)
+    console.log(swotState.SWOT[section])
+    const _type = "update" + section;
+    let new_arr = [...swotState.SWOT[section]];
     new_arr.splice(index, 1);
+    console.log(new_arr)
     dispatch({ type: _type, data: new_arr });
   };
 

@@ -1,35 +1,34 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { Accordion, Icon } from 'semantic-ui-react';
 import './DisplayAssociates.css';
 import DisplayAssociate from './DisplayAssociate';
-import AssociateService from '../../services/associate.service.js';
+// import AssociateService from '../../services/associate.service.js';
 import BatchService from '../../services/batch.service.js';
-import { render } from '@testing-library/react';
 
 const DisplayAssociates = (props) => {
-    const associatesState = useSelector(state => state.associateReducer);
+    // const associatesState = useSelector(state => state.associateReducer);
     const batchesState = useSelector(state => state.batchReducer);
     const dispatch = useDispatch();
-    const history = useHistory();
-    const associateService = new AssociateService();
+    // const history = useHistory(); 
+    // const associateService = new AssociateService(); 
     const batchService = new BatchService();
-    const [activeIndex, setActiveIndex] = useState(-1);
+    const [activeIndex, setActiveIndex] = useState(-1); 
 
     useEffect(() => { getBatch(); }, []);
+
+    const getBatch = async() => {
+        let resp = await batchService.getBatches()
+        dispatch({ type: 'updateBatches', batches: resp.data })
+        console.log(batchesState.batches)
+    }
 
     const handleClick = (e, titleProps) => {
         const { index } = titleProps
         const newIndex = activeIndex === index ? -1 : index
 
         setActiveIndex(newIndex)
-    }
-
-    const getBatch = async() => {
-        let resp = await batchService.getBatches()
-        dispatch({ type: 'updateBatches', batches: resp.data })
-        console.log(batchesState.batches)
     }
 
     // test data only
@@ -52,12 +51,12 @@ const DisplayAssociates = (props) => {
             promotionDate: '5/5/2020', //I forget the date format
             associates: [
                 {
-                    name: 'Test',
+                    name: 'Associate 1',
                     userID: 'test@test.test',
                 },
                 {
-                    name: 'Test',
-                    userID: 383838
+                    name: 'Associate 2',
+                    userID: 'test@test.test'
                 },
             ]
         },
@@ -79,14 +78,12 @@ const DisplayAssociates = (props) => {
             promotionDate: '5/5/2020', //I forget the date format
             associates: [
                 {
-                    name: 'Test',
-                    email: 'test@test.test',
-                    userID: 383838
+                    name: 'Associate 3',
+                    userID: 'test@test.test'
                 },
                 {
-                    name: 'Test',
-                    email: 'test@test.test',
-                    userID: 383838
+                    name: 'Associate 4',
+                    userID: 'test@test.test'
                 },
             ]
         }

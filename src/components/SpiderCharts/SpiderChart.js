@@ -2,52 +2,42 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Radar } from 'react-chartjs-2'
-import { Table } from 'semantic-ui-react';
 import './SpiderChart.css'
 
 const SpiderChart = (props) => {
-    let Names = [];
-    let Names2 = [];
-    let Scores = [];
-    let Scores2 = [];
 
-    var name_score = [
-        { Name: "JavaScript", Score: 75 },
-        { Name: "Java", Score: 75 },
-        { Name: "SQL", Score: 75 },
-        { Name: "Servlet", Score: 75 },
-        { Name: "Hibernate", Score: 75 },
-        { Name: "Spring", Score: 75 },
-        { Name: "Microservices", Score: 75 }];
-
-    for (let index = 0; index < name_score.length; index++) {
-        Scores[index] = name_score[index].Score;
-        Names[index] = name_score[index].Name;
-        Names2[index] = name_score[index].Name;
-        Scores2[index] = name_score[index].Score+10;
-    }
-    console.log(Scores);
-    console.log(Scores2);
-
-    const spiderState = useSelector(state => state.spiderReducer);
+    const evalState = useSelector(state => state.evalReducer);
     const dispatch = useDispatch();
-    const history = useHistory();
+
+    const associateAssesment = []
+    const associateScore = []
+    const batchAssesment = []
+    const batchScore = []
+
+    useEffect(() => {
+        for (const qcEval of props.spider_batch) {
+            batchAssesment.push(qcEval.assessmentType)
+            batchScore.push(qcEval.score)
+        }
+        for (const qcEval of props.spider_associate) {
+            associateAssesment.push(qcEval.assessmentType)
+            associateScore.push(qcEval.score)
+        }
+        dispatch({ type: 'setBatchLabels', batchLabels: batchAssesment })
+        dispatch({ type: 'setBatchValues', batchValues: batchScore })
+        dispatch({ type: 'setAssociateLabels', associateLabels: associateAssesment })
+        dispatch({ type: 'setAssociateValues', associateValues: associateScore })
+    }, []);
 
     const state = {
-        // TODO: 
-        // We need to extract from DB:
-        // labels
-        // dataset.label
-        // dataset.data
-        // and the average of the batch
-        labels: Names,
+        labels: evalState.batchLabels,
         datasets: [
             {
                 label: 'J2EE',
                 backgroundColor: 'rgba(0,0,255,0.5)',
                 borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 2,
-                data: Scores,
+                data: evalState.associateValues,
                 pointRadius: 5
             },
             {
@@ -55,21 +45,15 @@ const SpiderChart = (props) => {
                 backgroundColor: 'rgba(255,0,0,0.5)',
                 borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 2,
-                data: Scores2,
+                data: evalState.batchValues,
                 pointRadius: 5
-
             }
         ]
-
     }
 
     return (
         <>
             <div id='chart'>
-                {/* TODO: 
-                We need to extract from DB:
-                title
-                data */}
                 <h2 id='title'>J2EE - Technical Status</h2>
                 <Radar
                     type='radar'

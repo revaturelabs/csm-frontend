@@ -88,7 +88,13 @@ const SwotPage = (props) => {
                             <SwotNotes />
                         </Grid.Row>
                         <Grid.Row>
-                            <SwotCharts />
+                            {
+                                edit ?
+                                <SwotCharts />
+                                :
+                                <></>
+                            }
+                            
                         </Grid.Row>
                         <Grid.Row>
                             {

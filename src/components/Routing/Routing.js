@@ -17,3 +17,5 @@ const Routing = (props) => {
     </Router>
   )
 }
+
+export default Routing

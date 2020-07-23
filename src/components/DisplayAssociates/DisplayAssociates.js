@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import { Container, Accordion, Icon } from 'semantic-ui-react';
 import './DisplayAssociates.scss';
 import DisplayAssociate from './DisplayAssociate';
-// import AssociateService from '../../services/associate.service.js';
 import BatchService from '../../services/batch.service.js';
 
 const DisplayAssociates = (props) => {
-    // const associatesState = useSelector(state => state.associateReducer);
     const batchesState = useSelector(state => state.batchReducer);
-    const dispatch = useDispatch();
-    // const history = useHistory(); 
-    // const associateService = new AssociateService(); 
+    const dispatch = useDispatch(); 
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
 
-    useEffect(() => { getBatch(); }, []); 
+    useEffect( () => {
+        const getBatch = async () => {
+            let resp = await batchService.getBatches()
+            dispatch({ type: 'updateBatches', batches: resp.data })
+            console.log(`LOOOOOOOOOOOK ${batchesState.batches}`)
+        }
+        getBatch();
+    }, []); 
 
-    const getBatch = async() => {
-        let resp = await batchService.getBatches()
-        dispatch({ type: 'updateBatches', batches: resp.data })
-        console.log(batchesState.batches)
-    }
 
     const handleClick = (e, titleProps) => {
         /* handles accordion functionality */
@@ -32,77 +29,77 @@ const DisplayAssociates = (props) => {
     }
 
     // test data only
-    const testData = [
-    {
-        batchID: 1,
-        batchName: '2005 Python',
-        skill: 'Big Data',
-        manager: 'Julie',
-        trainer: [
-            {
-                role: '',
-                employee: {
-                    email: 'richard.orr@test',
-                    firstName: 'Richard',
-                    lastName: 'Orr',
-                },
-            }
-        ],
-        promotionDate: '5/5/2020', //I forget the date format
-        associates: [
-            {
-                name: 'Associate 1',
-                userID: 'test1@test.test',
-            },
-            {
-                name: 'Associate 2',
-                userID: 'test2@test.test'
-            },
-        ]
-    },
-    {
-        batchID: 2,
-        batchName: '2006 Java',
-        skill: 'Big Data',
-        manager: 'Julie',
-        trainer: [
-            {
-                role: '',
-                employee: {
-                    email: 'john.doe@test',
-                    firstName: 'John',
-                    lastName: 'Doe',
-                }
-            },
-            {
-                role: '',
-                employee: {
-                    email: 'jane.smith@test',
-                    firstName: 'Jane',
-                    lastName: 'Smith',
-                }
-            }
-        ],
-        promotionDate: '5/5/2020', //I forget the date format
-        associates: [
-            {
-                name: 'Associate 3',
-                userID: 'test3@test.test'
-            },
-            {
-                name: 'Associate 4',
-                userID: 'test4@test.test'
-            },
-        ]
-    }
-]
+    // const testData = [
+    //     {
+    //         batchID: 1,
+    //         batchName: '2005 Python',
+    //         skill: 'Big Data',
+    //         manager: 'Julie',
+    //         trainer: [
+    //             {
+    //                 role: '',
+    //                 employee: {
+    //                     email: 'richard.orr@test',
+    //                     firstName: 'Richard',
+    //                     lastName: 'Orr',
+    //                 },
+    //             }
+    //         ],
+    //         promotionDate: '5/5/2020', //I forget the date format
+    //         associates: [
+    //             {
+    //                 name: 'Associate 1',
+    //                 userID: 'test1@test.test',
+    //             },
+    //             {
+    //                 name: 'Associate 2',
+    //                 userID: 'test2@test.test'
+    //             },
+    //         ]
+    //     },
+    // {
+    //     batchID: 2,
+    //     batchName: '2006 Java',
+    //     skill: 'Big Data',
+    //     manager: 'Julie',
+    //     trainer: [
+    //         {
+    //             role: '',
+    //             employee: {
+    //                 email: 'john.doe@test',
+    //                 firstName: 'John',
+    //                 lastName: 'Doe',
+    //             }
+    //         },
+    //         {
+    //             role: '',
+    //             employee: {
+    //                 email: 'jane.smith@test',
+    //                 firstName: 'Jane',
+    //                 lastName: 'Smith',
+    //             }
+    //         }
+    //     ],
+    //     promotionDate: '5/5/2020', //I forget the date format
+    //     associates: [
+    //         {
+    //             name: 'Associate 3',
+    //             userID: 'test3@test.test'
+    //         },
+    //         {
+    //             name: 'Associate 4',
+    //             userID: 'test4@test.test'
+    //         },
+    //     ]
+    // }
+    // ]
 
     return (
         <Container>
             <header>List of Associates</header>
 
             {/* mapping each batch to its own accordion */}
-            {testData.length > 0 ? testData.map((batch, ind) => {
+            {batchesState.batches.length > 0 ? batchesState.batches.map((batch, ind) => {
                 return (
                     <Accordion styled className='batch-accordion' key={batch.batchID}>
                         <Accordion.Title

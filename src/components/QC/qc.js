@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Line } from 'react-chartjs-2'
-import { Accordion } from 'semantic-ui-react';
-import AccordionExampleStyled from './qcnotes';
+import { Line } from 'react-chartjs-2';
 //import { Table } from 'semantic-ui-react';
 //import './Chart.css'
 

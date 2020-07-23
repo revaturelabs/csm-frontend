@@ -8,7 +8,6 @@ export default combineReducers({
     // associateReducer,
     batchReducer,
     managerReducer,
-    batchReducer, 
     evalReducer
 })
 

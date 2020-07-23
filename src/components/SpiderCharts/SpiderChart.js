@@ -33,7 +33,7 @@ const SpiderChart = (props) => {
         labels: evalState.batchLabels,
         datasets: [
             {
-                label: 'J2EE',
+                label: props,
                 backgroundColor: 'rgba(0,0,255,0.5)',
                 borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 2,

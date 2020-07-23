@@ -9,3 +9,9 @@
     max-width: 85%;
     width: 1800px;
 }
+
+#sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}

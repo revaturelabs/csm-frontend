@@ -11,13 +11,15 @@ const DisplayAssociates = (props) => {
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
 
-    useEffect(() => { getBatch(); }, []); 
+    useEffect(() => {
+        const getBatch = async () => {
+            let resp = await batchService.getBatches()
+            dispatch({ type: 'updateBatches', batches: resp.data })
+            console.log(batchesState.batches)
+        }
+        
+        getBatch() }, [batchService, batchesState.batches, dispatch]); 
 
-    const getBatch = async() => {
-        let resp = await batchService.getBatches()
-        dispatch({ type: 'updateBatches', batches: resp.data })
-        console.log(batchesState.batches)
-    }
 
     const handleClick = (e, titleProps) => {
         /* handles accordion functionality */

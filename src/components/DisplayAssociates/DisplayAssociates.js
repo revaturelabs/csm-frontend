@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import { Container, Accordion, Icon } from 'semantic-ui-react';
 import './DisplayAssociates.scss';
 import DisplayAssociate from './DisplayAssociate';
-// import AssociateService from '../../services/associate.service.js';
 import BatchService from '../../services/batch.service.js';
 
 const DisplayAssociates = (props) => {
-    // const associatesState = useSelector(state => state.associateReducer);
     const batchesState = useSelector(state => state.batchReducer);
     const dispatch = useDispatch();
-    // const history = useHistory(); 
-    // const associateService = new AssociateService(); 
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
 

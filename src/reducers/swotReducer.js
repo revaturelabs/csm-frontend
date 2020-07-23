@@ -10,6 +10,7 @@ let initialState = {
   moveType: 'create',
   SWOT: {
     date: null,
+    author: '',
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],

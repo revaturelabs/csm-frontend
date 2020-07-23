@@ -14,8 +14,6 @@ const Login = (props) => {
     const managerService = new ManagerService();
 
     const login = async () => {
-        // let manager = await managerService.login(managerState.email)
-        // dispatch({ type: 'login', manager: manager.data }) 
         history.push('/viewSwots') // this may change
     }
 

@@ -25,7 +25,6 @@ const SwotCategory = (props) => {
     event.preventDefault();
     event.stopPropagation();
     // Set the store to have the correct category context
-    console.log(props.category)
     dispatch({ type: "updateCategory", category: props.category });
 
     // Call the appropriate handler as determined by what button triggered this fn call

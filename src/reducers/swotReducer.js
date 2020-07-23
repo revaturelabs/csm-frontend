@@ -2,8 +2,6 @@ let initialState = {
   associate: {},
   categories: [],
   displayCategories: [],
-  // disabled: true, Front End - Add Category feature. Button state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
-  // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   startDate: new Date(),
   endDate: new Date(),
   editable: true,

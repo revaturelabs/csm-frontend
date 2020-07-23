@@ -110,17 +110,12 @@ const SwotQuadrant = (props) => {
    * 4. Dispatches new array
    */
   const deleteCategory = (section, category) => {
-    console.log(category)
     const index = swotState.SWOT[section].findIndex((elt) => {
-      console.log(elt)
       return elt.category == category
     })
-    console.log(index)
-    console.log(swotState.SWOT[section])
     const _type = "update" + section;
     let new_arr = [...swotState.SWOT[section]];
     new_arr.splice(index, 1);
-    console.log(new_arr)
     dispatch({ type: _type, data: new_arr });
   };
 

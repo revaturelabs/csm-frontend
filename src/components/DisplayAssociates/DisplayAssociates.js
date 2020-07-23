@@ -15,10 +15,9 @@ const DisplayAssociates = (props) => {
         const getBatch = async () => {
             let resp = await batchService.getBatches()
             dispatch({ type: 'updateBatches', batches: resp.data })
-            console.log(batchesState.batches)
         }
-        
-        getBatch() }, [batchService, batchesState.batches, dispatch]); 
+        getBatch();
+    }, [dispatch, batchService]);
 
 
     const handleClick = (e, titleProps) => {

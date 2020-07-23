@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion, Icon } from 'semantic-ui-react';
-import './DisplayAssociates.css';
+import './DisplayAssociates.scss';
 import SpiderChart from '../SpiderCharts/SpiderChart'
 import QC from '../QC/qc'
 
@@ -29,8 +29,11 @@ const DisplayAssociate = (props) => {
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === 0}>
         {/* placeholder for the evaluation
-          <SpiderChart className='associate-chart'/>
-          <QC className='associate-chart'/> 
+          <div className='swot-actions'></div>
+          <div className='associate-eval'>
+            <SpiderChart className='associate-chart'/>
+            <QC className='associate-chart'/> 
+          </div>
         */}
       </Accordion.Content>
     </Accordion>

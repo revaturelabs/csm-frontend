@@ -1,24 +1,23 @@
-header{
+@import '../../styles/mixins';
+
+header {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
     margin: 10px;
     margin-bottom: 25px;
     text-align: center;
-    text-shadow: 2px 2px #4d94ff;
+    /* text-shadow: 2px 2px #4d94ff; */
 }
-
-
 
 .accordion{
     width: 100% !important;
-    margin: 0 auto;
+    margin: 1rem auto;
     align-self: center;
 }
 
 .title{
     font-weight: bold;
-
 }
 
 .title > span {
@@ -32,9 +31,12 @@ header{
 .accordion.associate-accordion .content.active {
     display: flex !important ;
     flex-flow: row nowrap;
-    
 }
 
 .accordion .content.active > .associate-chart {
     /* width: 35%; */
+}
+
+span.inline-join-list {
+    @include join-array-seperator(', ');
 }

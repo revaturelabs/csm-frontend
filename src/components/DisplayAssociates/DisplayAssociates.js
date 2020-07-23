@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
-import { Accordion, Icon } from 'semantic-ui-react';
-import './DisplayAssociates.css';
+import { Container, Accordion, Icon } from 'semantic-ui-react';
+import './DisplayAssociates.scss';
 import DisplayAssociate from './DisplayAssociate';
 // import AssociateService from '../../services/associate.service.js';
 import BatchService from '../../services/batch.service.js';
@@ -16,7 +16,7 @@ const DisplayAssociates = (props) => {
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
 
-    useEffect(() => { getBatch(); }, []);
+    useEffect(() => { getBatch(); }, []); 
 
     const getBatch = async() => {
         let resp = await batchService.getBatches()
@@ -25,9 +25,9 @@ const DisplayAssociates = (props) => {
     }
 
     const handleClick = (e, titleProps) => {
+        /* handles accordion functionality */
         const { index } = titleProps
         const newIndex = activeIndex === index ? -1 : index
-
         setActiveIndex(newIndex)
     }
 
@@ -52,11 +52,11 @@ const DisplayAssociates = (props) => {
             associates: [
                 {
                     name: 'Associate 1',
-                    userID: 'test@test.test',
+                    userID: 'test1@test.test',
                 },
                 {
                     name: 'Associate 2',
-                    userID: 'test@test.test'
+                    userID: 'test2@test.test'
                 },
             ]
         },
@@ -73,26 +73,35 @@ const DisplayAssociates = (props) => {
                         firstName: 'John',
                         lastName: 'Doe',
                     }
+                }, 
+                {
+                    role: '',
+                    employee: {
+                        email: 'jane.smith@test',
+                        firstName: 'Jane',
+                        lastName: 'Smith',
+                    }
                 }
             ],
             promotionDate: '5/5/2020', //I forget the date format
             associates: [
                 {
                     name: 'Associate 3',
-                    userID: 'test@test.test'
+                    userID: 'test3@test.test'
                 },
                 {
                     name: 'Associate 4',
-                    userID: 'test@test.test'
+                    userID: 'test4@test.test'
                 },
             ]
         }
     ]
 
     return (
-        <div>
+        <Container>
             <header>List of Associates</header>
 
+            {/* mapping each batch to its own accordion */}
             {testData.length > 0 ? testData.map((batch, ind) => {
                 return (
                     <Accordion styled className='batch-accordion' key={batch.batchID}>
@@ -103,14 +112,17 @@ const DisplayAssociates = (props) => {
                             className="title">
                             <Icon name='dropdown' />
                             {/* keys below may change with backend response */}
-                            <span className='title'>{batch.batchName} </span> 
-                            {batch.trainer.length > 0 ? batch.trainer.map( (trainer) => {
-                                return(
-                                    <span className='info'>
-                                        {trainer.employee.firstName} {trainer.employee.lastName}
-                                    </span>
-                                )
-                            }) : null }
+                            <span className='info'>{batch.batchName} </span> 
+                            <span class="trainer">
+                                {batch.trainer.length > 0 ? 
+                                    batch.trainer.map( (trainer, ind) => {
+                                        return (
+                                            <span key={trainer.employee.email} className='info inline-join-list'>
+                                                {trainer.employee.firstName} {trainer.employee.lastName}
+                                            </span>
+                                        )
+                                }) : null }
+                            </span>
                             <span className='info'>{batch.promotionDate} </span> 
                             <span className='info'>
                                 {batch.associates.length} Associates
@@ -135,7 +147,7 @@ const DisplayAssociates = (props) => {
             })
         : null }
 
-        </div >
+        </Container>
     )
 }
 

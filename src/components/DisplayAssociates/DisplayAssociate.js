@@ -9,7 +9,7 @@ const DisplayAssociate = (props) => {
   
   const history = useHistory();
   const dispatch = useDispatch();
-  const associateService = AssociateService();
+  const associateService = new AssociateService();
   const [assocActiveIndex, setAssocActiveIndex] = useState(-1);
 
   const handleClick = (e, titleProps) => {

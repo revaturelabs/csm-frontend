@@ -7,6 +7,7 @@ import BatchService from '../../services/batch.service.js';
 
 const DisplayAssociates = (props) => {
     const batchesState = useSelector(state => state.batchReducer);
+    const manager = useSelector(state => state.managerReducer.manager);
     const dispatch = useDispatch();
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
@@ -14,10 +15,16 @@ const DisplayAssociates = (props) => {
     useEffect(() => {
         const getBatch = async () => {
             let resp = await batchService.getBatches()
-            dispatch({ type: 'updateBatches', batches: resp.data })
+            let res = [];
+            for(const batch of resp.data){
+                if(batch.manager === manager.username){
+                    res.push(batch);
+                }
+            }
+            dispatch({ type: 'updateBatches', batches: res })
         }
         getBatch();
-    }, [dispatch, batchService]);
+    }, [dispatch]);
 
 
     const handleClick = (e, titleProps) => {

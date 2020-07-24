@@ -1,0 +1,9 @@
+
+@mixin join-array-seperator($seperator:', ') {
+  &:last-of-type::after{
+    content: none;
+  }
+  &::after{
+    content: $seperator;
+  }
+}

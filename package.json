@@ -10,7 +10,11 @@
     "chart.js": "^2.9.3",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+<<<<<<< HEAD
     "react-datepicker": "^3.1.3",
+=======
+    "react-chartjs-2": "^2.9.0",
+>>>>>>> c835978f343cfb3b4384532d01d68a916cafd0e4
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",

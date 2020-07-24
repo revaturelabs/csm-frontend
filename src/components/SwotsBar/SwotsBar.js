@@ -11,17 +11,13 @@ const SwotsBar = (props) => {
     const endDate = useSelector((state) => state.swotReducer.endDate);
     const swots = useSelector((state) => state.swotReducer.swots);
     const dispatch = useDispatch();
-<<<<<<< HEAD
+    const history = useHistory();
     const filterSwots = (event) => {
         for (const swot of swots) {
             console.log(swot);
         }
         dispatch({type: 'updateDisplaySwots', getDisplaySwots: swots})
     }
-=======
-    const history = useHistory();
-
->>>>>>> 5f04a5a173918847eddf2ea1f4b3ce3999f13547
     const handleStartDate = date => {
         dispatch({type: 'updateStartDate', startDate: date})
     }

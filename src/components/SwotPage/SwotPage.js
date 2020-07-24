@@ -36,7 +36,7 @@ const SwotPage = (props) => {
    */
   const closeSWOT = () => {
     const data = {
-      date: null,
+      date_created: null,
       Strengths: [],
       Weaknesses: [],
       Opportunities: [],
@@ -51,8 +51,10 @@ const SwotPage = (props) => {
    * @todo Refactor functionality
    */
   const addSWOT = async () => {
-    const resp = await swotService.sendSWOT(associate.ID, SWOT);
+    const resp = await swotService.sendSWOT(associate.email, SWOT);
+    console.log(resp.data)
     if (resp.status === 200) {
+      dispatch({ type: 'updateAssociate', associate: {...associate, swot: [...associate.swot, resp.data]}})
       closeSWOT();
     } else {
       alert("Adding SWOT has failed in the database");

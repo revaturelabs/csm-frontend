@@ -70,7 +70,6 @@ const SwotCategory = (props) => {
             :
             <></>
           }
-
         </Item.Description>
       </Item.Content>
     </Item>

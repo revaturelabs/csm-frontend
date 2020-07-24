@@ -22,6 +22,7 @@ const Categories = (props) => {
       const resp = await cat.getCategories();
       const otherId = resp.length + 1;
       const lst = [...resp.data, {categoryId: otherId, skillCategory: 'Other', active:'true' }]
+      lst.sort();
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: lst,

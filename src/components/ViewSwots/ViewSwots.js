@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SwotService from "../../services/swot.service";
+import React from "react";
 import SwotsGrid from "../SwotsGrid/SwotsGrid";
 import SwotsBar from "../SwotsBar/SwotsBar";
 

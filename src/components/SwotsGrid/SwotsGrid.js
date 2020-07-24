@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
@@ -6,12 +6,7 @@ import { useHistory } from "react-router-dom";
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const dispatch = useDispatch();
-
   const history = useHistory();
-  //   useEffect(() => {
-  // fetch associates
-  // dispatch in to state (swotReducer.currentSwots or whatever name works)
-  //   }, [])
 
   const setCurrentSwot = (e, swot) => {
     if (e.target.id === "trainer") {

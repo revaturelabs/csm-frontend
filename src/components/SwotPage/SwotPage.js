@@ -11,14 +11,14 @@ import SwotCharts from "../SwotCharts/SwotCharts";
 import "./SwotPage.css";
 
 const SwotPage = (props) => {
+  const swotService = new SwotService();
   const history = useHistory();
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
-  const swotService = new SwotService();
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const edit = useSelector((state) => state.swotReducer.editable);
-  const manager = useSelector(state => state.managerReducer.manager);
+  const manager = useSelector((state) => state.managerReducer.manager);
   useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
@@ -30,7 +30,7 @@ const SwotPage = (props) => {
       dispatch({ type: "updateCategories", getCategories: lst });
     }
     getCategories();
-    dispatch({type: 'updateAuthor', author: manager.username})
+    dispatch({ type: "updateAuthor", author: manager.username });
   }, [dispatch]);
 
   /**
@@ -53,83 +53,56 @@ const SwotPage = (props) => {
    * @todo Refactor functionality
    */
   const addSWOT = async () => {
-    dispatch({type: 'updateAuthor', author: manager.username})
-    console.log('THE SWOT TO SEND', SWOT);
+    dispatch({ type: "updateAuthor", author: manager.username });
     const resp = await swotService.sendSWOT(associate.email, SWOT);
     if (resp.status === 200) {
-      dispatch({ type: 'updateAssociate', associate: {...associate, swot: [...associate.swot, resp.data]}})
+      dispatch({
+        type: "updateAssociate",
+        associate: { ...associate, swot: [...associate.swot, resp.data] },
+      });
       closeSWOT();
     } else {
       alert("Adding SWOT has failed in the database");
     }
   };
 
+  return (
+    <Container id="swotContainer">
+      <Header as="h1" id="associateNameHeader" fluid>
+        SWOT Analysis for {associate.name}
+      </Header>
+      <Grid>
+        <Grid.Column width={3}>
+          <Categories />
+        </Grid.Column>
 
-    return (
-            <Container
-            id='swotContainer'
-            >
-                <Header as='h1'
-                        id='associateNameHeader'
-                        fluid
-                >SWOT Analysis for {associate.email}</Header>
-                <Grid
-                >
-                    <Grid.Column width={3}
-                    >
-                        <Categories />
-                    </Grid.Column>
-
-                    <Grid.Column width={13}>
-                        <Grid.Row
-                        style={{ overflowY: 'scroll', overflowX: 'hidden' }}>
-                            <SwotTable />
-                        </Grid.Row>
-                        <Grid.Row
-                        centered
-                        >
-                            <SwotNotes />
-                        </Grid.Row>
-                        <Grid.Row>
-                            {
-                                edit ?
-                                <SwotCharts />
-                                :
-                                <></>
-                            }
-
-                        </Grid.Row>
-                        <Grid.Row>
-                            {
-                                edit ?
-                                    <>
-                                    <Button
-                                        color='instagram'
-                                        onClick={addSWOT}
-                                    >
-                                        Add SWOT Analysis to Associate
-                                    </Button>
-                                    <Button
-                                        color='red'
-                                        onClick={closeSWOT}
-                                    >
-                                        Cancel
-                                    </Button>
-                                    </>
-                                :
-                                    <Button
-                                        color='red'
-                                        onClick={closeSWOT}
-                                    >
-                                        Back
-                                    </Button>
-                            }
-
-                        </Grid.Row>
-
-                    </Grid.Column>
-                </Grid>
-        </Container>
-    )
-}
+        <Grid.Column width={13}>
+          <Grid.Row style={{ overflowY: "scroll", overflowX: "hidden" }}>
+            <SwotTable />
+          </Grid.Row>
+          <Grid.Row centered>
+            <SwotNotes />
+          </Grid.Row>
+          <Grid.Row>{edit ? <SwotCharts /> : <></>}</Grid.Row>
+          <Grid.Row>
+            {edit ? (
+              <>
+                <Button color="instagram" onClick={addSWOT}>
+                  Add SWOT Analysis to Associate
+                </Button>
+                <Button color="red" onClick={closeSWOT}>
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Button color="red" onClick={closeSWOT}>
+                Back
+              </Button>
+            )}
+          </Grid.Row>
+        </Grid.Column>
+      </Grid>
+    </Container>
+  );
+};
 export default SwotPage;

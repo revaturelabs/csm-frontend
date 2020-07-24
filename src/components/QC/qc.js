@@ -1,57 +1,76 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Line } from 'react-chartjs-2';
+import AssociateService from '../../services/associate.service'
 //import { Table } from 'semantic-ui-react';
 //import './Chart.css'
 
 const QC = (props) => {
-  const evalState = useSelector(state => state.evalReducer);
-  const dispatch = useDispatch();
-  const qcSkills = []
-  const qcData = []
+  // const evalState = useSelector(state => state.evalReducer);
+  // const dispatch = useDispatch();
+  const [qcSkills, setQCSkills] = useState([""])
+  const [qcData, setQCData] = useState([])
+  const associateService = new AssociateService()
 
-  useEffect( () => {
+  useEffect(() => {
     // while (evalState.qcEvals.length === 0) {
-      if (evalState.qcEvals.length > 0) {
-        console.log('hello' + evalState.qcEvals)
-        for (const qcEval of evalState.qcEvals) {
-          // console.log(qcEval)
-          qcSkills.push(qcEval.skill)
-          var qcScore
-          switch (qcEval.score.toLowerCase()) {
-            case 'poor':
-              qcScore = 1;
-              break;
-            case 'average':
-              qcScore = 2;
-              break;
-            case 'good':
-              qcScore = 3;
-              break;
-            //case 'top performer'
-            //  qcScore = 3;
-            //  break;
-            case 'superstar':
-                qcScore = 4;
-                break;
-            default: // the data is null if invalid
-                qcScore = null;  // should leave a gap in line
-                break;
-          }
-          // console.log(qcScore)
-          qcData.push(qcScore)
+    // if (evalState.qcEvals.length > 0) {
+    // console.log('hello' + evalState.qcEvals)
+
+    async function getEvals() {
+      console.log(props.userID)
+      console.log("loading qc data")
+      // const associateAssesment = []
+      const resp = await associateService.getEvaluations(props.userID);
+      console.log(resp.data)
+      const qcDataTemp = []
+      const qcSkillsTemp = []
+
+
+      for (const qcEval of resp.data.qc) {
+        console.log(qcEval)
+        qcSkillsTemp.push(qcEval.skill)
+        var qcScore
+        switch (qcEval.score.toLowerCase()) {
+          case 'poor':
+            qcScore = 1;
+            break;
+          case 'average':
+            qcScore = 2;
+            break;
+          case 'good':
+            qcScore = 3;
+            break;
+          //case 'top performer'
+          //  qcScore = 3;
+          //  break;
+          case 'superstar':
+            qcScore = 4;
+            break;
+          default: // the data is null if invalid
+            qcScore = null;  // should leave a gap in line
+            break;
         }
-        // break
+        // console.log(qcScore)
+        qcDataTemp.push(qcScore)
+
+      }
+
+      setQCData(qcDataTemp)
+      setQCSkills(qcSkillsTemp)
+     
+      // break
       // }
     }
+    getEvals();
 
-    dispatch({type :'setQCLabels', qcLabels : qcSkills})
-    dispatch({type :'setQCValues', qcValues : qcData})
+    // dispatch({type :'setQCLabels', qcLabels : qcSkills})
+    // dispatch({type :'setQCValues', qcValues : qcData})
   }, []);
 
   const data = {
 
-    labels: evalState.qcLabels,//qcSkills, //['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
+    labels: qcSkills,//['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
     datasets: [
       {
         label: 'QC Data',
@@ -72,7 +91,7 @@ const QC = (props) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: evalState.qcValues//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
+        data: qcData//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
       }
     ]
   };
@@ -86,7 +105,7 @@ const QC = (props) => {
   return (
     <div id='chart'>
       <h2 className='title'>Line Example</h2>
-        <Line data={data} />
+      <Line data={data} />
       {/* </div> */}
       {/* <div>
         <h2>Notes</h2>

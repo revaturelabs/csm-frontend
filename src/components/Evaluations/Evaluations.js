@@ -12,15 +12,15 @@ const Evaluations = (props) => {
   const dispatch = useDispatch();
   const [evalState, setEvals] = useState(0)
 
-  useEffect(() => {
-    async function getEvals(){
-      const resp = await associateService.getEvaluations(props.associate.userID); 
-      setEvals(resp.data);
-    }
-    getEvals();
+  // useEffect(() => {
+  //   async function getEvals(){
+  //     const resp = await associateService.getEvaluations(props.associate.userID); 
+  //     setEvals(resp.data);
+  //   }
+  //   getEvals();
 
-    // getEvals();
-  }, []);
+  //   // getEvals();
+  // }, []);
 
   // async function getEvals() {
   //   console.log('============LOOK HERE============')
@@ -50,11 +50,12 @@ const Evaluations = (props) => {
         } */}
       </Grid.Column>
         
-      {/* { evalState.qcEvals.length > 0 ?
+      {/* { evalState.qcEvals.length > 0 ? */}
         <Grid.Column className='wrapper'>
-          <QC className='associate-chart' />
+          <QC className='associate-chart'
+          userID={props.associate.userID} />
         </Grid.Column>
-      : 
+      {/* : 
         <Placeholder className='wrapper'>
           <Placeholder.Image className='associate-chart' />
         </Placeholder> 

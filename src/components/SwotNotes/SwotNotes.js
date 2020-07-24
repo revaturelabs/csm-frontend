@@ -2,7 +2,7 @@ import React from "react";
 import { Form, TextArea, Header } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 
-const SwotNotes = (props) => {
+const SwotNotes = () => {
   const dispatch = useDispatch();
 
   return (

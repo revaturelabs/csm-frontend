@@ -12,7 +12,6 @@ const SwotsBar = (props) => {
     const swots = useSelector((state) => state.swotReducer.swots);
     const dispatch = useDispatch();
     const history = useHistory();
-<<<<<<< HEAD
     const filterSwots = () => {
         console.log(swots)
         for (const swot of swots) {
@@ -24,12 +23,6 @@ const SwotsBar = (props) => {
         startDate = date;
         dispatch({type: 'updateStartDate', startDate: date});
         filterSwots();
-=======
-    const associate = useSelector((state) => state.swotReducer.currentAssociate)
-
-    const handleStartDate = date => {
-        dispatch({type: 'updateStartDate', startDate: date})
->>>>>>> e37a0a4a0a1a0b2405471c3bebedd0707067d595
     }
 
     const handleEndDate = (date) => {
@@ -55,10 +48,10 @@ const SwotsBar = (props) => {
     return (
         <Menu size={'huge'}>
             <Menu.Item>
-                {associate.email}
+                Example Student
             </Menu.Item>
             <Menu.Item>
-                {associate.batch_id}
+                (Batch ID)
             </Menu.Item>
             <Menu.Item>
                 <Button

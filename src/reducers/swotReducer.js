@@ -1,13 +1,14 @@
 let initialState = {
-  associate: {},
-  categories: ["test cat"],
+  currentAssociate: {},
+  categories: [],
   displayCategories: [],
-  // disabled: true, Front End - Add Category feature. Button state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
-  // newCategory: '', Front End - Add Category feature. New category state deactivated due to user feedback from Emily EJ Baillie on 21 July 2020
   startDate: new Date(),
   endDate: new Date(),
+  editable: true,
+  moveType: 'create',
   SWOT: {
-    date: null,
+    date_created: null,
+    author: '',
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
@@ -25,68 +26,13 @@ let initialState = {
   currentNote: '',
   currentCategory: '',
   notes: '',
-  currentSwots: [{
-    date: 'Date1',
-    Strengths: [{
-      category: "Python",
-      note: 'he good at python'
-    }],
-    Weaknesses: [{
-      category: "React",
-      note: 'he not good at react'
-    }],
-    Opportunities: [{
-      category: "Flask",
-      note: 'he have potential for flask'
-    }],
-    Threats: [{
-      category: "CSS",
-      note: 'he cant css'
-    }],
-    Notes: ''
-  },{
-    date: 'Date2',
-    Strengths: [{
-      category: "HTML",
-      note: 'he good at HTML'
-    }],
-    Weaknesses: [{
-      category: "MongoDB",
-      note: 'he not good at MongoDB'
-    }],
-    Opportunities: [{
-      category: "Kubernetes",
-      note: 'he have potential for kubernetes'
-    }],
-    Threats: [{
-      category: "Docker",
-      note: 'he weirdly cant docker'
-    }],
-    Notes: ''
-  },{
-    date: 'Date3',
-    Strengths: [{
-      category: "PyMongo",
-      note: 'he good at pymongo'
-    }],
-    Weaknesses: [{
-      category: "JavaScript",
-      note: 'he not good at javascript'
-    }],
-    Opportunities: [{
-      category: "Jenkins",
-      note: 'he have potential for jenkins'
-    }],
-    Threats: [{
-      category: "Bootstrap",
-      note: 'he cant bootstrap'
-    }],
-    Notes: ''
-  }]
+  currentSwots: []
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "updateAssociate":
+      return Object.assign({}, state, { currentAssociate: Object.assign({}, action.associate) });
     case "updateStartDate":
       return action.startDate > state.endDate
         ? Object.assign({}, state, {
@@ -100,6 +46,10 @@ const swotReducer = (state = initialState, action) => {
         : Object.assign({}, state, { endDate: action.endDate });
     case "updateSWOT":
       return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT) });
+    case "updateEditable":
+      return Object.assign({}, state, {editable: action.editable});
+    case "updateMoveType":
+      return Object.assign({}, state, {moveType: action.move});
     case "updateCategories":
       return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":

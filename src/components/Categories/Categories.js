@@ -14,14 +14,14 @@ const Categories = (props) => {
   const cat = new categoryService();
 
   const listDrag = (event) => {
-    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.setData("text", 'NONE~'+event.target.id);
   };
 
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-      console.log('HERE', resp.data)
       const lst = [...resp.data, {categoryId: 41, skillCategory: 'Other', active:'true' }]
+      lst.sort();
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: lst,

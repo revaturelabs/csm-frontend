@@ -1,13 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import './SwotsBar.css';
 
 const SwotsBar = (props) => {
     const startDate = useSelector((state) => state.swotReducer.startDate);
     const endDate = useSelector((state) => state.swotReducer.endDate);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const associate = useSelector((state) => state.swotReducer.currentAssociate)
 
     const handleStartDate = date => {
         dispatch({type: 'updateStartDate', startDate: date})
@@ -17,16 +20,31 @@ const SwotsBar = (props) => {
         dispatch({type: 'updateEndDate', endDate: date})
     }
 
+    const addSwot = () => {
+        const data = {
+          date: null,
+          Strengths: [],
+          Weaknesses: [],
+          Opportunities: [],
+          Threats: [],
+          Notes: ''
+        }
+        dispatch({type: 'updateEditable', editable: true})
+        dispatch({type: 'updateSWOT', SWOT: data})
+        history.push('/editSWOT')
+      }
+
     return (
         <Menu size={'huge'}>
             <Menu.Item>
-                Derek Jou
+                {associate.email}
             </Menu.Item>
             <Menu.Item>
-                (Batch ID)
+                {associate.batch_id}
             </Menu.Item>
             <Menu.Item>
-                (Whatever else)
+                <Button
+                onClick={() => addSwot()}>+ SWOT</Button>
             </Menu.Item>
             <Menu.Item>
                 Start Date: &nbsp;

@@ -2,13 +2,13 @@ const { default: axios } = require('axios')
 
 class ManagerService {
     constructor() {
-        this.URI = 'http://localhost:5000/manager'; // for testing with backend
+        this.URI = 'http://localhost:5000/managers';
     }
 
     login(id) {
         // login to validate manager id
         return axios({
-            method: 'POST',
+            method: 'GET',
             url: `${this.URI}/${id}`,
             withCredentials: true
         })

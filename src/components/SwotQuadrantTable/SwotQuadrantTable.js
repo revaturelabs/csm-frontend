@@ -30,6 +30,7 @@ const SwotQuadrantTable = (props) => {
                                 key={index} 
                                 category={item.category} 
                                 note={item.note} 
+                                section={props.name}
                                 editHandler={props.editHandler} 
                                 deleteHandler={props.deleteHandler}
                                 ></SwotCategory>

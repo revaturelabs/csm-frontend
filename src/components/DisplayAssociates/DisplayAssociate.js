@@ -20,7 +20,7 @@ const DisplayAssociate = (props) => {
 
   const viewSwots = () => {
     const getAssociateInfo = async () => {
-      let resp = await associateService.getSpiderInformation()
+      let resp = await associateService.getSpiderInformation(props.associate.userID)
       dispatch({ type: 'updateAssociate', associate: resp.data })
     }
     getAssociateInfo()
@@ -40,10 +40,10 @@ const DisplayAssociate = (props) => {
         <span className='name'>{props.associate.userID}</span>
         <span className='batch'>{props.batchName}</span>
         <span className='pro_date'>Promoted: {props.batchProDate}</span>
-        <span><Button onClick={viewSwots}>View SWOTs</Button></span>
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === 0}>
         {/* placeholder for the evaluation charts */}
+        <span><Button onClick={viewSwots}>View SWOTs</Button></span>
       </Accordion.Content>
     </Accordion>
   )

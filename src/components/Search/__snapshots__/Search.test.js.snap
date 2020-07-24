@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test Mounting, testing user input, and dismounting the component. 1`] = `
+<Search
+  fluid="true"
+  icon="search"
+  id="search"
+  onChange={[MockFunction]}
+  placeholder="Search..."
+>
+  <Input
+    fluid={true}
+    icon="search"
+    id="search"
+    onChange={[Function]}
+    placeholder="Search..."
+    type="text"
+  >
+    <div
+      className="ui fluid icon input"
+    >
+      <input
+        id="search"
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+      />
+      <Icon
+        as="i"
+        name="search"
+      >
+        <i
+          aria-hidden="true"
+          className="search icon"
+          onClick={[Function]}
+        />
+      </Icon>
+    </div>
+  </Input>
+</Search>
+`;
+
+exports[`Search unit test Rendering component with props that match the original component. 1`] = `
+<Input
+  fluid={true}
+  icon="search"
+  id="search"
+  onChange={[Function]}
+  placeholder="Search..."
+  type="text"
+/>
+`;
+
+exports[`Search unit test Rendering component without props. 1`] = `
+<Input
+  fluid={true}
+  icon="search"
+  id="search"
+  onChange={[Function]}
+  placeholder="Search..."
+  type="text"
+/>
+`;

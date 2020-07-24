@@ -1,23 +1,30 @@
 import React from 'react';
 import { useDispatch, useSelector, useCallback } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { Menu, Button, Icon } from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import SwotService from '../../services/swot.service.js';
 import './SwotsBar.css';
 
 const SwotsBar = (props) => {
-    let startDate = useSelector((state) => state.swotReducer.startDate);
-    let endDate = useSelector((state) => state.swotReducer.endDate);
+    const associate = useSelector((state) => state.swotReducer.currentAssociate);
     const swots = useSelector((state) => state.swotReducer.swots);
+    const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
+    let startDate = new Date(useSelector((state) => state.swotReducer.currentAssociate.proDate));
+    let endDate = new Date(useSelector((state) => state.swotReducer.endDate));
     const dispatch = useDispatch();
     const history = useHistory();
+    let batch_id = "No batch id provided.";
+    if(associate.batch_id !== "") {
+        batch_id = associate.batch_id;
+    }
     const filterSwots = () => {
-        console.log(swots)
         for (const swot of swots) {
-            console.log(swot);
+            if(swot.date_created >= startDate && swot.date_created <= endDate) {
+                displaySwots.push(swot);
+            }
         }
-        dispatch({type: 'updateDisplaySwots', getDisplaySwots: swots})
+        dispatch({type: 'updateDisplaySwots', getDisplaySwots: displaySwots})
     }
     const handleStartDate = (date) => {
         startDate = date;
@@ -29,12 +36,6 @@ const SwotsBar = (props) => {
         endDate = date;
         dispatch({type: 'updateEndDate', endDate: date});
         filterSwots();
-    }
-
-    const handleBack = e => {
-        e.preventDefault();
-        dispatch({type: 'updateAssociate', associate: {}});
-        history.push('/promotedlastweek');
     }
 
     const addSwot = () => {
@@ -54,17 +55,10 @@ const SwotsBar = (props) => {
     return (
         <Menu size={'huge'}>
             <Menu.Item>
-<<<<<<< HEAD
-                Example Student
-=======
-                <Button icon onClick={handleBack}><Icon name={'arrow left'}/></Button>
+                {associate.name}
             </Menu.Item>
             <Menu.Item>
-                {associate.email}
->>>>>>> 96b349fc72441f05703ce239c399621ade79e031
-            </Menu.Item>
-            <Menu.Item>
-                (Batch ID)
+                {batch_id}
             </Menu.Item>
             <Menu.Item>
                 <Button

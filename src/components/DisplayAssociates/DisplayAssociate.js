@@ -6,7 +6,7 @@ import AssociateService from '../../services/associate.service'
 import './DisplayAssociates.scss';
 
 const DisplayAssociate = (props) => {
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
   const associateService = new AssociateService();
@@ -20,8 +20,10 @@ const DisplayAssociate = (props) => {
 
   const viewSwots = () => {
     const getAssociateInfo = async () => {
-      let resp = await associateService.getSpiderInformation(props.associate.userID)
-      dispatch({ type: 'updateAssociate', associate: resp.data })
+        let startDate = new Date(props.batchProDate);
+        startDate.setDate(startDate.getDate()-14);
+        props.associate.proDate = startDate;
+        dispatch({ type: 'updateAssociate', associate: props.associate });
     }
     getAssociateInfo()
     history.push('/viewSwots')
@@ -35,6 +37,7 @@ const DisplayAssociate = (props) => {
         onClick={handleClick}
         className='title'>
         <Icon name='dropdown' />
+        {/* These keys may change */}
         <span className='id'>{props.associate.name}</span>
         <span className='name'>{props.associate.userID}</span>
         <span className='batch'>{props.batchName}</span>

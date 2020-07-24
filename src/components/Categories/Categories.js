@@ -20,9 +20,14 @@ const Categories = (props) => {
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
+<<<<<<< HEAD
       const otherId = resp.length + 1;
       const lst = [...resp.data, {categoryId: otherId, skillCategory: 'Other', active:'true' }]
       lst.sort();
+=======
+      const lst = [...resp.data, {categoryId: 41, skillCategory: 'Other', active:'true' }]
+      lst.sort();
+>>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: lst,

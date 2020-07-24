@@ -54,6 +54,10 @@ const SwotCategory = (props) => {
       onDragStart={itemDrag}>
       <Item.Content>
         <Item.Header>{props.category}</Item.Header>
+<<<<<<< HEAD
+=======
+        <Item.Meta>Notes</Item.Meta>
+>>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
         <Item.Description>
           <p>{props.note}</p>
           <br></br>
@@ -70,6 +74,10 @@ const SwotCategory = (props) => {
             :
             <></>
           }
+<<<<<<< HEAD
+=======
+          
+>>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
         </Item.Description>
       </Item.Content>
     </Item>

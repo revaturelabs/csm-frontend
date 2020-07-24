@@ -15,11 +15,12 @@ const SpiderChart = (props) => {
     const batchScore = []
 
     useEffect(() => {
-        for (const qcEval of props.spider_batch) {
+        console.log(evalState.spiderBatch)
+        for (const qcEval of evalState.spiderBatch) {
             batchAssesment.push(qcEval.assessmentType)
             batchScore.push(qcEval.score)
         }
-        for (const qcEval of props.spider_associate) {
+        for (const qcEval of evalState.spiderAssociate) {
             associateAssesment.push(qcEval.assessmentType)
             associateScore.push(qcEval.score)
         }
@@ -29,7 +30,7 @@ const SpiderChart = (props) => {
         dispatch({ type: 'setAssociateValues', associateValues: associateScore })
     }, []);
 
-    const state = {
+    const data = {
         labels: evalState.batchLabels,
         datasets: [
             {
@@ -54,10 +55,10 @@ const SpiderChart = (props) => {
     return (
         <>
             <div id='chart'>
-                <h2 id='title'>J2EE - Technical Status</h2>
+                {/* <h2 id='title'>J2EE - Technical Status</h2> */}
                 <Radar
                     type='radar'
-                    data={state}
+                    data={data}
                     options={{
                         title: {
                             display: false,

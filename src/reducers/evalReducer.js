@@ -1,4 +1,7 @@
 const initialState = {
+    spiderBatch: [],
+    spiderAssociate: [],
+    qcEvals: [],
     technologies: [],
     spiderData: [],
     batchSpiderData:[],
@@ -10,6 +13,12 @@ function evalReducer(state = initialState, action) {
     console.log(state);
     console.log(action);
     switch(action.type) {
+        case 'handleBatchSpiderData':
+            return Object.assign({}, state, { spiderBatch: action.spiderBatch})
+        case 'handleAssociateSpiderData':
+            return Object.assign({}, state, { spiderAssociate: action.spiderAssociate })
+        case 'handleQC':
+            return Object.assign({}, state, { qcEvals: action.qcEvals })
         case 'getTechnologies':
             return Object.assign({}, state, {technologies: action.technologies})
         case 'setQCLabels':

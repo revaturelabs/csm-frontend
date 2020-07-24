@@ -15,10 +15,39 @@ const DisplayAssociates = (props) => {
         const getBatch = async () => {
             let resp = await batchService.getBatches()
             dispatch({ type: 'updateBatches', batches: resp.data })
-            console.log(`LOOOOOOOOOOOK ${batchesState.batches}`)
         }
         getBatch();
     }, []); 
+
+    // const testData = [
+    //     {
+    //         batchID: 'TR-1077',
+    //         batchName: 'Mock Batch 48',
+    //         skill: 'Big Data',
+    //         manager: 'Julie',
+    //         trainer: [
+    //             {
+    //                 role: "ROLE_LEAD_TRAINER",
+    //                 employee: {
+    //                     email: "mock1048.employee381fdc34-12af-48ee-87d3-20fcd312ec16@mock.com",
+    //                     firstName: "Mock 1048",
+    //                     lastName: "Associate 1048"
+    //                 },
+    //             }
+    //         ],
+    //         promotionDate: "2016-10-07", //I forget the date format
+    //         associates: [
+    //             {
+    //                 name: "Mock 15 Associate 15",
+    //                 userID: "mock1.associate021f85bc-035e-404e-81e8-eef036afc06a@mock.com",
+    //             },
+    //             {
+    //                 name: "Mock 2 Associate 2",
+    //                 userID: "mock2.associate021f85bc-035e-404e-81e8-eef036afc06a@mock.com",
+    //             },
+    //         ]
+    //     }
+    // ]
 
 
     const handleClick = (e, titleProps) => {
@@ -27,72 +56,6 @@ const DisplayAssociates = (props) => {
         const newIndex = activeIndex === index ? -1 : index
         setActiveIndex(newIndex)
     }
-
-    // test data only
-    // const testData = [
-    //     {
-    //         batchID: 1,
-    //         batchName: '2005 Python',
-    //         skill: 'Big Data',
-    //         manager: 'Julie',
-    //         trainer: [
-    //             {
-    //                 role: '',
-    //                 employee: {
-    //                     email: 'richard.orr@test',
-    //                     firstName: 'Richard',
-    //                     lastName: 'Orr',
-    //                 },
-    //             }
-    //         ],
-    //         promotionDate: '5/5/2020', //I forget the date format
-    //         associates: [
-    //             {
-    //                 name: 'Associate 1',
-    //                 userID: 'test1@test.test',
-    //             },
-    //             {
-    //                 name: 'Associate 2',
-    //                 userID: 'test2@test.test'
-    //             },
-    //         ]
-    //     },
-    // {
-    //     batchID: 2,
-    //     batchName: '2006 Java',
-    //     skill: 'Big Data',
-    //     manager: 'Julie',
-    //     trainer: [
-    //         {
-    //             role: '',
-    //             employee: {
-    //                 email: 'john.doe@test',
-    //                 firstName: 'John',
-    //                 lastName: 'Doe',
-    //             }
-    //         },
-    //         {
-    //             role: '',
-    //             employee: {
-    //                 email: 'jane.smith@test',
-    //                 firstName: 'Jane',
-    //                 lastName: 'Smith',
-    //             }
-    //         }
-    //     ],
-    //     promotionDate: '5/5/2020', //I forget the date format
-    //     associates: [
-    //         {
-    //             name: 'Associate 3',
-    //             userID: 'test3@test.test'
-    //         },
-    //         {
-    //             name: 'Associate 4',
-    //             userID: 'test4@test.test'
-    //         },
-    //     ]
-    // }
-    // ]
 
     return (
         <Container>
@@ -110,7 +73,7 @@ const DisplayAssociates = (props) => {
                             <Icon name='dropdown' />
                             {/* keys below may change with backend response */}
                             <span className='info'>{batch.batchName} </span> 
-                            <span class="trainer">
+                            <span className="trainer">
                                 {batch.trainer.length > 0 ? 
                                     batch.trainer.map( (trainer, ind) => {
                                         return (

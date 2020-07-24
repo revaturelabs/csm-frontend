@@ -1,0 +1,7 @@
+.associate-eval .wrapper {
+  width: calc(50% - .5rem);
+
+  & + .wrapper{
+    margin-left: 1rem;
+  }
+}

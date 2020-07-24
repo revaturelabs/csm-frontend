@@ -11,32 +11,38 @@ const QC = (props) => {
   const qcData = []
 
   useEffect( () => {
-    for (const qcEval of props.qc) {
-      // console.log(qcEval)
-      qcSkills.push(qcEval.skill)
-      var qcScore
-      switch (qcEval.score.toLowerCase()) {
-        case 'poor':
-          qcScore = 1;
-          break;
-        case 'average':
-          qcScore = 2;
-          break;
-        case 'good':
-          qcScore = 3;
-          break;
-        //case 'top performer'
-        //  qcScore = 3;
-        //  break;
-        case 'superstar':
-            qcScore = 4;
-            break;
-        default: // the data is null if invalid
-            qcScore = null;  // should leave a gap in line
-            break;
-      }
-      // console.log(qcScore)
-      qcData.push(qcScore)
+    // while (evalState.qcEvals.length === 0) {
+      if (evalState.qcEvals.length > 0) {
+        console.log('hello' + evalState.qcEvals)
+        for (const qcEval of evalState.qcEvals) {
+          // console.log(qcEval)
+          qcSkills.push(qcEval.skill)
+          var qcScore
+          switch (qcEval.score.toLowerCase()) {
+            case 'poor':
+              qcScore = 1;
+              break;
+            case 'average':
+              qcScore = 2;
+              break;
+            case 'good':
+              qcScore = 3;
+              break;
+            //case 'top performer'
+            //  qcScore = 3;
+            //  break;
+            case 'superstar':
+                qcScore = 4;
+                break;
+            default: // the data is null if invalid
+                qcScore = null;  // should leave a gap in line
+                break;
+          }
+          // console.log(qcScore)
+          qcData.push(qcScore)
+        }
+        // break
+      // }
     }
 
     dispatch({type :'setQCLabels', qcLabels : qcSkills})
@@ -79,8 +85,7 @@ const QC = (props) => {
   //render() {
   return (
     <div id='chart'>
-      {/* <div> */}
-      <h2 id='title'>Line Example</h2>
+      <h2 className='title'>Line Example</h2>
         <Line data={data} />
       {/* </div> */}
       {/* <div>
@@ -93,7 +98,6 @@ const QC = (props) => {
         ))}
       </div> */}
     </div>
-
   );
 
 }

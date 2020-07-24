@@ -50,7 +50,7 @@ const DisplayAssociates = (props) => {
                             <Icon name='dropdown' />
                             {/* keys below may change with backend response */}
                             <span className='info'>{batch.batchName} </span> 
-                            <span class="trainer">
+                            <span className="trainer">
                                 {batch.trainer.length > 0 ? 
                                     batch.trainer.map( (trainer, ind) => {
                                         return (

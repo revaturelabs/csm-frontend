@@ -20,7 +20,7 @@ const DisplayAssociate = (props) => {
 
   const viewSwots = () => {
     const getAssociateInfo = async () => {
-      let resp = await associateService.getSpiderInformation()
+      let resp = await associateService.getSpiderInformation(props.associate.userID)
       dispatch({ type: 'updateAssociate', associate: resp.data })
     }
     getAssociateInfo()

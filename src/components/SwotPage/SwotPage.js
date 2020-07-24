@@ -16,7 +16,7 @@ const SwotPage = (props) => {
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
-  const associate = useSelector((state) => state.swotReducer.associate);
+  const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const edit = useSelector((state) => state.swotReducer.editable)
   useEffect(() => {
     async function getCategories() {
@@ -67,7 +67,7 @@ const SwotPage = (props) => {
                 <Header as='h1'
                         id='associateNameHeader'
                         fluid
-                >SWOT Analysis for {associate.name}</Header>
+                >SWOT Analysis for {associate.email}</Header>
                 <Grid
                 >
                     <Grid.Column width={3}

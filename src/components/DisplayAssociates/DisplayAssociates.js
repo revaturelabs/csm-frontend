@@ -19,37 +19,6 @@ const DisplayAssociates = (props) => {
         getBatch();
     }, []); 
 
-    // const testData = [
-    //     {
-    //         batchID: 'TR-1077',
-    //         batchName: 'Mock Batch 48',
-    //         skill: 'Big Data',
-    //         manager: 'Julie',
-    //         trainer: [
-    //             {
-    //                 role: "ROLE_LEAD_TRAINER",
-    //                 employee: {
-    //                     email: "mock1048.employee381fdc34-12af-48ee-87d3-20fcd312ec16@mock.com",
-    //                     firstName: "Mock 1048",
-    //                     lastName: "Associate 1048"
-    //                 },
-    //             }
-    //         ],
-    //         promotionDate: "2016-10-07", //I forget the date format
-    //         associates: [
-    //             {
-    //                 name: "Mock 15 Associate 15",
-    //                 userID: "mock1.associate021f85bc-035e-404e-81e8-eef036afc06a@mock.com",
-    //             },
-    //             {
-    //                 name: "Mock 2 Associate 2",
-    //                 userID: "mock2.associate021f85bc-035e-404e-81e8-eef036afc06a@mock.com",
-    //             },
-    //         ]
-    //     }
-    // ]
-
-
     const handleClick = (e, titleProps) => {
         /* handles accordion functionality */
         const { index } = titleProps
@@ -71,7 +40,6 @@ const DisplayAssociates = (props) => {
                             onClick={handleClick}
                             className="title">
                             <Icon name='dropdown' />
-                            {/* keys below may change with backend response */}
                             <span className='info'>{batch.batchName} </span> 
                             <span className="trainer">
                                 {batch.trainer.length > 0 ? 

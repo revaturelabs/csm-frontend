@@ -11,28 +11,15 @@ const Evaluations = (props) => {
   const associateService = new AssociateService();
   const dispatch = useDispatch();
 
-  useEffect( () => {
-    const getEvals = async () => {
-      console.log('===========Getting Evals=============')
-      let resp = await associateService.getEvaluations(props.associate.userID);
-      console.log(resp.data)
-      console.log(resp.data.qc)
-      // console.log(resp.data.spider_associate)
-      dispatch({ 
-        type: 'handleBatchSpiderData', 
-        spiderBatch: resp.data.batch_spider
-      });
-      dispatch({ 
-        type: 'handleAssociateSpiderData', 
-        spiderAssociate: resp.data.associate_spider
-      });
-      dispatch({
-        type: 'handleQC',
-        qcEvals: resp.data.qc
-      });
-    }
-    getEvals();
-  }, [])
+  // useEffect( () => {
+  //   getEvals();
+  // }, [])
+
+  const getEvals = async () => {
+    console.log('============LOOK HERE============')
+    const resp = await associateService.getEvaluations(props.associate.userID);
+    return resp.data
+  }
 
   return (
     <Grid container stackable columns={2} className='associate-eval'>
@@ -40,15 +27,13 @@ const Evaluations = (props) => {
         <SpiderChart 
           className='associate-chart' />
       </Grid.Column> */}
-      {evalState.spiderBatch.length > 0 ?
-        <Grid.Column className='wrapper'>
-          <SpiderChart className='associate-chart' />
-        </Grid.Column>
-        :
-        <Placeholder className='wrapper'>
-          <Placeholder.Image className='associate-chart' />
-        </Placeholder>
-      }
+      
+      <Grid.Column className='wrapper'>
+        <SpiderChart className='associate-chart'
+          spiderBatch={getEvals.batchSpider}
+        />
+      </Grid.Column>
+        
       { evalState.qcEvals.length > 0 ?
         <Grid.Column className='wrapper'>
           <QC className='associate-chart' />

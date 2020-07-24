@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useCallback } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { Menu, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
@@ -7,23 +7,28 @@ import SwotService from '../../services/swot.service.js';
 import './SwotsBar.css';
 
 const SwotsBar = (props) => {
-    const startDate = useSelector((state) => state.swotReducer.startDate);
-    const endDate = useSelector((state) => state.swotReducer.endDate);
+    let startDate = useSelector((state) => state.swotReducer.startDate);
+    let endDate = useSelector((state) => state.swotReducer.endDate);
     const swots = useSelector((state) => state.swotReducer.swots);
     const dispatch = useDispatch();
     const history = useHistory();
-    const filterSwots = (event) => {
+    const filterSwots = () => {
+        console.log(swots)
         for (const swot of swots) {
             console.log(swot);
         }
         dispatch({type: 'updateDisplaySwots', getDisplaySwots: swots})
     }
-    const handleStartDate = date => {
-        dispatch({type: 'updateStartDate', startDate: date})
+    const handleStartDate = (date) => {
+        startDate = date;
+        dispatch({type: 'updateStartDate', startDate: date});
+        filterSwots();
     }
 
-    const handleEndDate = date => {
-        dispatch({type: 'updateEndDate', endDate: date})
+    const handleEndDate = (date) => {
+        endDate = date;
+        dispatch({type: 'updateEndDate', endDate: date});
+        filterSwots();
     }
 
     const addSwot = () => {
@@ -38,7 +43,7 @@ const SwotsBar = (props) => {
         dispatch({type: 'updateEditable', editable: true})
         dispatch({type: 'updateSWOT', SWOT: data})
         history.push('/editSWOT')
-      }
+    }
 
     return (
         <Menu size={'huge'}>
@@ -54,9 +59,9 @@ const SwotsBar = (props) => {
             </Menu.Item>
             <Menu.Item>
                 Start Date: &nbsp;
-                <DatePicker selected={startDate} onChange={handleStartDate,filterSwots}></DatePicker>
+                <DatePicker selected={startDate} onChange={handleStartDate}></DatePicker>
                 &nbsp; End Date: &nbsp;
-                <DatePicker selected={endDate} onChange={handleEndDate,filterSwots}></DatePicker>
+                <DatePicker selected={endDate} onChange={handleEndDate}></DatePicker>
             </Menu.Item>
         </Menu>
     )

@@ -11,13 +11,13 @@ import SwotCharts from "../SwotCharts/SwotCharts";
 import "./SwotPage.css";
 
 const SwotPage = (props) => {
-  const swotService = new SwotService();
   const history = useHistory();
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
+  const swotService = new SwotService();
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
   const associate = useSelector((state) => state.swotReducer.associate);
-  const edit = useSelector((state) => state.swotReducer.editable)
+  const edit = useSelector((state) => state.swotReducer.editable);
   useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
@@ -74,9 +74,9 @@ const SwotPage = (props) => {
                     >
                         <Categories />
                     </Grid.Column>
-                    
+
                     <Grid.Column width={13}>
-                        <Grid.Row 
+                        <Grid.Row
                         style={{ overflowY: 'scroll', overflowX: 'hidden' }}>
                             <SwotTable />
                         </Grid.Row>
@@ -92,7 +92,7 @@ const SwotPage = (props) => {
                                 :
                                 <></>
                             }
-                            
+
                         </Grid.Row>
                         <Grid.Row>
                             {
@@ -119,12 +119,12 @@ const SwotPage = (props) => {
                                         Back
                                     </Button>
                             }
-                            
+
                         </Grid.Row>
-                        
+
                     </Grid.Column>
                 </Grid>
-        </Container>            
+        </Container>
     )
 }
 export default SwotPage;

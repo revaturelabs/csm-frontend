@@ -2,7 +2,7 @@ const { default: axios } = require('axios')
 
 class AssociateService {
     constructor() {
-        this.URI = 'localhost:5000/employees';  // for testing with backend
+        this.URI = 'http://localhost:5000/employees';  // for testing with backend
     }
 
     getAssociatesByManager(managerId) {

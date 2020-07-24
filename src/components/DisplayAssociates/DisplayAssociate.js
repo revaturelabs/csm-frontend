@@ -19,7 +19,6 @@ const DisplayAssociate = (props) => {
         onClick={handleClick}
         className='title'>
         <Icon name='dropdown' />
-        {/* These keys may change */}
         <span className='id'>{props.associate.name}</span>
         <span className='name'>{props.associate.userID}</span>
         <span className='batch'>{props.batchName}</span>

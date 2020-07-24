@@ -2,7 +2,7 @@ const { default: axios } = require('axios')
 
 class BatchService {
     constructor() {
-        this.URI = 'localhost:5000/batches';  // for testing with backend
+        this.URI = 'http://localhost:5000/batches';  // for testing with backend
     }
 
     // returns all batches

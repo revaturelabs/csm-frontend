@@ -1,13 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
-<<<<<<< HEAD
-import { Menu } from 'semantic-ui-react';
-import SwotService from '../../services/swot.service.js';
-=======
 import { Menu, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
->>>>>>> 5f04a5a173918847eddf2ea1f4b3ce3999f13547
+import SwotService from '../../services/swot.service.js';
 import './SwotsBar.css';
 
 const SwotsBar = (props) => {

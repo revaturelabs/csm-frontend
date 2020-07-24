@@ -14,10 +14,6 @@ const SwotsBar = (props) => {
     let endDate = new Date(useSelector((state) => state.swotReducer.endDate));
     const dispatch = useDispatch();
     const history = useHistory();
-    let batch_id = "No batch id provided.";
-    if(associate.batch_id !== "") {
-        batch_id = associate.batch_id;
-    }
     const filterSwots = () => {
         for (const swot of swots) {
             if(swot.date_created >= startDate && swot.date_created <= endDate) {
@@ -58,7 +54,7 @@ const SwotsBar = (props) => {
                 {associate.name}
             </Menu.Item>
             <Menu.Item>
-                {batch_id}
+                {associate.batch_id}
             </Menu.Item>
             <Menu.Item>
                 <Button

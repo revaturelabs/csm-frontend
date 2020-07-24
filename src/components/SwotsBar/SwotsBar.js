@@ -10,6 +10,7 @@ const SwotsBar = (props) => {
     const endDate = useSelector((state) => state.swotReducer.endDate);
     const dispatch = useDispatch();
     const history = useHistory();
+    const associate = useSelector((state) => state.swotReducer.currentAssociate)
 
     const handleStartDate = date => {
         dispatch({type: 'updateStartDate', startDate: date})
@@ -36,10 +37,10 @@ const SwotsBar = (props) => {
     return (
         <Menu size={'huge'}>
             <Menu.Item>
-                Example Student
+                {associate.email}
             </Menu.Item>
             <Menu.Item>
-                (Batch ID)
+                {associate.batch_id}
             </Menu.Item>
             <Menu.Item>
                 <Button

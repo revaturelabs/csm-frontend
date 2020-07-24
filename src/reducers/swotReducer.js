@@ -1,5 +1,5 @@
 let initialState = {
-  associate: {},
+  currentAssociate: {},
   categories: [],
   displayCategories: [],
   startDate: new Date(),
@@ -88,6 +88,8 @@ let initialState = {
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "updateAssociate":
+      return Object.assign({}, state, { currentAssociate: Object.assign({}, action.associate) });
     case "updateStartDate":
       return action.startDate > state.endDate
         ? Object.assign({}, state, {

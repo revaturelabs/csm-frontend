@@ -14,7 +14,7 @@ const Categories = (props) => {
   const cat = new categoryService();
 
   const listDrag = (event) => {
-    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.setData("text", 'NONE~'+event.target.id);
   };
 
   useEffect(() => {

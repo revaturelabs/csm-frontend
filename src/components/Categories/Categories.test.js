@@ -90,23 +90,4 @@ describe("Search unit test", () => {
 		expect(component).toMatchSnapshot();
 		component.unmount();
   	});
-
-  	// it('Testing find function call.', () => {
-	// 	const dispatch = jest.fn();
-	// 	const { useSelector, useDispatch } = require("react-redux");
-	// 	useSelector.mockImplementation((callback) => {
-	// 		return callback({
-	// 			swotReducer: {
-	// 				categories: [],
-	// 				displayCategories: ["AWS", "Python", "JavaScript"]
-	// 			},
-	// 		});
-	// 	});
-	// 	useDispatch.mockReturnValue(dispatch);
-	// 	const event = {target: {name: "search", value: "A"}};
-	// 	const component = mount(<Categories/>);
-	// 	component.find('input').simulate('change', event);
-	// 	expect(dispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
-  	// });
-
 });

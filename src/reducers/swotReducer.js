@@ -1,13 +1,16 @@
 let initialState = {
   associate: {},
-  categories: ["test cat"],
+  categories: [],
   displayCategories: [],
   startDate: new Date(),
   endDate: new Date(),
   swots: [],
   displaySwots: [],
+  editable: true,
+  moveType: 'create',
   SWOT: {
     date: null,
+    author: '',
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
@@ -104,6 +107,10 @@ const swotReducer = (state = initialState, action) => {
         return Object.assign({}, state, { swots: action.getSwots });
     case "updateDisplaySwots":
         return Object.assign({}, state, { displaySwots: action.getDisplaySwots})
+    case "updateEditable":
+      return Object.assign({}, state, {editable: action.editable});
+    case "updateMoveType":
+      return Object.assign({}, state, {moveType: action.move});
     case "updateCategories":
         return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":

@@ -1,8 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
+<<<<<<< HEAD
 import { Menu } from 'semantic-ui-react';
 import SwotService from '../../services/swot.service.js';
+=======
+import { Menu, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+>>>>>>> 5f04a5a173918847eddf2ea1f4b3ce3999f13547
 import './SwotsBar.css';
 
 const SwotsBar = (props) => {
@@ -10,12 +15,17 @@ const SwotsBar = (props) => {
     const endDate = useSelector((state) => state.swotReducer.endDate);
     const swots = useSelector((state) => state.swotReducer.swots);
     const dispatch = useDispatch();
+<<<<<<< HEAD
     const filterSwots = (event) => {
         for (const swot of swots) {
             console.log(swot);
         }
         dispatch({type: 'updateDisplaySwots', getDisplaySwots: swots})
     }
+=======
+    const history = useHistory();
+
+>>>>>>> 5f04a5a173918847eddf2ea1f4b3ce3999f13547
     const handleStartDate = date => {
         dispatch({type: 'updateStartDate', startDate: date})
     }
@@ -24,16 +34,31 @@ const SwotsBar = (props) => {
         dispatch({type: 'updateEndDate', endDate: date})
     }
 
+    const addSwot = () => {
+        const data = {
+          date: null,
+          Strengths: [],
+          Weaknesses: [],
+          Opportunities: [],
+          Threats: [],
+          Notes: ''
+        }
+        dispatch({type: 'updateEditable', editable: true})
+        dispatch({type: 'updateSWOT', SWOT: data})
+        history.push('/editSWOT')
+      }
+
     return (
         <Menu size={'huge'}>
             <Menu.Item>
-                Derek Jou
+                Example Student
             </Menu.Item>
             <Menu.Item>
                 (Batch ID)
             </Menu.Item>
             <Menu.Item>
-                (Whatever else)
+                <Button
+                onClick={() => addSwot()}>+ SWOT</Button>
             </Menu.Item>
             <Menu.Item>
                 Start Date: &nbsp;

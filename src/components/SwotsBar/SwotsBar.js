@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector, useCallback } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import SwotService from '../../services/swot.service.js';
 import './SwotsBar.css';
@@ -31,6 +31,12 @@ const SwotsBar = (props) => {
         filterSwots();
     }
 
+    const handleBack = e => {
+        e.preventDefault();
+        dispatch({type: 'updateAssociate', associate: {}});
+        history.push('/promotedlastweek');
+    }
+
     const addSwot = () => {
         const data = {
           date: null,
@@ -48,7 +54,14 @@ const SwotsBar = (props) => {
     return (
         <Menu size={'huge'}>
             <Menu.Item>
+<<<<<<< HEAD
                 Example Student
+=======
+                <Button icon onClick={handleBack}><Icon name={'arrow left'}/></Button>
+            </Menu.Item>
+            <Menu.Item>
+                {associate.email}
+>>>>>>> 96b349fc72441f05703ce239c399621ade79e031
             </Menu.Item>
             <Menu.Item>
                 (Batch ID)

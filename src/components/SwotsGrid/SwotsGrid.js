@@ -42,8 +42,9 @@ const SwotsGrid = (props) => {
                         </Button>
                       ) : null
                     ) : (
+
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
-                        {swot.date_created}
+                        {swot.author}: &nbsp;{swot.date_created}
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (

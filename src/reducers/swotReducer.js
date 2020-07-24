@@ -7,10 +7,10 @@ let initialState = {
   swots: [],
   displaySwots: [],
   editable: true,
-  moveType: 'create',
+  moveType: "create",
   SWOT: {
     date_created: null,
-    author: '',
+    author: "",
     Strengths: [],
     Weaknesses: [],
     Opportunities: [],
@@ -25,16 +25,18 @@ let initialState = {
   ThreatsModal: false,
   swotModal: false,
   swotCharts: false,
-  currentNote: '',
-  currentCategory: '',
-  notes: '',
-  currentSwots: []
+  currentNote: "",
+  currentCategory: "",
+  notes: "",
+  currentSwots: [],
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
     case "updateAssociate":
-      return Object.assign({}, state, { currentAssociate: Object.assign({}, action.associate) });
+      return Object.assign({}, state, {
+        currentAssociate: Object.assign({}, action.associate),
+      });
     case "updateStartDate":
         return action.startDate > state.endDate
             ? Object.assign({}, state, {
@@ -53,9 +55,9 @@ const swotReducer = (state = initialState, action) => {
     case "updateDisplaySwots":
         return Object.assign({}, state, { displaySwots: action.getDisplaySwots})
     case "updateEditable":
-      return Object.assign({}, state, {editable: action.editable});
+      return Object.assign({}, state, { editable: action.editable });
     case "updateMoveType":
-      return Object.assign({}, state, {moveType: action.move});
+      return Object.assign({}, state, { moveType: action.move });
     case "updateCategories":
         return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":
@@ -68,7 +70,15 @@ const swotReducer = (state = initialState, action) => {
     case "updateDropZone":
         return Object.assign({}, state, { dropZone: action.dropZone });
     case "updateDropDepth":
+<<<<<<< HEAD
         return Object.assign({}, state, { dropDepth: action.dropDepth });
+=======
+      return Object.assign({}, state, { dropDepth: action.dropDepth });
+    case "updateAuthor":
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { author: action.author }),
+      });
+>>>>>>> 96b349fc72441f05703ce239c399621ade79e031
     case "updateStrengths":
         return Object.assign({}, state, {
             SWOT: Object.assign({}, state.SWOT, { Strengths: action.data }),});

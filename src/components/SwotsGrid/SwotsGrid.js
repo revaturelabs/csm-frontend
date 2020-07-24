@@ -6,12 +6,7 @@ import { useHistory } from "react-router-dom";
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const dispatch = useDispatch();
-
   const history = useHistory();
-  //   useEffect(() => {
-  // fetch associates
-  // dispatch in to state (swotReducer.currentSwots or whatever name works)
-  //   }, [])
 
   const setCurrentSwot = (e, swot) => {
     if (e.target.id === "trainer") {
@@ -42,7 +37,6 @@ const SwotsGrid = (props) => {
                         </Button>
                       ) : null
                     ) : (
-
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
                         {swot.author}: &nbsp;{swot.date_created}
                       </Button>

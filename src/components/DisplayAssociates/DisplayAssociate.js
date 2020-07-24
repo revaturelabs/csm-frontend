@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import { Accordion, Icon, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-<<<<<<< HEAD
-import { useDispatch, useSelector } from "react-redux";
-=======
 import { useDispatch } from "react-redux";
->>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
 import AssociateService from '../../services/associate.service'
 import './DisplayAssociates.scss';
 
 const DisplayAssociate = (props) => {
-<<<<<<< HEAD
-
-=======
->>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
   const history = useHistory();
   const dispatch = useDispatch();
   const associateService = new AssociateService();
@@ -27,15 +19,10 @@ const DisplayAssociate = (props) => {
 
   const viewSwots = () => {
     const getAssociateInfo = async () => {
-<<<<<<< HEAD
         let startDate = new Date(props.batchProDate);
         startDate.setDate(startDate.getDate()-14);
         props.associate.proDate = startDate;
         dispatch({ type: 'updateAssociate', associate: props.associate });
-=======
-      let resp = await associateService.getSpiderInformation(props.associate.userID)
-      dispatch({ type: 'updateAssociate', associate: resp.data })
->>>>>>> d822b9384fbdaefd6e36d4865231188cc2dff18d
     }
     getAssociateInfo()
     history.push('/viewSwots')

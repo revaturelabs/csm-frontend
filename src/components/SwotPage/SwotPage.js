@@ -17,7 +17,8 @@ const SwotPage = (props) => {
   const categoryService = new CategoryService();
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
-  const edit = useSelector((state) => state.swotReducer.editable)
+  const edit = useSelector((state) => state.swotReducer.editable);
+  const manager = useSelector(state => state.managerReducer.manager);
   useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
@@ -29,6 +30,7 @@ const SwotPage = (props) => {
       dispatch({ type: "updateCategories", getCategories: lst });
     }
     getCategories();
+    dispatch({type: 'updateAuthor', author: manager.username})
   }, [dispatch]);
 
   /**
@@ -51,6 +53,8 @@ const SwotPage = (props) => {
    * @todo Refactor functionality
    */
   const addSWOT = async () => {
+    dispatch({type: 'updateAuthor', author: manager.username})
+    console.log('THE SWOT TO SEND', SWOT);
     const resp = await swotService.sendSWOT(associate.email, SWOT);
     if (resp.status === 200) {
       dispatch({ type: 'updateAssociate', associate: {...associate, swot: [...associate.swot, resp.data]}})

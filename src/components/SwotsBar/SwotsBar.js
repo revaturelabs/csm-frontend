@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import './SwotsBar.css';
 
@@ -20,6 +20,12 @@ const SwotsBar = (props) => {
         dispatch({type: 'updateEndDate', endDate: date})
     }
 
+    const handleBack = e => {
+        e.preventDefault();
+        dispatch({type: 'updateAssociate', associate: {}});
+        history.push('/promotedlastweek');
+    }
+
     const addSwot = () => {
         const data = {
           date: null,
@@ -36,6 +42,9 @@ const SwotsBar = (props) => {
 
     return (
         <Menu size={'huge'}>
+            <Menu.Item>
+                <Button icon onClick={handleBack}><Icon name={'arrow left'}/></Button>
+            </Menu.Item>
             <Menu.Item>
                 {associate.email}
             </Menu.Item>

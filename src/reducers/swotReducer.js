@@ -9,7 +9,7 @@ let initialState = {
   editable: true,
   moveType: 'create',
   SWOT: {
-    date: null,
+    date_created: null,
     author: '',
     Strengths: [],
     Weaknesses: [],
@@ -28,64 +28,7 @@ let initialState = {
   currentNote: '',
   currentCategory: '',
   notes: '',
-  currentSwots: [{
-    date: 'Date1',
-    Strengths: [{
-      category: "Python",
-      note: 'he good at python'
-    }],
-    Weaknesses: [{
-      category: "React",
-      note: 'he not good at react'
-    }],
-    Opportunities: [{
-      category: "Flask",
-      note: 'he have potential for flask'
-    }],
-    Threats: [{
-      category: "CSS",
-      note: 'he cant css'
-    }],
-    Notes: ''
-  },{
-    date: 'Date2',
-    Strengths: [{
-      category: "HTML",
-      note: 'he good at HTML'
-    }],
-    Weaknesses: [{
-      category: "MongoDB",
-      note: 'he not good at MongoDB'
-    }],
-    Opportunities: [{
-      category: "Kubernetes",
-      note: 'he have potential for kubernetes'
-    }],
-    Threats: [{
-      category: "Docker",
-      note: 'he weirdly cant docker'
-    }],
-    Notes: ''
-  },{
-    date: 'Date3',
-    Strengths: [{
-      category: "PyMongo",
-      note: 'he good at pymongo'
-    }],
-    Weaknesses: [{
-      category: "JavaScript",
-      note: 'he not good at javascript'
-    }],
-    Opportunities: [{
-      category: "Jenkins",
-      note: 'he have potential for jenkins'
-    }],
-    Threats: [{
-      category: "Bootstrap",
-      note: 'he cant bootstrap'
-    }],
-    Notes: ''
-  }]
+  currentSwots: []
 };
 
 const swotReducer = (state = initialState, action) => {

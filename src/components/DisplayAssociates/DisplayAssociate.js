@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Icon, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import AssociateService from '../../services/associate.service'
 import './DisplayAssociates.scss';
 
 const DisplayAssociate = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const associateService = new AssociateService();
   const [assocActiveIndex, setAssocActiveIndex] = useState(-1);
 
   const handleClick = (e, titleProps) => {
     const { index } = titleProps
     const newIndex = assocActiveIndex === index ? -1 : index
     setAssocActiveIndex(newIndex)
+  }
+
+  const viewSwots = () => {
+    const getAssociateInfo = async () => {
+      let resp = await associateService.getSpiderInformation(props.associate.userID)
+      dispatch({ type: 'updateAssociate', associate: resp.data })
+    }
+    getAssociateInfo()
+    history.push('/viewSwots')
   }
 
   return (
@@ -26,6 +41,7 @@ const DisplayAssociate = (props) => {
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === 0}>
         {/* placeholder for the evaluation charts */}
+        <span><Button onClick={viewSwots}>View SWOTs</Button></span>
       </Accordion.Content>
     </Accordion>
   )

@@ -10,6 +10,7 @@ import SwotNoteModal from "../SwotNoteModal/SwotNoteModal";
  */
 const SwotQuadrant = (props) => {
   const swotState = useSelector((state) => state.swotReducer);
+  const edit = useSelector((state) => state.swotReducer.editable)
   const dispatch = useDispatch();
 
   /**
@@ -59,7 +60,19 @@ const SwotQuadrant = (props) => {
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    createModal(event.dataTransfer.getData("text"));
+    const data = event.dataTransfer.getData('text')
+    const section = data.split('~')[0]
+    const category = data.split('~')[1]
+    let type = 'create'
+    if (edit && (section !== props.name)) {
+      if (section !== 'NONE') {
+        deleteCategory(section)
+        type = 'move'
+      } 
+      dispatch({type: 'updateMoveType', move: type})
+      createModal(category);
+    }
+    
   };
 
   /**
@@ -95,9 +108,12 @@ const SwotQuadrant = (props) => {
    * 3. Slices array at index
    * 4. Dispatches new array
    */
-  const deleteCategory = (index) => {
-    const _type = "update" + props.name;
-    let new_arr = [...swotState.SWOT[props.name]];
+  const deleteCategory = (section, category) => {
+    const index = swotState.SWOT[section].findIndex((elt) => {
+      return elt.category == category
+    })
+    const _type = "update" + section;
+    let new_arr = [...swotState.SWOT[section]];
     new_arr.splice(index, 1);
     dispatch({ type: _type, data: new_arr });
   };

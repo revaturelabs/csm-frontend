@@ -91,9 +91,15 @@ const SwotNoteModal = (props) => {
                     <Button color="blue" onClick={setCategory}>
                         Add Note
                     </Button>
-                    <Button color="red" onClick={close}>
-                        Cancel
-                    </Button>
+                    {
+                        swotState.moveType === 'create' ?
+                            <Button color="red" onClick={close}>
+                                Cancel
+                            </Button>
+                        :
+                        null
+                    }
+                    
                 </Modal.Content>
             </Modal>
         </>

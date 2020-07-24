@@ -13,38 +13,31 @@ const SwotsGrid = (props) => {
   // dispatch in to state (swotReducer.currentSwots or whatever name works)
   //   }, [])
 
-  const setCurrentSwot = (swot) => {
+  const setCurrentSwot = (e, swot) => {
+      if (e.target.id === 'trainer') {
+        dispatch({type: 'updateEditable', editable: false})
+      } else {
+        dispatch({type: 'updateEditable', editable: true})
+      }
       dispatch({type: 'updateSWOT', SWOT: swot})
       history.push('/editSWOT')
   }
 
-  const addSwot = () => {
-    const data = {
-      date: null,
-      Strengths: [],
-      Weaknesses: [],
-      Opportunities: [],
-      Threats: [],
-      Notes: ''
-    }
-    dispatch({type: 'updateSWOT', SWOT: data})
-    history.push('/editSWOT')
-  }
+  
 
   return (
     <Container>
       <Grid stackable columns={2}>
-        <Grid.Column>
-          <Segment>
-            <Button
-            onClick={() => addSwot()}>+ SWOT</Button>
-          </Segment>
-        </Grid.Column>
         {currentSwots.map((swot, i) => (
           <Grid.Column>
             <Segment>
               <Grid>
-                  <Button onClick={() => setCurrentSwot(swot) }>{swot.date}</Button>
+                  {
+                    i === 0 ?
+                    <Button onClick={(e) => setCurrentSwot(e, swot) } id='trainer'>Trainer Swot</Button>
+                    :
+                    <Button onClick={(e) => setCurrentSwot(e, swot) }>{swot.date}</Button>
+                  }
                 <Grid.Row columns={2}>
                   <Grid.Column>
                     <Card>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Item } from "semantic-ui-react";
 import "./SwotCategory.css";
 
@@ -8,12 +8,13 @@ import "./SwotCategory.css";
  * @param {Object} props  The values passed to the component by its parent
  * @param {string} props.category The category being displayed by this SwotCategory Instance
  * @param {string} props.note The note associated with the category
+ * @param {string} props.name The name of the section
  * @param {CallableFunction} props.editHandler The function to be called when the edit button is clicked
  * @param {CallableFunction} props.deleteHandler The function to be called when the delete button is clicked
  */
 const SwotCategory = (props) => {
   const dispatch = useDispatch();
-
+  const edit = useSelector((state) => state.swotReducer.editable)
   /**
    * Handles setting the store to contain the current category and calling the appropriate fn
    * Based on the id of the event that has been passed in
@@ -30,9 +31,15 @@ const SwotCategory = (props) => {
     if (event.target.id === "edit") {
       props.editHandler(props.category);
     } else {
-      props.deleteHandler(props.key);
+      props.deleteHandler(props.section, props.category );
     }
   };
+
+  const itemDrag = (event) => {
+    event.dataTransfer.setData('text', props.section+'~'+props.category)
+    dispatch({ type: "updateCurrentNote", note: props.note });
+
+  }
   /**
    * A SwotCategory is a wrapper of a Semantic UI Item component.
    * It contains 4 things:
@@ -42,19 +49,29 @@ const SwotCategory = (props) => {
    * 4. A Delete Button
    */
   return (
-    <Item>
+    <Item
+      draggable
+      onDragStart={itemDrag}>
       <Item.Content>
         <Item.Header>{props.category}</Item.Header>
         <Item.Meta>Notes</Item.Meta>
         <Item.Description>
           <p>{props.note}</p>
           <br></br>
-          <Button color="blue" id={"edit"} onClick={handlerWrapper}>
-            Edit
-          </Button>
-          <Button color="red" id={"delete"} onClick={handlerWrapper}>
-            Delete
-          </Button>
+          {
+            edit ?
+            <>
+            <Button color="blue" id={"edit"} onClick={handlerWrapper}>
+              Edit
+            </Button>
+            <Button color="red" id={"delete"} onClick={handlerWrapper}>
+              Delete
+            </Button>
+            </>
+            :
+            <></>
+          }
+          
         </Item.Description>
       </Item.Content>
     </Item>

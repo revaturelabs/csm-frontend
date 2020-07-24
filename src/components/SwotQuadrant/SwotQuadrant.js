@@ -65,7 +65,6 @@ const SwotQuadrant = (props) => {
     const category = data.split('~')[1]
     let type = 'create'
     if (edit && (section !== props.name)) {
-      console.log(section)
       if (section !== 'NONE') {
         deleteCategory(section)
         type = 'move'

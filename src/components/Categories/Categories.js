@@ -20,7 +20,6 @@ const Categories = (props) => {
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-      console.log('HERE', resp.data)
       const lst = [...resp.data, {categoryId: 41, skillCategory: 'Other', active:'true' }]
       lst.sort();
       dispatch({

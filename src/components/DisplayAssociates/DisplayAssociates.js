@@ -82,9 +82,11 @@ const DisplayAssociates = (props) => {
                         </Accordion.Title>
                         <Accordion.Content active={activeIndex === ind}>
                             {batch.associates.length > 0 ? batch.associates.map(
-                                (associate) => {
+                                (associate, ind) => {
                                     return (
-                                        <DisplayAssociate key={associate.userID}
+                                        <DisplayAssociate
+                                            ind={ind}
+                                            key={associate.userID}
                                             associate={associate}
                                             manager={batch.manager}
                                             batchName={batch.batchName}

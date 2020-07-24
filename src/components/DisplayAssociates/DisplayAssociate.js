@@ -26,7 +26,11 @@ const DisplayAssociate = (props) => {
         <span className='pro_date'>Promoted: {props.batchProDate}</span>
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === 0}>
-        <Evaluations associate={props.associate}/>
+        {assocActiveIndex === props.ind ?
+          <Evaluations associate={props.associate}/>
+        : null }
+
+        {/* <Evaluations associate={props.associate}/> */}
       </Accordion.Content>
     </Accordion>
   )

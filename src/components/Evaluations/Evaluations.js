@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Placeholder } from 'semantic-ui-react';
 import AssociateService from '../../services/associate.service';
@@ -7,43 +7,50 @@ import QC from '../QC/qc';
 import './Evaluations.scss';
 
 const Evaluations = (props) => {
-  const evalState = useSelector(state => state.evalReducer);
+  //const evalState = useSelector(state => state.evalReducer);
   const associateService = new AssociateService();
   const dispatch = useDispatch();
+  const [evalState, setEvals] = useState(0)
 
-  // useEffect( () => {
-  //   var getEvals = async () => {
-  //     var resp = await associateService.getEvaluations(props.associate.userID); 
-  //   }
-  //   getEvals();
-  // }, [])
+  useEffect(() => {
+    async function getEvals(){
+      const resp = await associateService.getEvaluations(props.associate.userID); 
+      setEvals(resp.data);
+    }
+    getEvals();
 
-  const getEvals = async () => {
-    console.log('============LOOK HERE============')
-    console.log(props.associate.userID)
-    const resp = await associateService.getEvaluations(props.associate.userID);
-    console.log(resp.data)
-    return resp.data
-  }
+    // getEvals();
+  }, []);
 
-  const resp = 'some gibberish';
+  // async function getEvals() {
+  //   console.log('============LOOK HERE============')
+  //   console.log(props.associate.userID)
+  //   const resp = await associateService.getEvaluations(props.associate.userID);
+  //   console.log(resp.data)
+  //   return resp.data
+  // }
+  // console.log("outside useefect")
+  // console.log(evalState)
+  // const resp = getEvals()
 
   return (
     <Grid container stackable columns={2} className='associate-eval'>
       <Grid.Column className='wrapper'>
-        {console.log(resp)}
-        {/* {resp && resp.length > 0 ?
+        {/* {console.log("rendering now")}
+        {console.log(evalState.batch_spider)} */}
+        {/* {console.log(getEvals)} */}
+        {/* {evalState && evalState.length > 0 ? */}
           <SpiderChart className='associate-chart'
-            spiderBatch={resp.batchSpider}
+            userID={props.associate.userID}
           />
-        :
+        {/* :
           <Placeholder className='wrapper'>
             <Placeholder.Image className='associate-chart' />
           </Placeholder>
         } */}
       </Grid.Column>
         
-      { evalState.qcEvals.length > 0 ?
+      {/* { evalState.qcEvals.length > 0 ?
         <Grid.Column className='wrapper'>
           <QC className='associate-chart' />
         </Grid.Column>
@@ -51,7 +58,7 @@ const Evaluations = (props) => {
         <Placeholder className='wrapper'>
           <Placeholder.Image className='associate-chart' />
         </Placeholder> 
-      }
+      } */}
     </Grid>
   );
 

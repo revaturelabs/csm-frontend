@@ -11,12 +11,10 @@ const SwotsBar = (props) => {
     const swots = useSelector((state) => state.swotReducer.swots);
     const dispatch = useDispatch();
     const filterSwots = (event) => {
-        for (const swot of ) {
-            if(category.skillCategory.toLowerCase().search(pattern.skillCategory.toLowerCase()) > -1) {
-                elements.push(category);
-            }
+        for (const swot of swots) {
+            console.log(swot);
         }
-        dispatch({type: 'updateDisplaySwots', getDisplaySwots: elements})
+        dispatch({type: 'updateDisplaySwots', getDisplaySwots: swots})
     }
     const handleStartDate = date => {
         dispatch({type: 'updateStartDate', startDate: date})
@@ -39,9 +37,9 @@ const SwotsBar = (props) => {
             </Menu.Item>
             <Menu.Item>
                 Start Date: &nbsp;
-                <DatePicker selected={startDate} onChange={handleStartDate;filterSwots}></DatePicker>
+                <DatePicker selected={startDate} onChange={handleStartDate,filterSwots}></DatePicker>
                 &nbsp; End Date: &nbsp;
-                <DatePicker selected={endDate} onChange={handleEndDate;filterSwots}></DatePicker>
+                <DatePicker selected={endDate} onChange={handleEndDate,filterSwots}></DatePicker>
             </Menu.Item>
         </Menu>
     )

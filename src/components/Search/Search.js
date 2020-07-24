@@ -12,11 +12,11 @@ const Search = (props) => {
 				let pattern = event.target.value;
 				pattern = pattern.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 				for (category of categories) {
-						if(category.toLowerCase().search(pattern.toLowerCase()) > -1) {
+						if(category.skillCategory.toLowerCase().search(pattern.skillCategory.toLowerCase()) > -1) {
 								elements.push(category);
 						}
 				}
-			dispatch({type: 'updateDisplayCategories', displayCategories: elements})
+			dispatch({type: 'updateDisplayCategories', updateDisplayCategories: elements})
 		}
 		return (
 			<>

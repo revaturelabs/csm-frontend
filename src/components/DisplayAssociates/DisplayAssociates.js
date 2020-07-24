@@ -19,6 +19,30 @@ const DisplayAssociates = (props) => {
         getBatch();
     }, []); 
 
+    const testData = {
+        "batchID": "TR-1653",
+        "batchName": "Mock Batch 425",
+        "skill": "PEGA",
+        "manager": "Emily",
+        "promotionDate": "2020-07-29",
+        "trainer": [
+            {
+                "role": "ROLE_LEAD_TRAINER",
+                "employee": {
+                    "email": "mock1425.employeedadec181-3f5d-4217-a8a6-2a2546b7947a@mock.com",
+                    "firstName": "Mock 1425",
+                    "lastName": "Associate 1425"
+                },
+            }
+        ],
+        "associates": [
+            {
+                "name": "Mock 9 Associate 9",
+                "userID": "mock9.associate4fbf28f4-6bfc-4c7f-b5bc-fb9eda4bda55@mock.com"
+            },
+        ]
+    }
+
     const handleClick = (e, titleProps) => {
         /* handles accordion functionality */
         const { index } = titleProps

@@ -12,26 +12,35 @@ const Evaluations = (props) => {
   const dispatch = useDispatch();
 
   // useEffect( () => {
+  //   var getEvals = async () => {
+  //     var resp = await associateService.getEvaluations(props.associate.userID); 
+  //   }
   //   getEvals();
   // }, [])
 
   const getEvals = async () => {
     console.log('============LOOK HERE============')
+    console.log(props.associate.userID)
     const resp = await associateService.getEvaluations(props.associate.userID);
+    console.log(resp.data)
     return resp.data
   }
 
+  const resp = 'some gibberish';
+
   return (
     <Grid container stackable columns={2} className='associate-eval'>
-      {/* <Grid.Column className='wrapper'>
-        <SpiderChart 
-          className='associate-chart' />
-      </Grid.Column> */}
-      
       <Grid.Column className='wrapper'>
-        <SpiderChart className='associate-chart'
-          spiderBatch={getEvals.batchSpider}
-        />
+        {console.log(resp)}
+        {/* {resp && resp.length > 0 ?
+          <SpiderChart className='associate-chart'
+            spiderBatch={resp.batchSpider}
+          />
+        :
+          <Placeholder className='wrapper'>
+            <Placeholder.Image className='associate-chart' />
+          </Placeholder>
+        } */}
       </Grid.Column>
         
       { evalState.qcEvals.length > 0 ?

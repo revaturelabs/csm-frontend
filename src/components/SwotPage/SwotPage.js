@@ -16,7 +16,7 @@ const SwotPage = (props) => {
   const dispatch = useDispatch();
   const categoryService = new CategoryService();
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
-  const associate = useSelector((state) => state.swotReducer.associate);
+  const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const edit = useSelector((state) => state.swotReducer.editable)
   useEffect(() => {
     async function getCategories() {
@@ -36,7 +36,7 @@ const SwotPage = (props) => {
    */
   const closeSWOT = () => {
     const data = {
-      date: null,
+      date_created: null,
       Strengths: [],
       Weaknesses: [],
       Opportunities: [],
@@ -51,8 +51,9 @@ const SwotPage = (props) => {
    * @todo Refactor functionality
    */
   const addSWOT = async () => {
-    const resp = await swotService.sendSWOT(associate.ID, SWOT);
+    const resp = await swotService.sendSWOT(associate.email, SWOT);
     if (resp.status === 200) {
+      dispatch({ type: 'updateAssociate', associate: {...associate, swot: [...associate.swot, resp.data]}})
       closeSWOT();
     } else {
       alert("Adding SWOT has failed in the database");
@@ -67,7 +68,7 @@ const SwotPage = (props) => {
                 <Header as='h1'
                         id='associateNameHeader'
                         fluid
-                >SWOT Analysis for {associate.name}</Header>
+                >SWOT Analysis for {associate.email}</Header>
                 <Grid
                 >
                     <Grid.Column width={3}

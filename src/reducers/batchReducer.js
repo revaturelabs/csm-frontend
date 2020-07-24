@@ -1,5 +1,6 @@
 const initialState = {
     batches:[], //batches will each contain an array of associates
+    
 }
 
 function batchReducer(state = initialState, action) {

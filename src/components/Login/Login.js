@@ -16,7 +16,7 @@ const Login = (props) => {
     const login = async () => {
         let manager = await managerService.login(managerState.email)
         dispatch({ type: 'login', manager: manager.data }) 
-        history.push('/') // this may change
+        history.push('/promotedlastweek') // this may change
     }
 
     const handleEnter = (e) => { 

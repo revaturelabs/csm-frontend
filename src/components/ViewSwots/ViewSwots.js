@@ -5,7 +5,7 @@ import SwotsGrid from "../SwotsGrid/SwotsGrid";
 import SwotsBar from "../SwotsBar/SwotsBar";
 
 const ViewSwots = (props) => {
-    const email = useSelector((state) => state.swotReducer.associate.email);
+    const email = useSelector((state) => state.swotReducer.currentAssociate.email);
     const dispatch = useDispatch();
     const swotService = new SwotService();
     useEffect(() => {

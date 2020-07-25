@@ -21,9 +21,9 @@ const DisplayAssociate = (props) => {
     const getAssociateInfo = async () => {
       let resp = await associateService.getSpiderInformation(props.associate.userID)
       dispatch({ type: 'updateAssociate', associate: resp.data })
+      history.push('/viewSwots');
     }
-    getAssociateInfo()
-    history.push('/viewSwots')
+    getAssociateInfo();
   }
 
   return (

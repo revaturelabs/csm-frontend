@@ -29,7 +29,7 @@ const SwotsBar = (props) => {
 
   const addSwot = () => {
     const data = {
-      date: null,
+      date_created: null,
       Strengths: [],
       Weaknesses: [],
       Opportunities: [],

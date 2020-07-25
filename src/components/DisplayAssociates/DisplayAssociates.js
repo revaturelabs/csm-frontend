@@ -14,6 +14,7 @@ const DisplayAssociates = (props) => {
 
     useEffect(() => {
         const getBatch = async () => {
+            console.log('Within the use effect')
             let resp = await batchService.getBatches()
             let res = [];
             for(const batch of resp.data){
@@ -36,6 +37,7 @@ const DisplayAssociates = (props) => {
     }
 
     const allFilter = ( batches, managerName) => {
+        console.log('allFilter called', batches, managerName)
         let res = [];
         if (managerName) {
             for(const batch of batches){
@@ -44,7 +46,7 @@ const DisplayAssociates = (props) => {
                 }
             }
         } else {
-            res = batches
+            res = [...batches]
         }
         
         dispatch({type: 'updateDisplayBatches', batches: res})
@@ -52,6 +54,7 @@ const DisplayAssociates = (props) => {
 
 
     const newFilter = (managerName) => {
+        console.log('newFilter called', managerName)
         const currentDate = new Date()
         const endRange = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay())
         const startRange = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay()-7)
@@ -67,25 +70,26 @@ const DisplayAssociates = (props) => {
     }
 
     const handleFilter = (event) => {
+        console.log('Handle Filter called')
         const filter = event.target.id
         console.log(filter)
         dispatch({ type: 'updateFilter', filter: filter })
         const managerName = manager.username
         const otherName = managerName === 'Emily' ? 'Julie' : 'Emily'
-        console.log(batchesState.activeFilter)
-        switch(batchesState.activeFilter) {
+        console.log(filter)
+        switch(filter) {
             case 'myNew':
-                newFilter(managerName);
+                return newFilter(managerName);
             case 'myAll':
-                allFilter(batchesState.batches, managerName);
+                return allFilter(batchesState.batches, managerName);
             case 'otherNew':
-                newFilter(otherName);
+                return newFilter(otherName);
             case 'otherAll':
-                allFilter(batchesState.batches, otherName);
+                return allFilter(batchesState.batches, otherName);
             case 'all':
-                allFilter(batchesState.batches );
+                return allFilter(batchesState.batches );
             default:
-                allFilter(batchesState.batches, managerName);
+                return allFilter(batchesState.batches, managerName);
         }
     }
 
@@ -93,6 +97,7 @@ const DisplayAssociates = (props) => {
         <Container>
             <header>List of Associates</header>
             <Menu
+            pointing
             secondary>
                 <Menu.Item
                 id='myNew'
@@ -108,12 +113,12 @@ const DisplayAssociates = (props) => {
                 id='otherNew'
                 active={batchesState.activeFilter === 'otherNew'}
                 onClick={(e) => handleFilter(e)}
-                >OTHER's Newly Promoted Associates</Menu.Item>
+                >{manager.username === 'Emily' ? 'Julie' : 'Emily'}'s Newly Promoted Associates</Menu.Item>
                 <Menu.Item
                 id='otherAll'
                 active={batchesState.activeFilter === 'otherAll'}
                 onClick={(e) => handleFilter(e)}
-                >All OTHER's Associates</Menu.Item>
+                >All {manager.username === 'Emily' ? 'Julie' : 'Emily'}'s Associates</Menu.Item>
                 <Menu.Item
                 id='all'
                 active={batchesState.activeFilter === 'all'}
@@ -145,6 +150,14 @@ const DisplayAssociates = (props) => {
                             <span className='info'>
                                 {batch.associates.length} Associates
                             </span>
+                            {
+                               batchesState.activeFilter === 'all' ?
+                               <span className='info'>
+                                   Staging Manager: {batch.manager}
+                               </span> 
+                               :
+                               null
+                            }
                         </Accordion.Title>
                         <Accordion.Content active={activeIndex === ind}>
                             {batch.associates.length > 0 ? batch.associates.map(

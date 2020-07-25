@@ -42,7 +42,7 @@ const SwotsBar = (props) => {
   };
 
   return (
-    <Menu size={"huge"}>
+    <Menu size={"huge"} secondary>
       <Menu.Item>
         <Button icon onClick={handleBack}>
           <Icon name={"arrow left"} />

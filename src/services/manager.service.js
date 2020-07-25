@@ -2,7 +2,7 @@ const { default: axios } = require('axios')
 
 class ManagerService {
     constructor() {
-        this.URI = 'http://ec2-18-216-95-255.us-east-2.compute.amazonaws.com:5000/managers'; 
+        this.URI = 'http://localhost:5000/managers'; 
     }
 
     login(id) {

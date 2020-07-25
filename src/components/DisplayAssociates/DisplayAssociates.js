@@ -102,7 +102,7 @@ const DisplayAssociates = (props) => {
   return (
     <Container>
       <header>List of Associates</header>
-      <Menu secondary={true}>
+      <Menu tabular>
         <Menu.Item
           id="myNew"
           active={batchesState.activeFilter === "myNew"}

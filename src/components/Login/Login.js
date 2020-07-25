@@ -14,8 +14,13 @@ const Login = (props) => {
 
   const login = async () => {
     let manager = await managerService.login(managerState.email);
-    dispatch({ type: "login", manager: manager.data });
-    history.push("/promotedlastweek");
+    if (manager.data) {
+      sessionStorage.setItem("mngr", JSON.stringify(manager.data));
+      dispatch({ type: "login", manager: manager.data });
+      history.push("/promotedlastweek");
+    } else {
+      alert('Login failed, wrong usename');
+    }
   };
 
   const handleEnter = (e) => {

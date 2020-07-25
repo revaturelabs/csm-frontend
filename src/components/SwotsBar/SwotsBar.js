@@ -34,9 +34,15 @@ const SwotsBar = (props) => {
         filterSwots();
     }
 
+    const handleBack = (e) => {
+      e.preventDefault();
+      dispatch({ type: "updateAssociate", associate: {} });
+      history.push("/promotedlastweek");
+    };
+
     const addSwot = () => {
         const data = {
-          date: null,
+          date_created: new Date(),
           Strengths: [],
           Weaknesses: [],
           Opportunities: [],

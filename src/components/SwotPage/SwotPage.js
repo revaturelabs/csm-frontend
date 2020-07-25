@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Grid, Container, Header } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import SwotService from "../../services/swot.service.js";
 import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
@@ -67,42 +67,48 @@ const SwotPage = (props) => {
   };
 
   return (
-    <Container id="swotContainer">
-      <Header as="h1" id="associateNameHeader" fluid>
-        SWOT Analysis for {associate.name}
-      </Header>
-      <Grid>
-        <Grid.Column width={3}>
-          <Categories />
-        </Grid.Column>
+    <>
+      {SWOT.date_created ? (
+        <Container id="swotContainer">
+          <Header as="h1" id="associateNameHeader" fluid>
+            SWOT Analysis for {associate.name}
+          </Header>
+          <Grid>
+            <Grid.Column width={3}>
+              <Categories />
+            </Grid.Column>
 
-        <Grid.Column width={13}>
-          <Grid.Row style={{ overflowY: "scroll", overflowX: "hidden" }}>
-            <SwotTable />
-          </Grid.Row>
-          <Grid.Row centered>
-            <SwotNotes />
-          </Grid.Row>
-          <Grid.Row>{edit ? <SwotCharts /> : <></>}</Grid.Row>
-          <Grid.Row>
-            {edit ? (
-              <>
-                <Button color="instagram" onClick={addSWOT}>
-                  Add SWOT Analysis to Associate
-                </Button>
-                <Button color="red" onClick={closeSWOT}>
-                  Cancel
-                </Button>
-              </>
-            ) : (
-              <Button color="red" onClick={closeSWOT}>
-                Back
-              </Button>
-            )}
-          </Grid.Row>
-        </Grid.Column>
-      </Grid>
-    </Container>
+            <Grid.Column width={13}>
+              <Grid.Row style={{ overflowY: "scroll", overflowX: "hidden" }}>
+                <SwotTable />
+              </Grid.Row>
+              <Grid.Row centered>
+                <SwotNotes />
+              </Grid.Row>
+              <Grid.Row>{edit ? <SwotCharts /> : <></>}</Grid.Row>
+              <Grid.Row>
+                {edit ? (
+                  <>
+                    <Button color="instagram" onClick={addSWOT}>
+                      Add SWOT Analysis to Associate
+                    </Button>
+                    <Button color="red" onClick={closeSWOT}>
+                      Cancel
+                    </Button>
+                  </>
+                ) : (
+                  <Button color="red" onClick={closeSWOT}>
+                    Back
+                  </Button>
+                )}
+              </Grid.Row>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      ) : (
+        <Redirect to={{ pathname: "/promotedlastweek" }} />
+      )}
+    </>
   );
 };
 export default SwotPage;

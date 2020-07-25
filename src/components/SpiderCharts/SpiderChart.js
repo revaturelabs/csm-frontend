@@ -24,10 +24,10 @@ const SpiderChart = (props) => {
             associateAssesment.push(qcEval.assessmentType)
             associateScore.push(qcEval.score)
         }
-        // dispatch({ type: 'setBatchLabels', batchLabels: batchAssesment })
-        // dispatch({ type: 'setBatchValues', batchValues: batchScore })
-        // dispatch({ type: 'setAssociateLabels', associateLabels: associateAssesment })
-        // dispatch({ type: 'setAssociateValues', associateValues: associateScore })
+        dispatch({ type: 'setBatchLabels', batchLabels: batchAssesment })
+        dispatch({ type: 'setBatchValues', batchValues: batchScore })
+        dispatch({ type: 'setAssociateLabels', associateLabels: associateAssesment })
+        dispatch({ type: 'setAssociateValues', associateValues: associateScore })
     }, []);
 
     const data = {

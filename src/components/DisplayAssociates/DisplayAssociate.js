@@ -15,8 +15,8 @@ const DisplayAssociate = (props) => {
   return (
     <Accordion styled className='associate-accordion'>
       <Accordion.Title
-        active={assocActiveIndex === 0}
-        index={0}
+        active={assocActiveIndex === props.ind}
+        index={props.ind}
         onClick={handleClick}
         className='title'>
         <Icon name='dropdown' />
@@ -25,8 +25,10 @@ const DisplayAssociate = (props) => {
         <span className='batch'>{props.batchName}</span>
         <span className='pro_date'>Promoted: {props.batchProDate}</span>
       </Accordion.Title>
-      <Accordion.Content active={assocActiveIndex === 0}>
-        <Evaluations associate={props.associate}/>
+      <Accordion.Content active={assocActiveIndex === props.ind}>
+        {assocActiveIndex === props.ind ?
+          <Evaluations associate={props.associate}/>
+        : null }
       </Accordion.Content>
     </Accordion>
   )

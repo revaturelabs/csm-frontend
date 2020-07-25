@@ -1,0 +1,32 @@
+@import "https://use.typekit.net/qcv5odu.css"; // adobe-garamond-pro import
+@import "https://use.typekit.net/dhg4zzp.css"; // futura-pt import
+
+.menu {
+    justify-content: space-evenly;
+    font-family: "adobe-garamond-pro",sans-serif,"futura-pt",arial;
+    min-width: 100px;
+}
+
+.ui.menu .item.orange {
+    margin: auto;
+    font-family: "adobe-garamond-pro",sans-serif,"futura-pt",arial;
+    color: #F26925;
+    font-size: 1.3rem;
+    padding: 0 15px;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.ui.button.swot {
+    color: #FFFFFF;
+    border: 3px solid #F26925;
+    background-color: #F26925;
+    border-radius: 25px;
+}
+
+.ui.button.swot:hover {
+    color: #F26925;
+    background-color: #FFFFFF;
+    border: 3px solid #F26925;
+    border-radius: 25px;
+}

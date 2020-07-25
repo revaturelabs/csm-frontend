@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import { Menu, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import SwotService from '../../services/swot.service.js';
-import './SwotsBar.css';
+import './SwotsBar.scss';
 
 const SwotsBar = (props) => {
     const associate = useSelector((state) => state.swotReducer.currentAssociate);
@@ -49,22 +49,24 @@ const SwotsBar = (props) => {
     }
 
     return (
-        <Menu size={'huge'}>
-            <Menu.Item>
+        <Menu size={'huge'} stackable>
+            <Menu.Item className="orange" header>
                 {associate.name}
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item className="orange" header>
                 {associate.batch_id}
             </Menu.Item>
-            <Menu.Item>
-                <Button
-                onClick={() => addSwot()}>+ SWOT</Button>
+            <Menu.Item className="orange">
+                <Button className="swot" onClick={() => addSwot()}>+ SWOT</Button>
             </Menu.Item>
-            <Menu.Item>
-                Start Date: &nbsp;
-                <DatePicker selected={startDate} onChange={handleStartDate}></DatePicker>
-                &nbsp; End Date: &nbsp;
-                <DatePicker selected={endDate} onChange={handleEndDate}></DatePicker>
+            <Menu.Item className="orange" header>
+                Filter SWOTs by Date:
+            </Menu.Item>
+            <Menu.Item className="orange" header>
+                Start: &nbsp;<DatePicker selected={startDate} onChange={handleStartDate}></DatePicker>
+            </Menu.Item>
+            <Menu.Item className="orange" header>
+                End: &nbsp;<DatePicker selected={endDate} onChange={handleEndDate}></DatePicker>
             </Menu.Item>
         </Menu>
     )

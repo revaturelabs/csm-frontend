@@ -23,9 +23,9 @@ const DisplayAssociate = (props) => {
         startDate.setDate(startDate.getDate()-14);
         props.associate.proDate = startDate;
         dispatch({ type: 'updateAssociate', associate: props.associate });
+        history.push('/viewSwots');
     }
-    getAssociateInfo()
-    history.push('/viewSwots')
+    getAssociateInfo();
   }
 
   return (

@@ -27,7 +27,11 @@ const DisplayAssociate = (props) => {
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === props.ind}>
         {assocActiveIndex === props.ind ?
-          <Evaluations associate={props.associate}/>
+          <Evaluations 
+            associate={props.associate}
+            showYLabels={false}
+            showNotes={false}
+          />
         : null }
       </Accordion.Content>
     </Accordion>

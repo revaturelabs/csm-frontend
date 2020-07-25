@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Placeholder } from 'semantic-ui-react';
 import AssociateService from '../../services/associate.service';
 import SpiderChart from '../SpiderCharts/SpiderChart';
@@ -7,49 +6,112 @@ import QC from '../QC/qc';
 import './Evaluations.scss';
 
 const Evaluations = (props) => {
-  const evalState = useSelector(state => state.evalReducer);
   const associateService = new AssociateService();
-  const dispatch = useDispatch();
-  const [evalData, setEvalData] = useState({});
 
-  useEffect( () => {
+  const [spiderLabels, setSpiderLabels] = useState([]);
+  const [batchSpiderData, setBatchSpiderData] = useState([]);
+  const [associateSpiderData, setAssociateSpiderData] = useState([]);
+
+  const [qcSkills, setQCSkills] = useState([]);
+  const [qcData, setQCData] = useState([]);
+  const [qcNotes, setQCNotes] = useState([]);
+
+  useEffect(() => {
     const getEvals = async () => {
       const resp = await associateService.getEvaluations(props.associate.userID);
-      setEvalData('hello')
-      console.log(resp.data)
-      console.log(evalData)
+
+      /* processing for spider chart data */
+      const spiderLabelsTemp = []
+      const batchSpiderDataTemp = []
+      const associateSpiderDataTemp = []
+      for (const spiderEval of resp.data.batch_spider) {
+        spiderLabelsTemp.push(spiderEval.assessmentType)
+        batchSpiderData.push(spiderEval.score)
+      }
+      for (const spiderEval of resp.data.associate_spider) {
+        associateSpiderData.push(spiderEval.score)
+      }
+      setSpiderLabels(spiderLabelsTemp)
+      setBatchSpiderData(batchSpiderDataTemp)
+      setAssociateSpiderData(associateSpiderDataTemp)
+
+      /* processing for QC eval data */
+      const qcDataTemp = []
+      const qcSkillsTemp = []
+      const qcNotesTemp = []
+
+      for (const qcEval of resp.data.qc) {
+        qcNotesTemp.push(qcEval)
+        if (qcEval.skill !== 'No Skill Provided for this QC') {
+          qcSkillsTemp.push(qcEval.skill)
+        } else { qcSkillsTemp.push('Unnamed') }
+        let allowedScores = ['poor', 'average', 'good', 'superstar'];
+        if (allowedScores.includes(qcEval.score.toLowerCase())) {
+          qcDataTemp.push(qcEval.score)
+        } else {
+          qcDataTemp.push(null);;  // should leave a gap in line
+        }
+        // switch (qcEval.score.toLowerCase()) {
+        //   case 'poor':
+        //     qcDataTemp.push(1);
+        //     break;
+        //   case 'average':
+        //     qcDataTemp.push(2);
+        //     break;
+        //   case 'good':
+        //     qcDataTemp.push(3);
+        //     break;
+        //   case 'superstar':
+        //     qcDataTemp.push(4);
+        //     break;
+        //   default: // the data is null if invalid
+        //     qcDataTemp.push(null);;  // should leave a gap in line
+        //     break;
+        // }
+      }
+      setQCNotes(qcNotesTemp)
+      console.log(qcDataTemp)
+      setQCData(qcDataTemp)
+      setQCSkills(qcSkillsTemp)
     }
     getEvals();
   }, [])
 
   return (
     <Grid container stackable columns={2} className='associate-eval'>
-      {console.log(evalData)}
       <Grid.Column className='wrapper'>
-        {evalData && evalData > 0 ?
-          <>
-            {console.log(evalData)}
-            <SpiderChart className='associate-chart'
-              batchSpider={evalData.batch_spider}
-              associateSpider={evalData.associate_spider}
-            />
-          </>
-        :
+        {spiderLabels && spiderLabels.length > 0 ?
+          <SpiderChart className='associate-chart'
+            name={props.associate.name}
+            userID={props.associate.userID}
+            spiderLabels={spiderLabels}
+            batchSpider={batchSpiderData}
+            associateSpider={associateSpiderData}
+          />
+          :
           <Placeholder className='wrapper'>
             <Placeholder.Image className='associate-chart' />
           </Placeholder>
         }
       </Grid.Column>
-        
-      { evalState.qcEvals.length > 0 ?
-        <Grid.Column className='wrapper'>
-          <QC className='associate-chart' />
-        </Grid.Column>
-      : 
-        <Placeholder className='wrapper'>
-          <Placeholder.Image className='associate-chart' />
-        </Placeholder> 
-      }
+
+      <Grid.Column className='wrapper'>
+        {qcNotes && qcNotes.length > 0 ?
+          <QC className='associate-chart'
+            name={props.associate.name}
+            userID={props.associate.userID}
+            qcData={qcData}
+            qcSkills={qcSkills}
+            qcNotes={qcNotes}
+            showYLabels={props.showYLabels}
+            showNotes={props.showNotes}
+          />
+          :
+          <Placeholder className='wrapper'>
+            <Placeholder.Image className='associate-chart' />
+          </Placeholder>
+        }
+      </Grid.Column>
     </Grid>
   );
 

@@ -1,62 +1,24 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-//import { Table } from 'semantic-ui-react';
-//import './Chart.css'
+import { Accordion, Icon } from 'semantic-ui-react';
 
 const QC = (props) => {
-  const evalState = useSelector(state => state.evalReducer);
-  const dispatch = useDispatch();
-  const qcSkills = []
-  const qcData = []
+  const [activeIndex, setActiveIndex] = useState(-1);
 
-  useEffect( () => {
-    // while (evalState.qcEvals.length === 0) {
-      if (evalState.qcEvals.length > 0) {
-        console.log('hello' + evalState.qcEvals)
-        for (const qcEval of evalState.qcEvals) {
-          // console.log(qcEval)
-          qcSkills.push(qcEval.skill)
-          var qcScore
-          switch (qcEval.score.toLowerCase()) {
-            case 'poor':
-              qcScore = 1;
-              break;
-            case 'average':
-              qcScore = 2;
-              break;
-            case 'good':
-              qcScore = 3;
-              break;
-            //case 'top performer'
-            //  qcScore = 3;
-            //  break;
-            case 'superstar':
-                qcScore = 4;
-                break;
-            default: // the data is null if invalid
-                qcScore = null;  // should leave a gap in line
-                break;
-          }
-          // console.log(qcScore)
-          qcData.push(qcScore)
-        }
-        // break
-      // }
-    }
-
-    dispatch({type :'setQCLabels', qcLabels : qcSkills})
-    dispatch({type :'setQCValues', qcValues : qcData})
-  }, []);
+  const handleClick = (e, titleProps) => {
+    /* handles accordion functionality */
+    const { index } = titleProps
+    const newIndex = activeIndex === index ? -1 : index
+    setActiveIndex(newIndex)
+  }
 
   const data = {
-
-    labels: evalState.qcLabels,//qcSkills, //['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
+    labels: props.qcSkills,
     datasets: [
       {
         label: 'QC Data',
         fill: false,
-        lineTension: 0.1,
+        lineTension: 0.2,
         backgroundColor: 'rgba(75,192,192,0.4)',
         borderColor: 'rgba(75,192,192,1)',
         borderCapStyle: 'butt',
@@ -72,31 +34,54 @@ const QC = (props) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: evalState.qcValues//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
+        data: props.qcData
       }
     ]
   };
+  const options = {
+    spanGaps: false, 
+    scales: {
+      yAxes: [{
+        display: props.showYLabels,
+        type: 'category',
+        labels: ['Superstar', 'Good', 'Average', 'Poor', ''],
+        ticks: {
+          min: 0,
+          max: 4,
+          stepSize: 1
+        }
+      }]
+    },
+  };
 
-
-
-  //export default React.createClass({
-  //displayName: 'LineExample',
-
-  //render() {
   return (
-    <div id='chart'>
-      <h2 className='title'>Line Example</h2>
-        <Line data={data} />
-      {/* </div> */}
-      {/* <div>
-        <h2>Notes</h2>
-        {skills.map(a => (
-          <AccordionExampleStyled
-            title={a.skill}
-            note={a.note}
-            score={a.score} />
-        ))}
-      </div> */}
+    <div className='chart container'>
+      <h2 className='chart title'>{props.name} — QC Performance</h2>
+      <Line data={data} options={options}/>
+      {props.showNotes ?
+        <div>
+          <h2>Notes</h2>
+          {props.qcNotes.map((qcNote, ind) => {
+            return (
+              <Accordion key={`qc${ind}`}>
+                <Accordion.Title 
+                  active={activeIndex === ind}
+                  index={ind}
+                  onClick={handleClick}
+                  className="title"
+                >
+                  <Icon name='dropdown' />
+                  <span>{qcNote.skill}</span>
+                  <span>{qcNote.score}</span>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === ind}>
+                  <p>{qcNote.content}</p>
+                </Accordion.Content>
+              </Accordion>
+            )
+          })}
+        </div>
+        : null}
     </div>
   );
 

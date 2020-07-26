@@ -13,8 +13,7 @@ const Login = (props) => {
   const managerService = new ManagerService();
 
   const checkLogin = () => {
-    let user = JSON.parse(sessionStorage.getItem("loggedUser"));
-    return !!user;
+    return JSON.parse(sessionStorage.getItem("loggedUser")) ? true : false;
   };
 
   useEffect( () => {
@@ -22,11 +21,14 @@ const Login = (props) => {
   },[])
 
   const login = async () => {
-    let manager = await managerService.login(managerState.email)
-    console.log(manager.data)
-    sessionStorage.setItem('loggedUser', JSON.stringify(manager.data))
-    dispatch({ type: 'login', manager: manager.data }) 
-    history.push('/promotedlastweek') // this may change
+    let manager = await managerService.login(managerState.email);
+    if (manager.data) {
+      sessionStorage.setItem("loggedUser", JSON.stringify(manager.data));
+      dispatch({ type: "login", manager: manager.data });
+      history.push("/promotedlastweek");
+    } else {
+      alert('Login failed, wrong usename');
+    }
   }
 
   const handleEnter = (e) => {

@@ -1,15 +1,13 @@
 import React from "react";
 import { Route, Redirect, BrowserRouter as Router } from "react-router-dom";
-
 import DisplayAssociates from "../DisplayAssociates/DisplayAssociates";
 import Login from "../Login/Login";
 import ViewSwots from "../ViewSwots/ViewSwots";
 import SwotPage from "../SwotPage/SwotPage";
 
-const checkLogin = () => {
-  let user = JSON.parse(sessionStorage.getItem("loggedUser"));
-  return !!user
-};
+function checkLogin() {
+  return sessionStorage.getItem('loggedUser') ? true : false;
+}
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

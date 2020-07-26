@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
+  const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
+  const startDate = useSelector((state) => state.swotReducer.startDate);
+  const endDate = useSelector((state) => state.swotReducer.endDate);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -18,11 +21,27 @@ const SwotsGrid = (props) => {
     history.push("/editSWOT");
   };
 
+  const roundDate = (date) => {
+    date -= date % (24 * 60 * 60 * 1000);//subtract amount of time since midnight
+    date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
+    return new Date(date);
+  }
+  
+  useEffect(() => {
+    let swots = associate.swot;
+    swots = swots.filter(
+      (swot) => 
+      roundDate(new Date(swot.date_created)) >= roundDate(new Date(startDate)) &&
+      roundDate(new Date(swot.date_created)) <= roundDate(new Date(endDate))
+    );
+    dispatch({ type: "updateDisplaySwots", swots: swots });
+  }, []);
+
   return (
     <Container>
       <Grid stackable columns={2}>
-        {associate.swot && associate.swot.length !== 0 ? (
-          associate.swot
+        {displaySwots.length > 0 ? (
+          displaySwots
             .map((swot, i) => (
               <Grid.Column>
                 <Segment>
@@ -37,9 +56,9 @@ const SwotsGrid = (props) => {
                         </Button>
                       ) : null
                     ) : (
-
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
-                        {swot.author}: &nbsp;{swot.date_created}
+                        {swot.author}: &nbsp;
+                        {new Date(swot.date_created).toLocaleDateString()}
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (

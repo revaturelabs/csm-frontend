@@ -6,28 +6,12 @@ import './SpiderChart.css'
 import AssociateService from '../../services/associate.service'
 
 const SpiderChart = (props) => {
-    // const [evalState, setEvals] = useState([])
-    // const [labels, setLabels] = useState([''])
-    // const [batchValues, setBatchValues] = useState([])
-    // const [associateValues, setAssociateValues] = useState([])
-    // const associateService = new AssociateService()
-    // const dispatch = useDispatch();
 
-    // useEffect(() => {
-
-    //     // async function getEvals(){
-    //     //     console.log(props.userID)
-    //     //     console.log("loading spider data")
-    //     //     // const associateAssesment = []
     console.log(props)
     const associateScore = []
     const labels = []
     const batchScore = []
 
-    //     //     const resp = await associateService.getEvaluations(props.userID); 
-    //     console.log("from chart")
-    //     console.log(props.batchSpider)
-    //     console.log(props.assocSpider)
     for (const qcEval of props.batchSpider) {
         labels.push(qcEval.assessmentType)
         batchScore.push(qcEval.score)
@@ -36,19 +20,6 @@ const SpiderChart = (props) => {
     for (const qcEval of props.assocSpider) {
         associateScore.push(qcEval.score)
     }
-
-    //     setLabels(batchAssesment)
-    //     setBatchValues(batchScore)
-    //     setAssociateValues(associateScore)
-    //     // // }
-    //     // getEvals();
-    //     // setLabels(batchAssesment)
-
-    //     // dispatch({ type: 'setBatchLabels', batchLabels: batchAssesment })
-    //     // dispatch({ type: 'setBatchValues', batchValues: batchScore })
-    //     // dispatch({ type: 'setAssociateLabels', associateLabels: associateAssesment })
-    //     // dispatch({ type: 'setAssociateValues', associateValues: associateScore })
-    // }, []);
 
     const data = {
         labels: labels,

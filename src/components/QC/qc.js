@@ -6,25 +6,6 @@ import AssociateService from '../../services/associate.service'
 //import './Chart.css'
 
 const QC = (props) => {
-  // const evalState = useSelector(state => state.evalReducer);
-  // const dispatch = useDispatch();
-  // const [qcSkills, setQCSkills] = useState([""])
-  // const [qcData, setQCData] = useState([])
-  // const associateService = new AssociateService()
-
-  // useEffect(() => {
-  //   // while (evalState.qcEvals.length === 0) {
-  //   // if (evalState.qcEvals.length > 0) {
-  //   // console.log('hello' + evalState.qcEvals)
-
-  //   async function getEvals() {
-  //     console.log(props.userID)
-  //     console.log("loading qc data")
-  //     // const associateAssesment = []
-  //     const resp = await associateService.getEvaluations(props.userID);
-  //     console.log(resp.data)
-  //     const qcDataTemp = []
-  //     const qcSkillsTemp = []
   const scores = []
   const labels = []
 
@@ -42,9 +23,6 @@ const QC = (props) => {
           case 'good':
             qcScore = 3;
             break;
-          //case 'top performer'
-          //  qcScore = 3;
-          //  break;
           case 'superstar':
             qcScore = 4;
             break;
@@ -55,20 +33,6 @@ const QC = (props) => {
         // console.log(qcScore)
         scores.push(qcScore)
       }
-
-  //     }
-
-  //     setQCData(qcDataTemp)
-  //     setQCSkills(qcSkillsTemp)
-     
-  //     // break
-  //     // }
-  //   }
-  //   getEvals();
-
-  //   // dispatch({type :'setQCLabels', qcLabels : qcSkills})
-  //   // dispatch({type :'setQCValues', qcValues : qcData})
-  // }, []);
 
   const data = {
 
@@ -98,26 +62,10 @@ const QC = (props) => {
     ]
   };
 
-
-
-  //export default React.createClass({
-  //displayName: 'LineExample',
-
-  //render() {
   return (
     <div id='chart'>
       <h2 className='title'>Line Example</h2>
       <Line data={data} />
-      {/* </div> */}
-      {/* <div>
-        <h2>Notes</h2>
-        {skills.map(a => (
-          <AccordionExampleStyled
-            title={a.skill}
-            note={a.note}
-            score={a.score} />
-        ))}
-      </div> */}
     </div>
   );
 

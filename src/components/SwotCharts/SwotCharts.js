@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Grid, Header, Icon } from "semantic-ui-react";
+import { Accordion, Icon } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import Evaluations from '../Evaluations/Evaluations';
 

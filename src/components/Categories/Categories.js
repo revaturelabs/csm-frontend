@@ -6,7 +6,6 @@ import categoryService from "../../services/categories.service";
 
 const Categories = (props) => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.swotReducer.categories);
   const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const displayCategories = useSelector(
     (state) => state.swotReducer.displayCategories

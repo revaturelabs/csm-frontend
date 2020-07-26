@@ -108,7 +108,7 @@ const SwotQuadrant = (props) => {
    */
   const deleteCategory = (section, category) => {
     const index = swotState.SWOT[section].findIndex((elt) => {
-      return elt.category == category;
+      return elt.category === category;
     });
     const _type = "update" + section;
     let new_arr = [...swotState.SWOT[section]];

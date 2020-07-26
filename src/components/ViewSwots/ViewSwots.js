@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import SwotsGrid from "../SwotsGrid/SwotsGrid";
 import SwotsBar from "../SwotsBar/SwotsBar";
 

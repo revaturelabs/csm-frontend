@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Accordion, Icon, Menu } from "semantic-ui-react";
+import { Container, Accordion, Icon, Menu, Loader } from "semantic-ui-react";
 import "./DisplayAssociates.scss";
 import DisplayAssociate from "./DisplayAssociate";
 import BatchService from "../../services/batch.service.js";
@@ -192,7 +192,7 @@ const DisplayAssociates = (props) => {
               </Accordion>
             );
           })
-        : null}
+        : <Loader content='Loading' active/>}
     </Container>
   );
 };

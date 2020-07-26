@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import "./Login.scss";
 import ManagerService from "../../services/manager.service";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import logo from "../../images/logo.png";
 
 const Login = (props) => {
   const managerState = useSelector((state) => state.managerReducer);
@@ -45,7 +46,7 @@ const Login = (props) => {
     <Grid id="grid">
       <Grid.Column id="gridcolumn">
         <Image
-          src="https://app.revature.com/core/resources/download/organizations/logos/89c5d424854a06ca216c885f43550bcc.png/empImage"
+          src={logo}
           verticalAlign="middle"
         />
         <Header id="title">Log-in to your account</Header>

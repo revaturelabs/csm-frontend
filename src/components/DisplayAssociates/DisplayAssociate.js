@@ -20,13 +20,11 @@ const DisplayAssociate = (props) => {
   const viewSwots = () => {
     const getAssociateInfo = async () => {
         let resp = await associateService.getSpiderInformation(props.associate.userID);
-        let startDate = new Date(props.batchProDate);
-        startDate.setDate(startDate.getDate()-14);
-        resp.data.proDate = startDate;
         dispatch({ type: 'updateAssociate', associate: resp.data });
         history.push('/viewSwots');
     }
     getAssociateInfo();
+
   }
 
   return (

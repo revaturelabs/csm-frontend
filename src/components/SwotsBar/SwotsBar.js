@@ -8,30 +8,26 @@ import './SwotsBar.scss';
 
 const SwotsBar = (props) => {
     const associate = useSelector((state) => state.swotReducer.currentAssociate);
-    const swots = useSelector((state) => state.swotReducer.swots);
-    const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
-    let startDate = new Date(useSelector((state) => state.swotReducer.currentAssociate.proDate));
+    const swots = useSelector((state) => state.swotReducer.currentAssociate.swot);
+    let displaySwots = useSelector((state) => state.swotReducer.displaySwots);
+    let startDate = new Date(useSelector((state) => state.swotReducer.currentAssociate.end_date));
     let endDate = new Date(useSelector((state) => state.swotReducer.endDate));
     const dispatch = useDispatch();
     const history = useHistory();
-    const filterSwots = () => {
-        for (const swot of swots) {
-            if(swot.date_created >= startDate && swot.date_created <= endDate) {
-                displaySwots.push(swot);
-            }
-        }
-        dispatch({type: 'updateDisplaySwots', getDisplaySwots: displaySwots})
+    startDate.setDate(startDate.getDate()-14);
+    const filter = (start, end) => {
+        let arr = swots;
+        arr = arr.filter(swot => new Date(swot.date_created) >= new Date(start) && new Date(swot.date_created) <= new Date(end));
+        dispatch({type: 'updateDisplaySwots', getDisplaySwots: arr})
     }
     const handleStartDate = (date) => {
-        startDate = date;
+        filter(date, endDate);
         dispatch({type: 'updateStartDate', startDate: date});
-        filterSwots();
     }
 
     const handleEndDate = (date) => {
-        endDate = date;
+        filter(startDate, date);
         dispatch({type: 'updateEndDate', endDate: date});
-        filterSwots();
     }
 
     const handleBack = (e) => {

@@ -10,7 +10,6 @@ let initialState = {
         status: "",
         swot: [],
         trainers: [],
-        proDate: ""
     },
     categories: [],
     displayCategories: [],

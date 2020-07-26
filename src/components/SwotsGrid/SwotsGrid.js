@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
+  const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,8 +22,8 @@ const SwotsGrid = (props) => {
   return (
     <Container>
       <Grid stackable columns={2}>
-        {associate.swot && associate.swot.length !== 0 ? (
-          associate.swot
+        {displaySwots && displaySwots.length !== 0 ? (
+          displaySwots
             .map((swot, i) => (
               <Grid.Column>
                 <Segment>
@@ -39,7 +40,7 @@ const SwotsGrid = (props) => {
                     ) : (
 
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
-                        {swot.author}: &nbsp;{swot.date_created}
+                        {swot.author}: &nbsp;{new Date(swot.date_created).toLocaleDateString()}
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (

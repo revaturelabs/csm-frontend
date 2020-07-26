@@ -14,12 +14,14 @@ const Login = (props) => {
 
   const checkLogin = () => {
     let user = JSON.parse(sessionStorage.getItem("loggedUser"));
-    return !!user;
+    return user;
   };
 
+  // console.log(checkLogin());
+
   useEffect( () => {
-    if (checkLogin) { history.push('/promotedlastweek') }
-  })
+    if (checkLogin()) { history.push('/promotedlastweek') }
+  }, [])
 
   const login = async () => {
     let manager = await managerService.login(managerState.email)

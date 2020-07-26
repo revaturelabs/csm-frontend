@@ -8,29 +8,30 @@ import AssociateService from '../../services/associate.service'
 const QC = (props) => {
   // const evalState = useSelector(state => state.evalReducer);
   // const dispatch = useDispatch();
-  const [qcSkills, setQCSkills] = useState([""])
-  const [qcData, setQCData] = useState([])
-  const associateService = new AssociateService()
+  // const [qcSkills, setQCSkills] = useState([""])
+  // const [qcData, setQCData] = useState([])
+  // const associateService = new AssociateService()
 
-  useEffect(() => {
-    // while (evalState.qcEvals.length === 0) {
-    // if (evalState.qcEvals.length > 0) {
-    // console.log('hello' + evalState.qcEvals)
+  // useEffect(() => {
+  //   // while (evalState.qcEvals.length === 0) {
+  //   // if (evalState.qcEvals.length > 0) {
+  //   // console.log('hello' + evalState.qcEvals)
 
-    async function getEvals() {
-      console.log(props.userID)
-      console.log("loading qc data")
-      // const associateAssesment = []
-      const resp = await associateService.getEvaluations(props.userID);
-      console.log(resp.data)
-      const qcDataTemp = []
-      const qcSkillsTemp = []
+  //   async function getEvals() {
+  //     console.log(props.userID)
+  //     console.log("loading qc data")
+  //     // const associateAssesment = []
+  //     const resp = await associateService.getEvaluations(props.userID);
+  //     console.log(resp.data)
+  //     const qcDataTemp = []
+  //     const qcSkillsTemp = []
+  const scores = []
+  const labels = []
 
-
-      for (const qcEval of resp.data.qc) {
+      for (const qcEval of props.qc) {
         console.log(qcEval)
-        qcSkillsTemp.push(qcEval.skill)
-        var qcScore
+        labels.push(qcEval.skill)
+        let qcScore = 0
         switch (qcEval.score.toLowerCase()) {
           case 'poor':
             qcScore = 1;
@@ -52,25 +53,26 @@ const QC = (props) => {
             break;
         }
         // console.log(qcScore)
-        qcDataTemp.push(qcScore)
-
+        scores.push(qcScore)
       }
 
-      setQCData(qcDataTemp)
-      setQCSkills(qcSkillsTemp)
-     
-      // break
-      // }
-    }
-    getEvals();
+  //     }
 
-    // dispatch({type :'setQCLabels', qcLabels : qcSkills})
-    // dispatch({type :'setQCValues', qcValues : qcData})
-  }, []);
+  //     setQCData(qcDataTemp)
+  //     setQCSkills(qcSkillsTemp)
+     
+  //     // break
+  //     // }
+  //   }
+  //   getEvals();
+
+  //   // dispatch({type :'setQCLabels', qcLabels : qcSkills})
+  //   // dispatch({type :'setQCValues', qcValues : qcData})
+  // }, []);
 
   const data = {
 
-    labels: qcSkills,//['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
+    labels: labels,//['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
     datasets: [
       {
         label: 'QC Data',
@@ -91,7 +93,7 @@ const QC = (props) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: qcData//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
+        data: scores//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
       }
     ]
   };

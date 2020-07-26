@@ -10,7 +10,7 @@ const Evaluations = (props) => {
   const associateService = new AssociateService();
   const dispatch = useDispatch();
   const [evalState, setEvals] = useState(0)
-  const [qcState, setQCState] = useState({})
+  const [qcState, setQCState] = useState([])
   const [batchSpiderState, setBatchSpiderState] = useState([])
   const [assocSpiderState, setAssocSpiderState] = useState([])
   
@@ -24,6 +24,7 @@ const Evaluations = (props) => {
       //setQCState(resp.data.qc)
       setBatchSpiderState(resp.data.batch_spider)
       setAssocSpiderState(resp.data.associate_spider)
+      setQCState(resp.data.qc)
       console.log("States set")
       //setEvals(resp.data)
     }
@@ -44,10 +45,10 @@ const Evaluations = (props) => {
         />
       </Grid.Column>  
       <Grid.Column className='wrapper'>
-        {/* <QC 
+        <QC 
           className='associate-chart'
-          userID={props.associate.userID}
-        /> */}
+          qc={qcState}
+        />
       </Grid.Column>
     </Grid>
   );

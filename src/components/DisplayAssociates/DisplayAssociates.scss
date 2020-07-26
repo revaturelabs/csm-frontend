@@ -5,9 +5,13 @@ header {
   font-size: 2em;
   font-weight: bold;
   margin: 10px;
-  margin-bottom: 25px;
   text-align: center;
+  display: inline-block;
   /* text-shadow: 2px 2px #4d94ff; */
+}
+
+.ui.dropdown {
+  float: right;
 }
 
 .accordion {

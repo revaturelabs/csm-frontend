@@ -51,7 +51,7 @@ const Login = (props) => {
         />
         <Header id="title">Log-in to your account</Header>
         <Form id="form">
-          <Segment stacked>
+          <Segment>
             <Form.Input
               fluid
               icon="user"

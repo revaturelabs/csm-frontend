@@ -7,6 +7,8 @@ function managerReducer(state = initialState, action) {
   switch (action.type) {
     case 'login':
       return Object.assign({}, state, { manager: action.manager })
+    case 'logout': 
+      return Object.assign({}, state, { manager: {} })
     case 'handleEmail':
       return Object.assign({}, state, { email: action.email })
     default:

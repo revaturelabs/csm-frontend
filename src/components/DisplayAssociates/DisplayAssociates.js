@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Accordion, Icon, Menu, Loader } from "semantic-ui-react";
+import { Container, Accordion, Icon, Menu, Loader, Button, Segment, Card, Dropdown } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 import "./DisplayAssociates.scss";
 import DisplayAssociate from "./DisplayAssociate";
 import BatchService from "../../services/batch.service.js";
@@ -9,10 +10,15 @@ const DisplayAssociates = (props) => {
   const batchesState = useSelector((state) => state.batchReducer);
   const manager = useSelector((state) => state.managerReducer.manager);
   const dispatch = useDispatch();
+  const history = useHistory();
   const batchService = new BatchService();
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
+    if(!manager.username){
+      dispatch({type: 'login', manager: JSON.parse(sessionStorage.getItem('loggedUser'))})
+    }
     const getBatch = async () => {
       let resp = await batchService.getBatches();
       let res = [];
@@ -24,6 +30,7 @@ const DisplayAssociates = (props) => {
       }
       dispatch({ type: "updateBatches", batches: resp.data });
       dispatch({ type: "updateDisplayBatches", batches: res });
+      setFetching(false);
     };
     getBatch();
   }, []);
@@ -77,7 +84,7 @@ const DisplayAssociates = (props) => {
   const handleFilter = (event) => {
     const filter = event.target.id;
     dispatch({ type: "updateFilter", filter: filter });
-    const managerName = manager.username;
+    const managerName = JSON.parse(sessionStorage.loggedUser).username;
     const otherName = managerName === "Emily" ? "Julie" : "Emily";
     switch (filter) {
       case "myNew":
@@ -95,9 +102,24 @@ const DisplayAssociates = (props) => {
     }
   };
 
+  const logout = () => {
+    sessionStorage.clear();
+    dispatch({type: 'logout'})
+    history.push('/')
+  }
+
   return (
     <Container>
-      <header>List of Associates</header>
+      <Segment>
+        <header>List of Associates</header>
+        <Dropdown text={manager.username} icon={'user circle'} labeled button className="icon">
+          <Dropdown.Menu>
+            <Dropdown.Item icon='log out' text='Logout' onClick={logout}/>
+          </Dropdown.Menu>
+        </Dropdown>
+        {/* <Button color="red">Logout</Button> */}
+      </Segment>
+    
       <Menu tabular>
         <Menu.Item
           id="myNew"
@@ -148,7 +170,7 @@ const DisplayAssociates = (props) => {
                   className="title"
                 >
                   <Icon name="dropdown" />
-                  <span className="info">{batch.batchName} </span>
+                  <span className="info">{batch.batchName} &emsp; </span>
                   <span className="trainer">
                     {batch.trainer.length > 0
                       ? batch.trainer.map((trainer, ind) => {
@@ -165,7 +187,8 @@ const DisplayAssociates = (props) => {
                       : null}
                   </span>
                   <span className="info">{batch.promotionDate} </span>
-                  <span className="info">
+                  <span className="info">{batch.skill}</span>
+                  <span className="info right">
                     {batch.associates.length} Associates
                   </span>
                   {batchesState.activeFilter === "all" ? (
@@ -192,7 +215,11 @@ const DisplayAssociates = (props) => {
               </Accordion>
             );
           })
-        : <Loader content='Loading' active/>}
+        : fetching ? <Loader content='Loading' active/> : (<Card>
+        <Card.Content>
+            No batches to show!
+        </Card.Content>
+      </Card>)}
     </Container>
   );
 };

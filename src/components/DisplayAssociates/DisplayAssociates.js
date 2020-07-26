@@ -12,7 +12,7 @@ const DisplayAssociates = (props) => {
     const batchService = new BatchService();
     const [activeIndex, setActiveIndex] = useState(-1); 
 
-    useEffect(() => {
+    useEffect( () => {
         const getBatch = async () => {
             let resp = await batchService.getBatches()
             let res = [];
@@ -24,8 +24,31 @@ const DisplayAssociates = (props) => {
             dispatch({ type: 'updateBatches', batches: res })
         }
         getBatch();
-    }, []);
+    }, []); 
 
+    const testData = {
+        "batchID": "TR-1653",
+        "batchName": "Mock Batch 425",
+        "skill": "PEGA",
+        "manager": "Emily",
+        "promotionDate": "2020-07-29",
+        "trainer": [
+            {
+                "role": "ROLE_LEAD_TRAINER",
+                "employee": {
+                    "email": "mock1425.employeedadec181-3f5d-4217-a8a6-2a2546b7947a@mock.com",
+                    "firstName": "Mock 1425",
+                    "lastName": "Associate 1425"
+                },
+            }
+        ],
+        "associates": [
+            {
+                "name": "Mock 9 Associate 9",
+                "userID": "mock9.associate4fbf28f4-6bfc-4c7f-b5bc-fb9eda4bda55@mock.com"
+            },
+        ]
+    }
 
     const handleClick = (e, titleProps) => {
         /* handles accordion functionality */
@@ -66,9 +89,11 @@ const DisplayAssociates = (props) => {
                         </Accordion.Title>
                         <Accordion.Content active={activeIndex === ind}>
                             {batch.associates.length > 0 ? batch.associates.map(
-                                (associate) => {
+                                (associate, ind) => {
                                     return (
-                                        <DisplayAssociate key={associate.userID}
+                                        <DisplayAssociate
+                                            ind={ind}
+                                            key={associate.userID}
                                             associate={associate}
                                             manager={batch.manager}
                                             batchName={batch.batchName}
@@ -88,4 +113,3 @@ const DisplayAssociates = (props) => {
 }
 
 export default DisplayAssociates;
-

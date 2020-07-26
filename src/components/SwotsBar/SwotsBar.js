@@ -13,11 +13,29 @@ const SwotsBar = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const roundDate = (date) => {
+    date -= date % (24 * 60 * 60 * 1000);//subtract amount of time since midnight
+    date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
+    return new Date(date);
+  }
+
+  const filter = (start, end) => {
+    let swots = associate.swot;
+    swots = swots.filter(
+      (swot) =>
+        roundDate(new Date(swot.date_created)) >= roundDate(new Date(start)) &&
+        roundDate(new Date(swot.date_created)) <= roundDate(new Date(end))
+    );
+    dispatch({ type: "updateDisplaySwots", swots: swots });
+  };
+
   const handleStartDate = (date) => {
+    filter(date, endDate);
     dispatch({ type: "updateStartDate", startDate: date });
   };
 
   const handleEndDate = (date) => {
+    filter(startDate, date);
     dispatch({ type: "updateEndDate", endDate: date });
   };
 

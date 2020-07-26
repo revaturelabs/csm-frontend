@@ -26,15 +26,21 @@ let initialState = {
   currentNote: "",
   currentCategory: "",
   notes: "",
-  currentSwots: [],
+  displaySwots: []
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "updateDisplaySwots":
+      return Object.assign({}, state , {displaySwots: action.swots});
     case "updateAssociate":
       return Object.assign({}, state, {
         currentAssociate: Object.assign({}, action.associate),
       });
+    case "setStartDate":
+      return Object.assign({}, state, { startDate: action.date });
+    case "setEndDate":
+      return Object.assign({}, state, { endDate: action.date });
     case "updateStartDate":
       return action.startDate > state.endDate
         ? Object.assign({}, state, {

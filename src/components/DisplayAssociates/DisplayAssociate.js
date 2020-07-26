@@ -7,27 +7,18 @@ import './DisplayAssociates.scss';
 import Evaluations from '../Evaluations/Evaluations';
 
 const DisplayAssociate = (props) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const associateService = new AssociateService();
   const [assocActiveIndex, setAssocActiveIndex] = useState(-1);
 
   const handleClick = (e, titleProps) => {
+    dispatch({type: 'resetEvalDate'})
     const { index } = titleProps
     const newIndex = assocActiveIndex === index ? -1 : index
     setAssocActiveIndex(newIndex)
   }
 
-  const viewSwots = () => {
-    const getAssociateInfo = async () => {
-      let resp = await associateService.getAssociatesInformation(
-        props.associate.userID
-      );
-      dispatch({ type: 'updateAssociate', associate: resp.data })
-    }
-    getAssociateInfo()
-    history.push('/viewSwots')
-  }
+  
 
   return (
     <Accordion styled className='associate-accordion'>
@@ -45,7 +36,7 @@ const DisplayAssociate = (props) => {
       <Accordion.Content active={assocActiveIndex === props.ind}>
         {assocActiveIndex === props.ind ?
           <>
-            <span><Button onClick={viewSwots}>View SWOTs</Button></span>
+
             <Evaluations 
               associate={props.associate}
               showYLabels={false}

@@ -26,7 +26,7 @@ const SpiderChart = (props) => {
       }
     ]
   }
-  console.log(props.associateSpider)
+  // console.log(props.associateSpider)
 
   const options = {
     title: {

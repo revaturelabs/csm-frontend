@@ -84,7 +84,7 @@ const SwotPage = (props) => {
           <Grid.Row centered>
             <SwotNotes />
           </Grid.Row>
-          <Grid.Row>{edit ? <SwotCharts /> : <></>}</Grid.Row>
+          <Grid.Row>{edit ? <SwotCharts associate={{name: associate.name, userID: associate.email}}/> : <></>}</Grid.Row>
           <Grid.Row>
             {edit ? (
               <>

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Placeholder } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { Grid, Placeholder, Button } from 'semantic-ui-react';
 import AssociateService from '../../services/associate.service';
 import SpiderChart from '../SpiderCharts/SpiderChart';
 import QC from '../QC/qc';
 import './Evaluations.scss';
 
 const Evaluations = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const associateService = new AssociateService();
 
   const [spiderLabels, setSpiderLabels] = useState([]);
@@ -19,7 +23,7 @@ const Evaluations = (props) => {
   useEffect(() => {
     const getEvals = async () => {
       const resp = await associateService.getEvaluations(props.associate.userID);
-
+      console.log('RESP for getEvaluations', resp.data)
       /* processing for spider chart data */
       const spiderLabelsTemp = []
       const batchSpiderDataTemp = []
@@ -79,8 +83,25 @@ const Evaluations = (props) => {
     getEvals();
   }, [])
 
+  const viewSwots = () => {
+    const getAssociateInfo = async () => {
+      let resp = await associateService.getAssociatesInformation(
+        props.associate.userID
+      );
+      dispatch({ type: 'updateAssociate', associate: resp.data })
+      dispatch({ type: 'updateBatchTopics', topics: spiderLabels })
+      history.push('/viewSwots')  
+    }
+    getAssociateInfo()
+    
+  }
+
   return (
-    <Grid container stackable columns={2} className="associate-eval">
+    <Grid container stackable columns={3} className="associate-eval">
+      <Grid.Column className="wrapper">
+        <Button onClick={viewSwots}
+        disabled={spiderLabels.length === 0}>View SWOTs</Button>
+      </Grid.Column>
       <Grid.Column className="wrapper">
         <SpiderChart
           className="associate-chart"

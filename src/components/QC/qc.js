@@ -64,7 +64,7 @@ const QC = (props) => {
     <div className="chart container">
       <h4 className="chart heading4">
         <span className="loud name">{props.name}</span>
-        <span className="info">QC Performance</span>
+        <span className="info"> — QC Performance</span>
       </h4>
       {loaded ? (
         <Line data={data} options={options} className="chart associate-chart" />

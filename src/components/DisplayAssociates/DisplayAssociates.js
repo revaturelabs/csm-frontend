@@ -15,11 +15,10 @@ const DisplayAssociates = (props) => {
   const batchService = new BatchService();
   const [activeIndex, setActiveIndex] = useState(-1);
 
-  useEffect(() => {
-    document.title = "Promoted Last Week";
-  }, []);
+
 
   useEffect(() => {
+    document.title = "Promoted Last Week";
     const getBatch = async () => {
       let resp = await batchService.getBatches();
       let getManager = () => {
@@ -40,7 +39,7 @@ const DisplayAssociates = (props) => {
       dispatch({ type: "updateBatches", batches: res });
     };
     getBatch();
-  }, [loggedUser]);
+  }, []);
 
   const handleClick = (e, titleProps) => {
     /* handles accordion functionality */
@@ -82,9 +81,11 @@ const DisplayAssociates = (props) => {
                       : null}
                   </span>
                   <span className="info">{batch.promotionDate} </span>
+                  <span className="info">{batch.skill}</span>
                   <span className="info right">
                     {batch.associates.length} Associates
                   </span>
+                  
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === ind}>
                   {batch.associates.length > 0

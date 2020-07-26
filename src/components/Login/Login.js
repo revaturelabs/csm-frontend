@@ -18,8 +18,8 @@ const Login = (props) => {
   };
 
   useEffect( () => {
-    if (checkLogin) { history.push('/promotedlastweek') }
-  })
+    if (checkLogin()) { history.push('/promotedlastweek') }
+  },[])
 
   const login = async () => {
     let manager = await managerService.login(managerState.email)

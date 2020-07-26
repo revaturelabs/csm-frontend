@@ -6,6 +6,7 @@ let initialState = {
   endDate: new Date(),
   editable: true,
   moveType: "create",
+  batchTopics: [],
   SWOT: {
     date_created: null,
     author: "",
@@ -106,6 +107,8 @@ const swotReducer = (state = initialState, action) => {
       return Object.assign({}, state, { swotModal: action.toggle });
     case "toggleSwotCharts":
       return Object.assign({}, state, { swotCharts: action.toggle });
+    case "updateBatchTopics":
+      return Object.assign({}, state, { batchTopics: action.topics });
     default:
       return state;
   }

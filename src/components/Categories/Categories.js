@@ -7,6 +7,7 @@ import categoryService from "../../services/categories.service";
 const Categories = (props) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.swotReducer.categories);
+  const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const displayCategories = useSelector(
     (state) => state.swotReducer.displayCategories
   );
@@ -20,8 +21,12 @@ const Categories = (props) => {
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-      const lst = [...resp.data, {categoryId: 41, skillCategory: 'Other', active:'true' }]
+      const lst = [...resp.data, {categoryId: resp.data.length, skillCategory: 'Other', active:'true' }]
       lst.sort();
+      let orderedTopics = []
+      for (category of lst) {
+        if (category.skill)
+      }
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: lst,

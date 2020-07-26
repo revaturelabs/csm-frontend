@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Accordion, Icon } from "semantic-ui-react";
+import { Container, Accordion, Icon, Button } from "semantic-ui-react";
 import "./DisplayAssociates.scss";
 import DisplayAssociate from "./DisplayAssociate";
 import BatchService from "../../services/batch.service.js";
+import { useHistory } from "react-router-dom";
 
 const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 console.log(loggedUser);
@@ -14,6 +15,7 @@ const DisplayAssociates = (props) => {
   const dispatch = useDispatch();
   const batchService = new BatchService();
   const [activeIndex, setActiveIndex] = useState(-1);
+  const history = useHistory();
 
   useEffect(() => {
     document.title = "Promoted Last Week";
@@ -49,8 +51,15 @@ const DisplayAssociates = (props) => {
     setActiveIndex(newIndex);
   };
 
+  const logout = () => {
+    sessionStorage.removeItem('loggedUser');
+    history.push('/login')
+    console.log(sessionStorage);
+  }
+
   return (
     <Container>
+        <Button id="logoutButton" onClick={logout}>Logout</Button>
       <header>Associates Promoted Last Week</header>
 
       {/* mapping each batch to its own accordion */}

@@ -10,8 +10,6 @@ const initialState = {
 }
 
 function evalReducer(state = initialState, action) {
-    console.log(state);
-    console.log(action);
     switch(action.type) {
         case 'handleBatchSpiderData':
             return Object.assign({}, state, { spiderBatch: action.spiderBatch})

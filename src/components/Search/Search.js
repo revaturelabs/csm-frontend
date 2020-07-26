@@ -6,7 +6,6 @@ const Search = (props) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.swotReducer.categories);
   const findPattern = (event) => {
-    console.log('FILTERING CATEGORIES', categories)
     let elements = [];
     // let re = /^[^`~!@#$%^&*()_+={}\[\]|\\:;“’<,>.?๐฿]*$/;
     let pattern = event.target.value;

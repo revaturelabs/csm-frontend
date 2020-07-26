@@ -6,8 +6,6 @@ const initialState = {
 }
 
 function batchReducer(state = initialState, action) {
-    // console.log(state);
-    // console.log(action);
     switch(action.type) {
         case 'updateBatches':
             return Object.assign({}, state, {batches: action.batches})

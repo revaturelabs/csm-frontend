@@ -37,7 +37,6 @@ const DisplayAssociates = (props) => {
   };
 
   const allFilter = (batches, managerName) => {
-    console.log("allFilter called", batches, managerName);
     let res = [];
     if (managerName) {
       for (const batch of batches) {
@@ -53,7 +52,6 @@ const DisplayAssociates = (props) => {
   };
 
   const newFilter = (managerName) => {
-    console.log("newFilter called", managerName);
     const currentDate = new Date();
     const endRange = new Date(
       currentDate.getFullYear(),
@@ -77,13 +75,10 @@ const DisplayAssociates = (props) => {
   };
 
   const handleFilter = (event) => {
-    console.log("Handle Filter called");
     const filter = event.target.id;
-    console.log(filter);
     dispatch({ type: "updateFilter", filter: filter });
     const managerName = manager.username;
     const otherName = managerName === "Emily" ? "Julie" : "Emily";
-    console.log(filter);
     switch (filter) {
       case "myNew":
         return newFilter(managerName);

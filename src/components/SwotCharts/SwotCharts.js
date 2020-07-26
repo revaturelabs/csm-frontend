@@ -1,6 +1,7 @@
 import React from "react";
 import { Accordion, Grid, Header, Icon } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
+import Evaluations from "../compomemts/evaluations.js"
 
 const SwotCharts = (props) => {
     const dispatch = useDispatch();
@@ -45,13 +46,8 @@ const SwotCharts = (props) => {
                     <Grid columns={2} divided>
                         <Grid.Column>
                             <Header>Spider Chart</Header>
-                            <img src={require('./spiderExample.PNG')}/>
-                            {/* Insert Spider Chart Component */}
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Header>QC Notes</Header>
-                            <img src={require('./QCNotesExample.PNG')}/>
-                            {/* Insert QC Notes Component */}
+                            <Evaluations associate={currentAssociate}/>
+                            {/* Justin is getting the currentAssociate  */}
                         </Grid.Column>
                     </Grid>
                 </Accordion.Content>

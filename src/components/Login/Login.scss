@@ -1,3 +1,5 @@
+@import '../../styles/main';
+
 #grid{
     text-align: center;
     height: 100vh;
@@ -16,12 +18,12 @@
 
 #btn{
     color: white;
-    background-color: orange;
+    background-color: $revature-orange;
     size: large;
 }
 
 #title{
-    color: orange;
+    color: $revature-orange;
     text-align:center;
 }
 

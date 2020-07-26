@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./Login.css";
+import "./Login.scss";
 import ManagerService from "../../services/manager.service";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 
@@ -12,8 +12,19 @@ const Login = (props) => {
 
   const managerService = new ManagerService();
 
+  const checkLogin = () => {
+    let user = JSON.parse(sessionStorage.getItem("loggedUser"));
+    return !!user;
+  };
+
+  useEffect( () => {
+    if (checkLogin) { history.push('/promotedlastweek') }
+  })
+
   const login = async () => {
     let manager = await managerService.login(managerState.email)
+    console.log(manager.data)
+    sessionStorage.setItem('loggedUser', JSON.stringify(manager.data))
     dispatch({ type: 'login', manager: manager.data }) 
     history.push('/promotedlastweek') // this may change
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Accordion, Icon } from 'semantic-ui-react';
+import { Accordion, Icon, Placeholder } from 'semantic-ui-react';
 
 const QC = (props) => {
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -42,35 +42,50 @@ const QC = (props) => {
     spanGaps: false, 
     scales: {
       yAxes: [{
-        display: props.showYLabels,
+        // display: props.showYLabels,
         type: 'category',
-        labels: ['Superstar', 'Good', 'Average', 'Poor', ''],
+        labels: ['Superstar', 'Good', 'Average', 'Poor'],
         ticks: {
-          min: 0,
-          max: 4,
-          stepSize: 1
+          min: 6,
+          max: 6,
+          stepSize: .5
         }
       }]
     },
   };
 
+  /* 
+  The loaded checks if the call to the backend made in Evaluations.js 
+  has returned data. 
+  */
+  const loaded = props.qcNotes && props.qcNotes.length > 0;
+
   return (
-    <div className='chart container'>
-      <h2 className='chart title'>{props.name} — QC Performance</h2>
-      <Line data={data} options={options}/>
-      {props.showNotes ?
+    <div className="chart container">
+      <h4 className="chart heading4">
+        <span className="loud name">{props.name}</span>
+        <span className="info">QC Performance</span>
+      </h4>
+      {loaded ? (
+        <Line data={data} options={options} className="chart associate-chart" />
+      ) : (
+        <Placeholder className="chart">
+          <Placeholder.Image className="associate-chart" />
+        </Placeholder>
+      )}
+      {props.showNotes ? (
         <div>
-          <h2>Notes</h2>
+          <h4>Notes</h4>
           {props.qcNotes.map((qcNote, ind) => {
             return (
               <Accordion key={`qc${ind}`}>
-                <Accordion.Title 
+                <Accordion.Title
                   active={activeIndex === ind}
                   index={ind}
                   onClick={handleClick}
                   className="title"
                 >
-                  <Icon name='dropdown' />
+                  <Icon name="dropdown" />
                   <span>{qcNote.skill}</span>
                   <span>{qcNote.score}</span>
                 </Accordion.Title>
@@ -78,13 +93,12 @@ const QC = (props) => {
                   <p>{qcNote.content}</p>
                 </Accordion.Content>
               </Accordion>
-            )
+            );
           })}
         </div>
-        : null}
+      ) : null}
     </div>
   );
-
 }
 
 export default QC;

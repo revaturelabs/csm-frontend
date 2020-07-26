@@ -26,11 +26,13 @@ const Evaluations = (props) => {
       const associateSpiderDataTemp = []
       for (const spiderEval of resp.data.batch_spider) {
         spiderLabelsTemp.push(spiderEval.assessmentType)
-        batchSpiderData.push(spiderEval.score)
+        batchSpiderDataTemp.push(spiderEval.score)
       }
       for (const spiderEval of resp.data.associate_spider) {
-        associateSpiderData.push(spiderEval.score)
+        associateSpiderDataTemp.push(spiderEval.score)
       }
+      console.log(batchSpiderDataTemp);
+      console.log(associateSpiderDataTemp);
       setSpiderLabels(spiderLabelsTemp)
       setBatchSpiderData(batchSpiderDataTemp)
       setAssociateSpiderData(associateSpiderDataTemp)
@@ -78,39 +80,29 @@ const Evaluations = (props) => {
   }, [])
 
   return (
-    <Grid container stackable columns={2} className='associate-eval'>
-      <Grid.Column className='wrapper'>
-        {spiderLabels && spiderLabels.length > 0 ?
-          <SpiderChart className='associate-chart'
-            name={props.associate.name}
-            userID={props.associate.userID}
-            spiderLabels={spiderLabels}
-            batchSpider={batchSpiderData}
-            associateSpider={associateSpiderData}
-          />
-          :
-          <Placeholder className='wrapper'>
-            <Placeholder.Image className='associate-chart' />
-          </Placeholder>
-        }
+    <Grid container stackable columns={2} className="associate-eval">
+      <Grid.Column className="wrapper">
+        <SpiderChart
+          className="associate-chart"
+          name={props.associate.name}
+          userID={props.associate.userID}
+          spiderLabels={spiderLabels}
+          batchSpider={batchSpiderData}
+          associateSpider={associateSpiderData}
+        />
       </Grid.Column>
 
-      <Grid.Column className='wrapper'>
-        {qcNotes && qcNotes.length > 0 ?
-          <QC className='associate-chart'
-            name={props.associate.name}
-            userID={props.associate.userID}
-            qcData={qcData}
-            qcSkills={qcSkills}
-            qcNotes={qcNotes}
-            showYLabels={props.showYLabels}
-            showNotes={props.showNotes}
-          />
-          :
-          <Placeholder className='wrapper'>
-            <Placeholder.Image className='associate-chart' />
-          </Placeholder>
-        }
+      <Grid.Column className="wrapper">
+        <QC
+          className="associate-chart"
+          name={props.associate.name}
+          userID={props.associate.userID}
+          qcData={qcData}
+          qcSkills={qcSkills}
+          qcNotes={qcNotes}
+          showYLabels={props.showYLabels}
+          showNotes={props.showNotes}
+        />
       </Grid.Column>
     </Grid>
   );

@@ -1,0 +1,21 @@
+.loud {
+  font-weight: 700 !important;
+}
+
+@mixin ui-heading($level, $theme: 'light') {
+  font-weight: 600;
+  margin: $ui-xs 0;
+  @if $level == 1 { font-size: $heading-l; }
+  @if $level == 2 { font-size: $heading-m; }
+  @if $level == 3 { font-size: $heading-s; }
+  @if $level == 4 { font-size: $heading-xs; }
+  @if $level == 5 { font-size: $heading-xs; }
+  @if $level >= 6 { font-size: $heading-xs; }
+
+  @if $theme == 'light' {
+    color: $revature-dark-gray;
+  }
+  @if $theme == 'inverted' {
+    color: white;
+  }
+}

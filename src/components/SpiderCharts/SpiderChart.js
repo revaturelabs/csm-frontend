@@ -1,5 +1,6 @@
 import React from 'react';
-import { Radar } from 'react-chartjs-2'
+import { Radar } from 'react-chartjs-2';
+import { Placeholder } from "semantic-ui-react";
 import './SpiderChart.css'
 
 const SpiderChart = (props) => {
@@ -12,7 +13,7 @@ const SpiderChart = (props) => {
         backgroundColor: 'rgba(0,0,255,0.5)',
         borderColor: 'rgba(0,0,0,0.1)',
         borderWidth: 2,
-        data: props.associateSpiderData,
+        data: props.associateSpider,
         pointRadius: 5
       },
       {
@@ -20,11 +21,12 @@ const SpiderChart = (props) => {
         backgroundColor: 'rgba(255,0,0,0.5)',
         borderColor: 'rgba(0,0,0,0.1)',
         borderWidth: 2,
-        data: props.batchSpiderData,
+        data: props.batchSpider,
         pointRadius: 5
       }
     ]
   }
+  console.log(props.associateSpider)
 
   const options = {
     title: {
@@ -37,18 +39,18 @@ const SpiderChart = (props) => {
     },
     scale: {
       reverse: false,
-      gridLines: {
-        color: [
-          'black',
-          'red',
-          'orange',
-          'yellow',
-          'green',
-          'blue',
-          'indigo',
-          'violet'
-        ]
-      },
+      // gridLines: {
+      //   color: [
+      //     'black',
+      //     'red',
+      //     'orange',
+      //     'yellow',
+      //     'green',
+      //     'blue',
+      //     'indigo',
+      //     'violet'
+      //   ]
+      // },
       ticks: {
         beginAtZero: true,
         max: 100
@@ -69,15 +71,23 @@ const SpiderChart = (props) => {
     }
   }
 
+  const loaded = props.spiderLabels && props.spiderLabels.length > 0;
+
   return (
     <>
       <div className='chart container'>
-        <h2 className='chart title'>{props.name} — Technical Status</h2>
-        <Radar
-          type='radar'
-          data={data}
-          options={options}
-        />
+        <h4 className='chart heading4'>{props.name} — Technical Status</h4>
+        { loaded ? (
+          <Radar
+            type='radar'
+            data={data}
+            options={options}
+          />
+        ) : (
+          <Placeholder className="chart">
+            <Placeholder.Image className="associate-chart" />
+          </Placeholder>
+        )}
       </div>
     </>
   )

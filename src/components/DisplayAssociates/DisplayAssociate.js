@@ -37,8 +37,8 @@ const DisplayAssociate = (props) => {
         onClick={handleClick}
         className='title'>
         <Icon name='dropdown' />
-        <span className='id'>{props.associate.name}</span>
-        <span className='name'>{props.associate.userID}</span>
+        <span className='name loud'>{props.associate.name}</span>
+        <span className='id'>{props.associate.userID}</span>
         <span className='batch'>{props.batchName}</span>
         <span className='pro_date'>Promoted: {props.batchProDate}</span>
       </Accordion.Title>

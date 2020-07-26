@@ -18,16 +18,19 @@ const SwotPage = (props) => {
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const edit = useSelector((state) => state.swotReducer.editable);
+  const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const manager = useSelector((state) => state.managerReducer.manager);
   useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
-      const lst = [
-        ...resp.data,
-        { categoryId: 41, skillCategory: "Other", active: "true" },
-      ];
+      let lst = resp.data.map(cat => cat.skillCategory);
       lst.sort();
-      dispatch({ type: "updateCategories", getCategories: lst });
+      let temp = batchTopics.sort().concat(lst);
+      let orderedCategories = [...new Set(temp), "Other"];
+      dispatch({
+        type: "updateCategories",
+        getCategories: orderedCategories,
+      });
     }
     getCategories();
     dispatch({ type: "updateAuthor", author: manager.username });

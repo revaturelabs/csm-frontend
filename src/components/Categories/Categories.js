@@ -15,21 +15,19 @@ const Categories = (props) => {
   const cat = new categoryService();
 
   const listDrag = (event) => {
-    event.dataTransfer.setData("text", 'NONE~'+event.target.id);
+    event.dataTransfer.setData("text", "NONE~" + event.target.id);
   };
 
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-      const lst = [...resp.data, {categoryId: resp.data.length, skillCategory: 'Other', active:'true' }]
+      let lst = resp.data.map(cat => cat.skillCategory);
       lst.sort();
-      let orderedTopics = []
-      for (category of lst) {
-        if (category.skill)
-      }
+      let temp = batchTopics.sort().concat(lst);
+      let orderedCategories = [...new Set(temp), "Other"];
       dispatch({
         type: "updateDisplayCategories",
-        getDisplayCategories: lst,
+        getDisplayCategories: orderedCategories,
       });
     }
     getCat();
@@ -43,15 +41,15 @@ const Categories = (props) => {
         </Menu.Item>
         <Menu.Item>
           <List as="ul" style={{ marginLeft: 0 }}>
-            {displayCategories.map((category) => (
-              <Card key={category.categoryId} raised={true}>
+            {displayCategories.map((category, i) => (
+              <Card key={i} raised={true}>
                 <List.Item
-                  id={category.skillCategory}
+                  id={category}
                   name="category"
                   draggable
                   onDragStart={listDrag}
                 >
-                  {category.skillCategory}
+                  {category}
                 </List.Item>
               </Card>
             ))}

@@ -29,3 +29,5 @@ export const mockStore = {
 	notes: "",
 	displaySwots: []
 }
+
+export let mockStore;

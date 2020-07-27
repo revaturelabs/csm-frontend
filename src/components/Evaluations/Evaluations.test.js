@@ -4,6 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import mockStore from "../TestHooks/mockStore.js";
+import { useDispatch, useSelector, useHistory, useLocation } from "react-redux";
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -60,11 +61,7 @@ describe("Evaluations initialization", () => {
 		it("Dispatches search action to store.", () => {
 			const actions = store.getActions();
 			expect(actions).toEqual([{ type: "SEARCH", query: "all" },
-			{ type: "SEARCH_SUCCESS", mockStore }]);
-		});
-
-		it("Renders RecipeItem components if recipes.length > 0.",
-			() => {expect(wrapper.find(RecipeItem)).toHaveLength(20);
+			{ type: "SEARCH_SUCCESS", store }]);
 		});
 
 	});

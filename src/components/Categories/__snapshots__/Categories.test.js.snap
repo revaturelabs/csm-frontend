@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search unit test Rendering component with children. 1`] = `
+exports[`Search unit test on mount Rendering component with children. 1`] = `
 <div
   class="ui fluid vertical menu"
   style="height:75vh;overflow-y:scroll"
@@ -74,7 +74,7 @@ exports[`Search unit test Rendering component with children. 1`] = `
 </div>
 `;
 
-exports[`Search unit test Rendering component without props. 1`] = `
+exports[`Search unit test on mount Rendering component without props. 1`] = `
 <Fragment>
   <Menu
     fluid={true}

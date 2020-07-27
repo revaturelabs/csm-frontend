@@ -46,7 +46,7 @@ describe("Evaluations initialization", () => {
 
 	describe("Evaluations test suite.", () => {
 
-		it("Renders component without props."), () => {
+		it("Renders component without props.", () => {
 			const component = shallow(<Evaluations/>);
 			expect(component).toMatchSnapshot();
 		}

@@ -27,8 +27,8 @@ describe("SwotNotes unit test", () => {
 
 	it('Mounting, testing user input, and dismounting the component.', () => {
 		// Set your own functions and props here...
-		props = "props";
-		find = jest.fn();
+		const props = "props";
+		const find = jest.fn();
 		const component = mount(<Search id="find" props={props} find={find} />);
 		component.find('#find').value;
 		component.simulate('keypress', { keyCode: 'A' });

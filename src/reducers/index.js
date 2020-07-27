@@ -3,7 +3,6 @@ import batchReducer from './batchReducer';
 import managerReducer from './managerReducer';
 import evalReducer from './evalReducer';
 import swotReducer from "./swotReducer";
-import evalReducer from "./evalReducer";
 
 export default combineReducers({
   batchReducer,

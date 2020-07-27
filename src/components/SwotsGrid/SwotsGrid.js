@@ -6,11 +6,8 @@ import { useHistory } from "react-router-dom";
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
-<<<<<<< HEAD
-=======
   const startDate = useSelector((state) => state.swotReducer.startDate);
   const endDate = useSelector((state) => state.swotReducer.endDate);
->>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,11 +26,11 @@ const SwotsGrid = (props) => {
     date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
     return new Date(date);
   }
-  
+
   useEffect(() => {
     let swots = associate.swot;
     swots = swots.filter(
-      (swot) => 
+      (swot) =>
       roundDate(new Date(swot.date_created)) >= roundDate(new Date(startDate)) &&
       roundDate(new Date(swot.date_created)) <= roundDate(new Date(endDate))
     );

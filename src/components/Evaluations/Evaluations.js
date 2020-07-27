@@ -82,7 +82,7 @@ const Evaluations = (props) => {
   return (
     <Grid container stackable columns={3} className="associate-eval">
       {location.pathname === "/promotedlastweek" ? (
-        <Grid.Column className="wrapper">
+        <Grid.Column className="wrapper swot-wrapper">
           <Button onClick={viewSwots} disabled={spiderLabels.length === 0}>
             View SWOTs
           </Button>

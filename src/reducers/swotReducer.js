@@ -31,7 +31,7 @@ let initialState = {
 };
 
 const swotReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (action) {
     case "updateDisplaySwots":
       return Object.assign({}, state , {displaySwots: action.swots});
     case "updateAssociate":

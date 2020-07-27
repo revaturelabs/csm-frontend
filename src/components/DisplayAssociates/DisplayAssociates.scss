@@ -1,5 +1,19 @@
 @import '../../styles/main';
 
+
+.ui.segment { 
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  background: rgba($revature-dark-gray,1);
+  color: white !important;
+}
+
+.ui header {
+  @include ui-heading(2);
+  color: white !important;
+}
+
 .user-actions { 
   background-color: $revature-blue !important;
   color: white !important;
@@ -25,6 +39,7 @@ header {
   width: 100% !important;
   margin: 1rem auto;
   align-self: center;
+  @include shadow($ui-s);
 }
 
 .accordion .title {
@@ -83,7 +98,23 @@ span.inline-join-list {
 }
 
 @media only screen and (max-width: 767px) {
+  .ui.tabular.menu {
+    flex-flow: column nowrap;
+
+    .item {
+      margin-bottom: $ui-s !important;
+
+      &.active {
+        border-bottom-width: 1px !important;
+        border-radius: .28571429rem !important;
+      }
+    }
+  }
+
   .accordion .title > span.right {
     white-space: unset;
+  }
+  .accordion .title > span.batchName {
+    visibility: hidden;
   }
 }

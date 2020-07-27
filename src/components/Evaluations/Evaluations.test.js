@@ -60,7 +60,7 @@ describe("Evaluations initialization", () => {
 		it("Dispatches search action to store.", () => {
 			const actions = store.getActions();
 			expect(actions).toEqual([{ type: "SEARCH", query: "all" },
-			{ type: "SEARCH_SUCCESS", recipes: fakeRecipes }]);
+			{ type: "SEARCH_SUCCESS", mockStore }]);
 		});
 
 		it("Renders RecipeItem components if recipes.length > 0.",

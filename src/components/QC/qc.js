@@ -18,7 +18,7 @@ const QC = (props) => {
       {
         label: 'QC Data',
         fill: false,
-        lineTension: 0.2,
+        lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
         borderColor: 'rgba(75,192,192,1)',
         borderCapStyle: 'butt',

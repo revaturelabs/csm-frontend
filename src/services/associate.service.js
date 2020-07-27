@@ -12,6 +12,7 @@ class AssociateService {
             withCredentials: true
         });
     }
+  
     getAssociatesInformation(userID) {
         return axios({
             method: 'GET',
@@ -19,6 +20,7 @@ class AssociateService {
             withCredentials: true
         });
     }
+  
     getEvaluations(userID) {
         return axios({
             method: 'GET',

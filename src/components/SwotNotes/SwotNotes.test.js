@@ -6,37 +6,32 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch, useShallowEqualSelector } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
-import Search from './Search';
+import SwotNotes from './SwotNotes';
 
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock('react-redux');
 
-describe("Search unit test", () => {
+describe("SwotNotes unit test", () => {
 
 	it('Rendering component without props.', () => {
-		const component = shallow(<Search/>);
+		const component = shallow(<SwotNotes/>);
 		expect(component).toMatchSnapshot();
 	});
 
 	it('Rendering component with props that match the original component.', () => {
-		const id="search";
-		const find = jest.fn();
-		const icon="search";
-		const placeholder='Search...';
-		const component = shallow(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
+		// Set your own props here...
+		props = "props";
+		const component = render(<SwotNotes props={props} />);
 		expect(component).toMatchSnapshot();
 	});
 
 	it('Mounting, testing user input, and dismounting the component.', () => {
-		const id="search";
-		const find = jest.fn();
-		const icon="search";
-		const placeholder='Search...';
-		const component = mount(<Search id={id} icon={icon} fluid="true" onChange={find} placeholder={placeholder} />);
-		component.find('#search').value;
+		// Set your own functions and props here...
+		props = "props";
+		find = jest.fn();
+		const component = mount(<Search id="find" props={props} find={find} />);
+		component.find('#find').value;
 		component.simulate('keypress', { keyCode: 'A' });
-		component.simulate('keypress', { keyCode: 'W' });
-		component.simulate('keypress', { keyCode: 'S' });
 		expect(component).toMatchSnapshot();
 		component.unmount();
 	});

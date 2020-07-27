@@ -8,6 +8,8 @@ import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
 import Search from './Search';
 
+import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
+
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock('react-redux');
 

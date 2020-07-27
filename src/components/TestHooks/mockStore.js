@@ -30,4 +30,4 @@ export const mockStore = {
 	displaySwots: []
 }
 
-export let mockStore;
+export let store;

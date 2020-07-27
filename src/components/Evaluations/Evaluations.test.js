@@ -49,7 +49,7 @@ describe("Evaluations initialization", () => {
 		it("Renders component without props.", () => {
 			const component = shallow(<Evaluations/>);
 			expect(component).toMatchSnapshot();
-		}
+		});
 
 		it('Renders component with props that match the original component.', () => {
 			const props = store

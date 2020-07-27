@@ -46,22 +46,21 @@ describe("Search unit test", () => {
             const actions = store.getActions();
             expect(actions).toEqual([{type: "SEARCH", query: "all" },
             { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript"]}]);
-        }
-    });
+        });
 
-  	it('Rendering component without props.', () => {
-		const { useSelector } = require("react-redux");
-		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"],
-				},
-			});
-		});
-		const component = shallow(<Categories/>);
-		expect(component).toMatchSnapshot();
-  	});
+      	it('Rendering component without props.', () => {
+    		const { useSelector } = require("react-redux");
+    		useSelector.mockImplementation((callback) => {
+    			return callback({
+    				swotReducer: {
+    					categories: [],
+    					displayCategories: ["AWS", "Python", "JavaScript"],
+    				},
+    			});
+    		});
+    		const component = shallow(<Categories/>);
+    		expect(component).toMatchSnapshot();
+      	});
 
   	it('Rendering component with children.', () => {
 		const { useSelector } = require("react-redux");

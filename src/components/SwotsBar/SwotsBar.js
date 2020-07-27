@@ -25,17 +25,6 @@ const SwotsBar = (props) => {
         dispatch({type: 'updateStartDate', startDate: date});
     }
 
-<<<<<<< HEAD
-    const handleEndDate = (date) => {
-        filter(startDate, date);
-        dispatch({type: 'updateEndDate', endDate: date});
-    }
-
-    const handleBack = (e) => {
-      e.preventDefault();
-      dispatch({ type: "updateAssociate", associate: {} });
-      history.push("/promotedlastweek");
-=======
   const roundDate = (date) => {
     date -= date % (24 * 60 * 60 * 1000);//subtract amount of time since midnight
     date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
@@ -78,7 +67,6 @@ const SwotsBar = (props) => {
       Opportunities: [],
       Threats: [],
       Notes: "",
->>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
     };
 
     const addSwot = () => {

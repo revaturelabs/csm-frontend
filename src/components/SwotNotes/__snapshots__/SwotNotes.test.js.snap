@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SwotNotes unit test Rendering component with props that match the original component. 1`] = `
+<form
+  class="ui form"
+>
+  <h3
+    class="ui header"
+    style="padding:10px"
+  >
+    Notes
+  </h3>
+  <textarea
+    placeholder="Notes..."
+    rows="3"
+  />
+</form>
+`;
+
 exports[`SwotNotes unit test Rendering component without props. 1`] = `
 <Fragment>
   <Form

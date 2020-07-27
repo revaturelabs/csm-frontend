@@ -29,7 +29,7 @@ describe("SwotNotes unit test", () => {
 		// Set your own functions and props here...
 		const props = "props";
 		const find = jest.fn();
-		const component = mount(<Search id="find" props={props} find={find} />);
+		const component = mount(<SwotNotes id="find" props={props} find={find} />);
 		component.find('#find').value;
 		component.simulate('keypress', { keyCode: 'A' });
 		expect(component).toMatchSnapshot();

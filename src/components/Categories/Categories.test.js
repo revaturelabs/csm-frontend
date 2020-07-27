@@ -79,7 +79,7 @@ describe("Search unit test", () => {
 
   	it('Mounting, testing list item mapping, and dismounting the component.', () => {
         const { useSelector, useDispatch } = require("react-redux");
-        spyOn(React, 'useEffect'). mockImplementation(f => f());
+        spyOn(React, 'useEffect').mockImplementation(f => f());
 		useSelector.mockImplementation((callback) => {
             dispatch({
                 type: "updateDisplayCategories",
@@ -90,4 +90,6 @@ describe("Search unit test", () => {
 		expect(component).toMatchSnapshot();
 		component.unmount();
   	});
+
+
 });

@@ -41,7 +41,7 @@ describe("Search unit test", () => {
         component.unmount();
   	});
 
-  	it('Testing find function call.', () => {
+  	it('Tests find function call.', () => {
         const { useSelector, useDispatch } = require("react-redux")
         const mockedDispatch = jest.fn();
         const findPattern = jest.fn();
@@ -49,7 +49,6 @@ describe("Search unit test", () => {
         findPattern.mockImplementation((event) => {
             let category = '';
             let elements = [];
-            // let re = /^[^`~!@#$%^&*()_+={}\[\]|\\:;“’<,>.?๐฿]*$/;
             let pattern = event.target.value;
             pattern = pattern.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
             for (category of categories) {
@@ -77,4 +76,8 @@ describe("Search unit test", () => {
         expect(findPattern.mock.instances.length).toBe(1);
         expect(mockedDispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
     });
+
+    it('Tests categories service.'), () => {
+
+    }
 });

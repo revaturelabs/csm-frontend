@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import mockStore from "../TestHooks/mockStore.js";
 
-import * as ReactReduxHooks from "./react-redux-hooks";
+import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
 import Evaluations from "./Evaluations";
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import { Menu, Button, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import "./SwotsBar.css";
+import "./SwotsBar.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 const SwotsBar = (props) => {

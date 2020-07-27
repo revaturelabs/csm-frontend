@@ -20,7 +20,7 @@ describe("SwotNotes unit test", () => {
 
 	it('Rendering component with props that match the original component.', () => {
 		// Set your own props here...
-		props = "props";
+		const props = "props";
 		const component = render(<SwotNotes props={props} />);
 		expect(component).toMatchSnapshot();
 	});

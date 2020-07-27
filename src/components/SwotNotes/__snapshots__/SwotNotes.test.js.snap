@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwotNotes unit test Rendering component without props. 1`] = `
+<Fragment>
+  <Form
+    as="form"
+  >
+    <Header
+      as="h3"
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Notes
+    </Header>
+    <TextArea
+      as="textarea"
+      onChange={[Function]}
+      placeholder="Notes..."
+      rows={3}
+    />
+  </Form>
+</Fragment>
+`;

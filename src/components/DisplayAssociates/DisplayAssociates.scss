@@ -1,5 +1,12 @@
 @import '../../styles/main';
 
+.user-actions { 
+  background-color: $revature-blue !important;
+  color: white !important;
+}
+
+.logout:hover { color: #B03060 !important; }
+
 header {
   text-align: center;
   font-size: 2em;
@@ -29,6 +36,11 @@ header {
     & > span {
     @include ui-heading(5);
     margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid $revature-light-gray;
+    &:first-of-type {
+      border-left: none;
+    }
 
     &.info { font-weight: normal; }
 
@@ -37,6 +49,8 @@ header {
       justify-self: end;
       margin-left: auto;
       font-style: italic;
+      margin-right: 10px;
+      white-space: nowrap;
     }
   }
 }
@@ -53,4 +67,23 @@ span.inline-join-list {
 
 .ui h4, .ui .heading4 {
   @include ui-heading(4)
+}
+
+.ui .accordion.batch-accordion {
+  background-color: rgba($revature-light-gray,0.5);
+
+  & > .title span {
+    // color: white !important;
+  }
+}
+
+.ui.tabular.menu > .active.item {
+  background: $revature-orange !important;
+  color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .accordion .title > span.right {
+    white-space: unset;
+  }
 }

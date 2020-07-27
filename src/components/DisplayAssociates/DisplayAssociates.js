@@ -112,9 +112,9 @@ const DisplayAssociates = (props) => {
     <Container>
       <Segment>
         <header>List of Associates</header>
-        <Dropdown text={manager.username} icon={'user circle'} labeled button className="icon">
+        <Dropdown text={manager.username} icon={'user circle'} labeled button className="user-actions icon">
           <Dropdown.Menu>
-            <Dropdown.Item icon='log out' text='Logout' onClick={logout}/>
+            <Dropdown.Item className="logout" icon='log out' text='Logout' onClick={logout}/>
           </Dropdown.Menu>
         </Dropdown>
         {/* <Button color="red">Logout</Button> */}
@@ -170,8 +170,8 @@ const DisplayAssociates = (props) => {
                   className="title"
                 >
                   <Icon name="dropdown" />
-                  <span className="info">{batch.batchName} &emsp; </span>
-                  <span className="trainer">
+                  <span className="info loud">{batch.batchName} &emsp; </span>
+                  <span className="trainer info">
                     {batch.trainer.length > 0
                       ? batch.trainer.map((trainer, ind) => {
                           return (

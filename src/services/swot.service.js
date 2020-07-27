@@ -5,7 +5,8 @@ class SwotService {
         /**
          * @todo Replace with deployed ip
          */
-        this.URI = 'http://localhost:5000/employees'; 
+        this.URI =
+          "http://ec2-18-216-95-255.us-east-2.compute.amazonaws.com:5000/employees"; 
     }
 
     sendSWOT(user_id, SWOT) {

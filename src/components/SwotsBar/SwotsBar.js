@@ -42,6 +42,8 @@ const SwotsBar = (props) => {
   const handleBack = (e) => {
     e.preventDefault();
     dispatch({ type: "updateAssociate", associate: {} });
+    dispatch({ type: "setStartDate", date: new Date(new Date().setDate(new Date().getDate() - 14))})
+    dispatch({ type: "setEndDate", date: new Date()})
     history.push("/promotedlastweek");
   };
 

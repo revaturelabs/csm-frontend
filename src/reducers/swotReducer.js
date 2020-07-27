@@ -2,7 +2,7 @@ let initialState = {
   currentAssociate: {},
   categories: [],
   displayCategories: [],
-  startDate: new Date(),
+  startDate: new Date(new Date().setDate(new Date().getDate() - 14)),
   endDate: new Date(),
   editable: true,
   moveType: "create",

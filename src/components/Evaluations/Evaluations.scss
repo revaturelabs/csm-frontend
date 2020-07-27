@@ -1,7 +1,26 @@
-.associate-eval .wrapper {
-  width: calc(50% - .5rem);
+@import '../../styles/main';
 
-  & + .wrapper{
-    margin-left: 1rem;
+.associate-eval .wrapper {
+  width: calc(100%);
+  min-height: 20rem;
+}
+
+.chart.container canvas {
+  height: 100%;
+  width: 95%;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .ui.grid.associate-eval {
+    width: auto!important;
+    max-width: 100% !important;
+    margin-left: 0!important;
+    margin-right: 0!important;
+
+    .column.wrapper {
+      width: auto;
+      max-width: 100%;
+      max-height: 10rem;
+    }
   }
 }

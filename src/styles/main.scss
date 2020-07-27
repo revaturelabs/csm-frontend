@@ -1,0 +1,10 @@
+/* src/styles/main.scss
+*
+* This file collects and organizes all base SCSS files.
+* 
+* Please import this file in your component SCSS files rather than
+* it's sub-files individually. */
+
+@import './abstracts/variables';
+@import './abstracts/mixins';
+@import './abstracts/typography';

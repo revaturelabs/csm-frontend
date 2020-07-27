@@ -2,10 +2,11 @@ let initialState = {
   currentAssociate: {},
   categories: [],
   displayCategories: [],
-  startDate: new Date(),
+  startDate: new Date(new Date().setDate(new Date().getDate() - 14)),
   endDate: new Date(),
   editable: true,
   moveType: "create",
+  batchTopics: [],
   SWOT: {
     date_created: null,
     author: "",
@@ -26,15 +27,21 @@ let initialState = {
   currentNote: "",
   currentCategory: "",
   notes: "",
-  currentSwots: [],
+  displaySwots: []
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "updateDisplaySwots":
+      return Object.assign({}, state , {displaySwots: action.swots});
     case "updateAssociate":
       return Object.assign({}, state, {
         currentAssociate: Object.assign({}, action.associate),
       });
+    case "setStartDate":
+      return Object.assign({}, state, { startDate: action.date });
+    case "setEndDate":
+      return Object.assign({}, state, { endDate: action.date });
     case "updateStartDate":
       return action.startDate > state.endDate
         ? Object.assign({}, state, {
@@ -106,6 +113,8 @@ const swotReducer = (state = initialState, action) => {
       return Object.assign({}, state, { swotModal: action.toggle });
     case "toggleSwotCharts":
       return Object.assign({}, state, { swotCharts: action.toggle });
+    case "updateBatchTopics":
+      return Object.assign({}, state, { batchTopics: action.topics });
     default:
       return state;
   }

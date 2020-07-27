@@ -1,42 +1,56 @@
-@import '../../styles/mixins';
+@import '../../styles/main';
 
 header {
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    margin: 10px;
-    margin-bottom: 25px;
-    text-align: center;
-    /* text-shadow: 2px 2px #4d94ff; */
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+  display: inline-block;
+  /* text-shadow: 2px 2px #4d94ff; */
 }
 
-.accordion{
-    width: 100% !important;
-    margin: 1rem auto;
-    align-self: center;
+.ui.dropdown {
+  float: right;
 }
 
-.title{
-    font-weight: bold;
+.accordion {
+  width: 100% !important;
+  margin: 1rem auto;
+  align-self: center;
 }
 
-.title > span {
+.accordion .title {
+  display: flex !important;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+
+    & > span {
+    @include ui-heading(5);
     margin-left: 10px;
-}
 
-.info{
-    font-weight: normal;
+    &.info { font-weight: normal; }
+
+    &.right {
+      // position: absolute;
+      justify-self: end;
+      margin-left: auto;
+      font-style: italic;
+    }
+  }
 }
 
 .accordion.associate-accordion .content.active {
-    display: flex !important ;
-    flex-flow: row nowrap;
-}
-
-.accordion .content.active > .associate-chart {
-    /* width: 35%; */
+  display: flex !important ;
+  flex-flow: row nowrap;
+  padding: 1rem 0!important;
 }
 
 span.inline-join-list {
-    @include join-array-seperator(', ');
+  @include join-array-seperator(', ');
+}
+
+.ui h4, .ui .heading4 {
+  @include ui-heading(4)
 }

@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import AssociateService from '../../services/associate.service'
-//import { Table } from 'semantic-ui-react';
-//import './Chart.css'
+import { Accordion, Icon, Placeholder } from 'semantic-ui-react';
 
 const QC = (props) => {
-  const scores = []
-  const labels = []
+  const [activeIndex, setActiveIndex] = useState(-1);
 
-      for (const qcEval of props.qc) {
-        console.log(qcEval)
-        labels.push(qcEval.skill)
-        let qcScore = 0
-        switch (qcEval.score.toLowerCase()) {
-          case 'poor':
-            qcScore = 1;
-            break;
-          case 'average':
-            qcScore = 2;
-            break;
-          case 'good':
-            qcScore = 3;
-            break;
-          case 'superstar':
-            qcScore = 4;
-            break;
-          default: // the data is null if invalid
-            qcScore = null;  // should leave a gap in line
-            break;
-        }
-        // console.log(qcScore)
-        scores.push(qcScore)
-      }
+  const handleClick = (e, titleProps) => {
+    /* handles accordion functionality */
+    const { index } = titleProps
+    const newIndex = activeIndex === index ? -1 : index
+    setActiveIndex(newIndex)
+  }
 
   const data = {
-
-    labels: labels,//['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10'],
+    labels: props.qcSkills,
     datasets: [
       {
         label: 'QC Data',
@@ -57,18 +34,71 @@ const QC = (props) => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: scores//[3, 4, 4, 1, 4, 2, 2, 3, 2, 4]
+        data: props.qcData
       }
     ]
   };
+  const options = {
+    spanGaps: false, 
+    scales: {
+      yAxes: [{
+        // display: props.showYLabels,
+        type: 'category',
+        labels: ['Superstar', 'Good', 'Average', 'Poor'],
+        ticks: {
+          min: 6,
+          max: 6,
+          stepSize: .5
+        }
+      }]
+    },
+  };
+
+  /* 
+  The loaded checks if the call to the backend made in Evaluations.js 
+  has returned data. 
+  */
+  const loaded = props.qcNotes && props.qcNotes.length > 0;
 
   return (
-    <div id='chart'>
-      <h2 className='title'>Line Example</h2>
-      <Line data={data} />
+    <div className="chart container">
+      <h4 className="chart heading4">
+        <span className="loud name">{props.name}</span>
+        <span className="info"> — QC Performance</span>
+      </h4>
+      {loaded ? (
+        <Line data={data} options={options} className="chart associate-chart" />
+      ) : (
+        <Placeholder className="chart">
+          <Placeholder.Image className="associate-chart" />
+        </Placeholder>
+      )}
+      {props.showNotes ? (
+        <div>
+          <h4>Notes</h4>
+          {props.qcNotes.map((qcNote, ind) => {
+            return (
+              <Accordion key={`qc${ind}`}>
+                <Accordion.Title
+                  active={activeIndex === ind}
+                  index={ind}
+                  onClick={handleClick}
+                  className="title"
+                >
+                  <Icon name="dropdown" />
+                  <span>{qcNote.skill}</span>
+                  <span>{qcNote.score}</span>
+                </Accordion.Title>
+                <Accordion.Content active={activeIndex === ind}>
+                  <p>{qcNote.content}</p>
+                </Accordion.Content>
+              </Accordion>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
-
 }
 
 export default QC;

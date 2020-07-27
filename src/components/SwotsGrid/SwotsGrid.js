@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
@@ -6,6 +6,11 @@ import { useHistory } from "react-router-dom";
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const displaySwots = useSelector((state) => state.swotReducer.displaySwots);
+<<<<<<< HEAD
+=======
+  const startDate = useSelector((state) => state.swotReducer.startDate);
+  const endDate = useSelector((state) => state.swotReducer.endDate);
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -19,10 +24,30 @@ const SwotsGrid = (props) => {
     history.push("/editSWOT");
   };
 
+  const roundDate = (date) => {
+    date -= date % (24 * 60 * 60 * 1000);//subtract amount of time since midnight
+    date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
+    return new Date(date);
+  }
+  
+  useEffect(() => {
+    let swots = associate.swot;
+    swots = swots.filter(
+      (swot) => 
+      roundDate(new Date(swot.date_created)) >= roundDate(new Date(startDate)) &&
+      roundDate(new Date(swot.date_created)) <= roundDate(new Date(endDate))
+    );
+    dispatch({ type: "updateDisplaySwots", swots: swots });
+  }, []);
+
   return (
     <Container>
       <Grid stackable columns={2}>
+<<<<<<< HEAD
         {displaySwots && displaySwots.length !== 0 ? (
+=======
+        {displaySwots.length > 0 ? (
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
           displaySwots
             .map((swot, i) => (
               <Grid.Column>
@@ -38,9 +63,13 @@ const SwotsGrid = (props) => {
                         </Button>
                       ) : null
                     ) : (
-
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
+<<<<<<< HEAD
                         {swot.author}: &nbsp;{new Date(swot.date_created).toLocaleDateString()}
+=======
+                        {swot.author}: &nbsp;
+                        {new Date(swot.date_created).toLocaleDateString()}
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (

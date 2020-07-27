@@ -23,7 +23,7 @@ describe("Search unit test", () => {
         store = configureStore([thunk])({
             swotReducer: {
                 categories: ["AWS", "Python", "JavaScript"],
-                displayCategories: []
+                displayCategories: ["AWS", "JavaScript"]
             },
         });
 

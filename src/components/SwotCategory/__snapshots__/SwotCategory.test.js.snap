@@ -1,66 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Swot Category unit tests Rendering component with props for category and note. 1`] = `
-<Item>
+<Item
+  draggable={true}
+  onDragStart={[Function]}
+>
   <ItemContent>
     <ItemHeader>
       TEST VALUE
     </ItemHeader>
-    <ItemMeta>
-      Notes
-    </ItemMeta>
     <ItemDescription>
       <p>
         Test note for testing
       </p>
       <br />
-      <Button
-        as="button"
-        color="blue"
-        id="edit"
-        onClick={[Function]}
-      >
-        Edit
-      </Button>
-      <Button
-        as="button"
-        color="red"
-        id="delete"
-        onClick={[Function]}
-      >
-        Delete
-      </Button>
     </ItemDescription>
   </ItemContent>
 </Item>
 `;
 
 exports[`Swot Category unit tests Rendering component without props. 1`] = `
-<Item>
+<Item
+  draggable={true}
+  onDragStart={[Function]}
+>
   <ItemContent>
     <ItemHeader />
-    <ItemMeta>
-      Notes
-    </ItemMeta>
     <ItemDescription>
       <p />
       <br />
-      <Button
-        as="button"
-        color="blue"
-        id="edit"
-        onClick={[Function]}
-      >
-        Edit
-      </Button>
-      <Button
-        as="button"
-        color="red"
-        id="delete"
-        onClick={[Function]}
-      >
-        Delete
-      </Button>
     </ItemDescription>
   </ItemContent>
 </Item>

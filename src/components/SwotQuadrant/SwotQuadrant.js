@@ -10,7 +10,7 @@ import SwotNoteModal from "../SwotNoteModal/SwotNoteModal";
  */
 const SwotQuadrant = (props) => {
   const swotState = useSelector((state) => state.swotReducer);
-  const edit = useSelector((state) => state.swotReducer.editable)
+  const edit = useSelector((state) => state.swotReducer.editable);
   const dispatch = useDispatch();
 
   /**
@@ -50,7 +50,6 @@ const SwotQuadrant = (props) => {
     if (props.name !== swotState.dropZone) {
       dispatch({ type: "updateDropZone", dropZone: props.name });
     }
-    
   };
 
   /**
@@ -60,19 +59,18 @@ const SwotQuadrant = (props) => {
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    const data = event.dataTransfer.getData('text')
-    const section = data.split('~')[0]
-    const category = data.split('~')[1]
-    let type = 'create'
-    if (edit && (section !== props.name)) {
-      if (section !== 'NONE') {
-        deleteCategory(section)
-        type = 'move'
-      } 
-      dispatch({type: 'updateMoveType', move: type})
+    const data = event.dataTransfer.getData("text");
+    const section = data.split("~")[0];
+    const category = data.split("~")[1];
+    let type = "create";
+    if (edit && section !== props.name) {
+      if (section !== "NONE") {
+        deleteCategory(section);
+        type = "move";
+      }
+      dispatch({ type: "updateMoveType", move: type });
       createModal(category);
     }
-    
   };
 
   /**
@@ -110,8 +108,8 @@ const SwotQuadrant = (props) => {
    */
   const deleteCategory = (section, category) => {
     const index = swotState.SWOT[section].findIndex((elt) => {
-      return elt.category == category
-    })
+      return elt.category === category;
+    });
     const _type = "update" + section;
     let new_arr = [...swotState.SWOT[section]];
     new_arr.splice(index, 1);
@@ -119,7 +117,7 @@ const SwotQuadrant = (props) => {
   };
 
   /**
-   * 
+   *
    * The SWOT section has the section's name, as well as the list of the section's categories
    * The section is a droppable area, including the category items already present in the section
    */

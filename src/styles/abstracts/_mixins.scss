@@ -1,0 +1,22 @@
+// src/styles/_typography.scss
+
+
+/* Typography 
+*/
+// Poppins
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* Misc
+*/
+@mixin shadow($depth: 1rem) {
+  box-shadow: #{$depth / 2} #{$depth / 2} #{$depth * 2} 0 rgba($revature-light-gray, 0.3) !important;
+}
+
+@mixin join-array-seperator($seperator: ', ') {
+  &:last-of-type::after{
+    content: none;
+  }
+  &::after{
+    content: $seperator;
+  }
+}

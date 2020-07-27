@@ -18,16 +18,19 @@ const SwotPage = (props) => {
   const SWOT = useSelector((state) => state.swotReducer.SWOT);
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
   const edit = useSelector((state) => state.swotReducer.editable);
+  const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const manager = useSelector((state) => state.managerReducer.manager);
   useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
-      const lst = [
-        ...resp.data,
-        { categoryId: 41, skillCategory: "Other", active: "true" },
-      ];
+      let lst = resp.data.map((cat) => cat.skillCategory);
       lst.sort();
-      dispatch({ type: "updateCategories", getCategories: lst });
+      let temp = batchTopics.sort().concat(lst);
+      let orderedCategories = [...new Set(temp), "Other"];
+      dispatch({
+        type: "updateCategories",
+        getCategories: orderedCategories,
+      });
     }
     getCategories();
     dispatch({ type: "updateAuthor", author: manager.username });
@@ -77,7 +80,6 @@ const SwotPage = (props) => {
             <Grid.Column width={3}>
               <Categories />
             </Grid.Column>
-
             <Grid.Column width={13}>
               <Grid.Row style={{ overflowY: "scroll", overflowX: "hidden" }}>
                 <SwotTable />
@@ -85,7 +87,18 @@ const SwotPage = (props) => {
               <Grid.Row centered>
                 <SwotNotes />
               </Grid.Row>
-              <Grid.Row>{edit ? <SwotCharts /> : <></>}</Grid.Row>
+              <Grid.Row>
+                {edit ? (
+                  <SwotCharts
+                    associate={{
+                      name: associate.name,
+                      userID: associate.email,
+                    }}
+                  />
+                ) : (
+                  <></>
+                )}
+              </Grid.Row>
               <Grid.Row>
                 {edit ? (
                   <>
@@ -111,4 +124,5 @@ const SwotPage = (props) => {
     </>
   );
 };
+
 export default SwotPage;

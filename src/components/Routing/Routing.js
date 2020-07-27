@@ -1,13 +1,12 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
-
+import { Route, Redirect, BrowserRouter as Router } from "react-router-dom";
 import DisplayAssociates from "../DisplayAssociates/DisplayAssociates";
 import Login from "../Login/Login";
 import ViewSwots from "../ViewSwots/ViewSwots";
 import SwotPage from "../SwotPage/SwotPage";
 
 function checkLogin() {
-  return sessionStorage.getItem('mngr') ? true : false;
+  return sessionStorage.getItem('loggedUser') ? true : false;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -26,7 +25,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
-
 
 const Routing = (props) => {
   return (

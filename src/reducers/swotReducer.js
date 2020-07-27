@@ -1,4 +1,5 @@
 let initialState = {
+<<<<<<< HEAD
     currentAssociate: {
         _id: 0,
         batch_id: "",
@@ -41,14 +42,57 @@ let initialState = {
     currentCategory: '',
     notes: '',
     currentSwots: []
+=======
+  currentAssociate: {},
+  categories: [],
+  displayCategories: [],
+  startDate: new Date(new Date().setDate(new Date().getDate() - 14)),
+  endDate: new Date(),
+  editable: true,
+  moveType: "create",
+  batchTopics: [],
+  SWOT: {
+    date_created: null,
+    author: "",
+    Strengths: [],
+    Weaknesses: [],
+    Opportunities: [],
+    Threats: [],
+    Notes: "",
+  },
+  dropDepth: 0,
+  dropZone: "",
+  StrengthsModal: false,
+  WeaknessesModal: false,
+  OpportunitiesModal: false,
+  ThreatsModal: false,
+  swotModal: false,
+  swotCharts: false,
+  currentNote: "",
+  currentCategory: "",
+  notes: "",
+  displaySwots: []
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
 };
 
 const swotReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "updateDisplaySwots":
+      return Object.assign({}, state , {displaySwots: action.swots});
     case "updateAssociate":
+<<<<<<< HEAD
       return Object.assign({}, state, { currentAssociate: action.associate });
     case "updateProDate":
         return Object.assign({}, state, { proDate: action.proDate })
+=======
+      return Object.assign({}, state, {
+        currentAssociate: Object.assign({}, action.associate),
+      });
+    case "setStartDate":
+      return Object.assign({}, state, { startDate: action.date });
+    case "setEndDate":
+      return Object.assign({}, state, { endDate: action.date });
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
     case "updateStartDate":
         return action.startDate > state.endDate
             ? Object.assign({}, state, {
@@ -113,7 +157,13 @@ const swotReducer = (state = initialState, action) => {
     case "toggleSwotModal":
         return Object.assign({}, state, { swotModal: action.toggle });
     case "toggleSwotCharts":
+<<<<<<< HEAD
         return Object.assign({}, state, { swotCharts: action.toggle });
+=======
+      return Object.assign({}, state, { swotCharts: action.toggle });
+    case "updateBatchTopics":
+      return Object.assign({}, state, { batchTopics: action.topics });
+>>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
     default:
         return state;
     }

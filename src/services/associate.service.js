@@ -12,17 +12,19 @@ class AssociateService {
             withCredentials: true
         });
     }
-    getAssociatesInformation() {
+  
+    getAssociatesInformation(userID) {
         return axios({
             method: 'GET',
-            url: `${this.URI}`,
+            url: `${this.URI}/${userID}`,
             withCredentials: true
         });
     }
-    getSpiderInformation(userid) {
+  
+    getEvaluations(userID) {
         return axios({
             method: 'GET',
-            url: `${this.URI}/${userid}`,
+            url: `${this.URI}/${userID}/evaluations`,
             withCredentials: true
         });
     }

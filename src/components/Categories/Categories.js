@@ -20,16 +20,10 @@ const Categories = (props) => {
   useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
-<<<<<<< HEAD
-      const otherId = resp.length + 1;
-      const lst = [...resp.data, {categoryId: otherId, skillCategory: 'Other', active:'true' }]
-      lst.sort();
-=======
       let lst = resp.data.map(cat => cat.skillCategory);
       lst.sort();
       let temp = batchTopics.sort().concat(lst);
       let orderedCategories = [...new Set(temp), "Other"];
->>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
       dispatch({
         type: "updateDisplayCategories",
         getDisplayCategories: orderedCategories,

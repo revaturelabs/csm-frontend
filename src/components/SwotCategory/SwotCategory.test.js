@@ -31,7 +31,6 @@ describe("Swot Category unit tests", () => {
         const mockDeleteHandler = jest.fn();
         const component = mount(<SwotCategory category={category} note={note} editHandler={mockEditHandler} deleteHandler={mockDeleteHandler}></SwotCategory>)
         component.unmount();
-
     })
 
 })

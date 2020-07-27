@@ -45,7 +45,7 @@ describe("Search unit test", () => {
         it("Dispatch search action to store."), () => {
             const actions = store.getActions();
             expect(actions).toEqual([{type: "SEARCH", query: "all" },
-            { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript" ]});
+            { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript"]}]);
         }
     });
 

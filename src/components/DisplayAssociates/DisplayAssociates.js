@@ -70,6 +70,7 @@ const DisplayAssociates = (props) => {
       currentDate.getMonth(),
       currentDate.getDate() - currentDate.getDay() - 7
     );
+    console.log(startRange, endRange)
     let res = [];
     for (const batch of batchesState.batches) {
       // YYYY-MM-DD
@@ -78,23 +79,26 @@ const DisplayAssociates = (props) => {
         res.push(batch);
       }
     }
-    allFilter(res, managerName);
+    if (managerName !== '') {
+      allFilter(res, managerName);
+    } else {
+      dispatch({ type: "updateDisplayBatches", batches: res });
+      return
+    }
   };
 
   const handleFilter = (event) => {
     const filter = event.target.id;
     dispatch({ type: "updateFilter", filter: filter });
     const managerName = JSON.parse(sessionStorage.loggedUser).username;
-    const otherName = managerName === "Emily" ? "Julie" : "Emily";
+    // const otherName = managerName === "Emily" ? "Julie" : "Emily";
     switch (filter) {
       case "myNew":
         return newFilter(managerName);
       case "myAll":
         return allFilter(batchesState.batches, managerName);
-      case "otherNew":
-        return newFilter(otherName);
-      case "otherAll":
-        return allFilter(batchesState.batches, otherName);
+      case "allNew":
+        return newFilter('')
       case "all":
         return allFilter(batchesState.batches);
       default:
@@ -136,19 +140,11 @@ const DisplayAssociates = (props) => {
           All My Associates
         </Menu.Item>
         <Menu.Item
-          id="otherNew"
-          active={batchesState.activeFilter === "otherNew"}
+          id="allNew"
+          active={batchesState.activeFilter === "allNew"}
           onClick={(e) => handleFilter(e)}
         >
-          {manager.username === "Emily" ? "Julie" : "Emily"}'s Newly Promoted
-          Associates
-        </Menu.Item>
-        <Menu.Item
-          id="otherAll"
-          active={batchesState.activeFilter === "otherAll"}
-          onClick={(e) => handleFilter(e)}
-        >
-          All {manager.username === "Emily" ? "Julie" : "Emily"}'s Associates
+          All Newly Promoted Associates
         </Menu.Item>
         <Menu.Item
           id="all"
@@ -191,7 +187,7 @@ const DisplayAssociates = (props) => {
                   <span className="info right">
                     {batch.associates.length} Associates
                   </span>
-                  {batchesState.activeFilter === "all" ? (
+                  {batchesState.activeFilter === "all" || batchesState.activeFilter === "allNew"? (
                     <span className="info">
                       Staging Manager: {batch.manager}
                     </span>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Accordion, Icon, Placeholder } from 'semantic-ui-react';
 
 const QC = (props) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex, setActiveIndex] = React.useState(-1);
 
   const handleClick = (e, titleProps) => {
     /* handles accordion functionality */
@@ -39,7 +39,7 @@ const QC = (props) => {
     ]
   };
   const options = {
-    spanGaps: false, 
+    spanGaps: false,
     scales: {
       yAxes: [{
         // display: props.showYLabels,
@@ -54,9 +54,9 @@ const QC = (props) => {
     },
   };
 
-  /* 
-  The loaded checks if the call to the backend made in Evaluations.js 
-  has returned data. 
+  /*
+  The loaded checks if the call to the backend made in Evaluations.js
+  has returned data.
   */
   const loaded = props.qcNotes && props.qcNotes.length > 0;
 

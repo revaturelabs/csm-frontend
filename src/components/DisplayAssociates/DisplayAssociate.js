@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Accordion, Icon } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import "./DisplayAssociates.scss";
@@ -6,7 +6,7 @@ import Evaluations from "../Evaluations/Evaluations";
 
 const DisplayAssociate = (props) => {
   const dispatch = useDispatch();
-  const [assocActiveIndex, setAssocActiveIndex] = useState(-1);
+  const [assocActiveIndex, setAssocActiveIndex] = React.useState(-1);
 
   const handleClick = (e, titleProps) => {
     dispatch({ type: "resetEvalDate" });

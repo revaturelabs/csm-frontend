@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Grid, Container, Header } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
@@ -20,7 +20,7 @@ const SwotPage = (props) => {
   const edit = useSelector((state) => state.swotReducer.editable);
   const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const manager = useSelector((state) => state.managerReducer.manager);
-  useEffect(() => {
+  React.useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
       let lst = resp.data.map((cat) => cat.skillCategory);

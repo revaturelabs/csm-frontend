@@ -8,8 +8,7 @@ class ManagerService {
   login(id) {
     // login to validate manager id
     return axios({
-      // method: 'POST', //this is the official
-      method: "GET", //this is for testing
+      method: "POST", 
       url: `${this.URI}/${id}`,
       withCredentials: true,
     });

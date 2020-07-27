@@ -114,7 +114,7 @@ const DisplayAssociates = (props) => {
 
   return (
     <Container fluid>
-      <Segment>
+      <Segment className='top-bar'>
         <header>List of Associates</header>
         <Dropdown text={manager.username} icon={'user circle'} labeled button className="user-actions icon">
           <Dropdown.Menu>

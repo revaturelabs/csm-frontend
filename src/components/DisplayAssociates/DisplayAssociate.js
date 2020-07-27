@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import AssociateService from '../../services/associate.service'
 import './DisplayAssociates.scss';
+import Evaluations from '../Evaluations/Evaluations';
 
 const DisplayAssociate = (props) => {
   const history = useHistory();
@@ -29,8 +30,8 @@ const DisplayAssociate = (props) => {
   return (
     <Accordion styled className='associate-accordion'>
       <Accordion.Title
-        active={assocActiveIndex === 0}
-        index={0}
+        active={assocActiveIndex === props.ind}
+        index={props.ind}
         onClick={handleClick}
         className='title'>
         <Icon name='dropdown' />
@@ -39,9 +40,15 @@ const DisplayAssociate = (props) => {
         <span className='batch'>{props.batchName}</span>
         <span className='pro_date'>Promoted: {props.batchProDate}</span>
       </Accordion.Title>
-      <Accordion.Content active={assocActiveIndex === 0}>
-        {/* placeholder for the evaluation charts */}
+        
+      <Accordion.Content active={assocActiveIndex === props.ind}>
+        {assocActiveIndex === props.ind ?
+          
+          <Evaluations associate={props.associate}/>
+          
+        : null }
         <span><Button onClick={viewSwots}>View SWOTs</Button></span>
+        {/* <Evaluations associate={props.associate}/> */}
       </Accordion.Content>
     </Accordion>
   )

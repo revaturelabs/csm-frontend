@@ -19,10 +19,10 @@ class AssociateService {
             withCredentials: true
         });
     }
-    getSpiderInformation(userid) {
+    getEvaluations(userid) {
         return axios({
             method: 'GET',
-            url: `${this.URI}/${userid}`,
+            url: `${this.URI}/${userid}/evaluations`,
             withCredentials: true
         });
     }

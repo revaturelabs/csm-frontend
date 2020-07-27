@@ -1,7 +1,6 @@
 import React from 'react';
 import { Radar } from 'react-chartjs-2';
 import { Placeholder } from "semantic-ui-react";
-import './SpiderChart.css'
 
 const SpiderChart = (props) => {
 

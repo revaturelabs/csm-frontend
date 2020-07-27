@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwotNotes unit test should render component with props 1`] = `
+<Fragment>
+  <Form
+    as="form"
+  >
+    <Header
+      as="h3"
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Notes
+    </Header>
+    <TextArea
+      as="textarea"
+      onChange={[Function]}
+      placeholder="Notes..."
+      rows={3}
+    />
+  </Form>
+</Fragment>
+`;
+
+exports[`SwotNotes unit test should render component without props 1`] = `
+<form
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <h3
+    className="ui header"
+    style={
+      Object {
+        "padding": "10px",
+      }
+    }
+  >
+    Notes
+  </h3>
+  <textarea
+    onChange={[Function]}
+    onInput={[Function]}
+    placeholder="Notes..."
+    rows={3}
+  />
+</form>
+`;

@@ -42,7 +42,7 @@ describe("Search unit test", () => {
     });
 
     describe("on mount", () => {
-        it("Dispatch search action to store."), () => {
+        it("Dispatch search action to store.", () => {
             const actions = store.getActions();
             expect(actions).toEqual([{type: "SEARCH", query: "all" },
             { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript"]}]);

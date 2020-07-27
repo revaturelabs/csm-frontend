@@ -42,6 +42,7 @@ describe("Search unit test", () => {
     });
 
     describe("on mount", () => {
+
         it("Dispatch search action to store.", () => {
             const actions = store.getActions();
             expect(actions).toEqual([{type: "SEARCH", query: "all" },
@@ -62,33 +63,32 @@ describe("Search unit test", () => {
     		expect(component).toMatchSnapshot();
       	});
 
-  	it('Rendering component with children.', () => {
-		const { useSelector } = require("react-redux");
-		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"],
-				},
-			});
-		});
-		const component = render(<Categories/>);
-		expect(component).toMatchSnapshot();
-  	});
+      	it('Rendering component with children.', () => {
+    		const { useSelector } = require("react-redux");
+    		useSelector.mockImplementation((callback) => {
+    			return callback({
+    				swotReducer: {
+    					categories: [],
+    					displayCategories: ["AWS", "Python", "JavaScript"],
+    				},
+    			});
+    		});
+    		const component = render(<Categories/>);
+    		expect(component).toMatchSnapshot();
+      	});
 
-  	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-        const { useSelector, useDispatch } = require("react-redux");
-        spyOn(React, 'useEffect').mockImplementation(f => f());
-		useSelector.mockImplementation((callback) => {
-            dispatch({
-                type: "updateDisplayCategories",
-                getDisplayCategories: categories,
-            })
-        }, [dispatch]);
-		const component = mount(<Categories/>);
-		expect(component).toMatchSnapshot();
-		component.unmount();
-  	});
-
-
+      	it('Mounting, testing list item mapping, and dismounting the component.', () => {
+            const { useSelector, useDispatch } = require("react-redux");
+            spyOn(React, 'useEffect').mockImplementation(f => f());
+    		useSelector.mockImplementation((callback) => {
+                dispatch({
+                    type: "updateDisplayCategories",
+                    getDisplayCategories: categories,
+                })
+            }, [dispatch]);
+    		const component = mount(<Categories/>);
+    		expect(component).toMatchSnapshot();
+    		component.unmount();
+      	});
+    });
 });

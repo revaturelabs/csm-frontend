@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import SwotsGrid from "../SwotsGrid/SwotsGrid";
 import SwotsBar from "../SwotsBar/SwotsBar";
 
+
 const ViewSwots = (props) => {
   const currentAssociate = useSelector(state => state.swotReducer.currentAssociate)
 

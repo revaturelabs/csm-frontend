@@ -11,6 +11,16 @@
   }
 }
 
+.swot-wrapper button {
+  background-color: $revature-orange !important;
+  color: white !important;
+
+  &:active, &:hover { 
+    background-color: darken($color: $revature-orange, $amount: 5) !important; 
+  }
+  &.disabled:hover { cursor: not-allowed }
+}
+
 .chart.container canvas {
   height: 100%;
   width: 95%;

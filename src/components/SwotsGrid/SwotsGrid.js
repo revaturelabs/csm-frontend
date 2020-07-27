@@ -40,11 +40,7 @@ const SwotsGrid = (props) => {
   return (
     <Container>
       <Grid stackable columns={2}>
-<<<<<<< HEAD
-        {displaySwots && displaySwots.length !== 0 ? (
-=======
         {displaySwots.length > 0 ? (
->>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
           displaySwots
             .map((swot, i) => (
               <Grid.Column>
@@ -61,12 +57,8 @@ const SwotsGrid = (props) => {
                       ) : null
                     ) : (
                       <Button onClick={(e) => setCurrentSwot(e, swot)}>
-<<<<<<< HEAD
-                        {swot.author}: &nbsp;{new Date(swot.date_created).toLocaleDateString()}
-=======
                         {swot.author}: &nbsp;
                         {new Date(swot.date_created).toLocaleDateString()}
->>>>>>> 7ba30ffc46581d1e6d208365e45aca8e74bc14f4
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (

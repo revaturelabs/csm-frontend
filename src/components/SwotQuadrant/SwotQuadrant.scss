@@ -3,11 +3,12 @@
 .dragDropZone {
   padding: 2rem;
   text-align: center;
-  background: $revature-light-gray;
+  background: rgba($revature-light-gray, 0.3);
   border-radius: 0.3rem;
-  box-shadow: 5px 5px 10px $revature-dark-gray;
-  height: 40vh;
-  max-height: 40vh;
+  @include shadow(10px);
+  // box-shadow: 5px 5px 10px $revature-dark-gray;
+  height: 15rem;
+  max-height: 15rem;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: 3px;

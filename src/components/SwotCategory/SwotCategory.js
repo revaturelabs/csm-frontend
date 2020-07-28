@@ -52,11 +52,10 @@ const SwotCategory = (props) => {
     <Item
       draggable
       onDragStart={itemDrag}>
-      <Item.Content>
+      <Item.Content className="swot-category">
         <Item.Header>{props.category}</Item.Header>
         <Item.Description>
           <p>{props.note}</p>
-          <br></br>
           {
             edit ?
             <>

@@ -92,7 +92,7 @@ const DisplayAssociates = (props) => {
     const filter = event.target.id;
     dispatch({ type: "updateFilter", filter: filter });
     const managerName = JSON.parse(sessionStorage.loggedUser).username;
-    // const otherName = managerName === "Emily" ? "Julie" : "Emily";
+   
     switch (filter) {
       case "myNew":
         return newFilter(managerName);

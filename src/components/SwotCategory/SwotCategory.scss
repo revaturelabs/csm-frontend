@@ -16,12 +16,12 @@
     background-color:rgb(100, 150, 180);
 }
 
-div.description > button {
+div.swot-category div.description > button {
     transition: 0s ease .5s;
     &#edit, &#delete { display: none; }
 }
 
-div.description:hover > button {
+div.swot-category:hover div.description > button {
     transition: 0s ease .5s;
     &#edit, &#delete { display: inline-block; }
 }

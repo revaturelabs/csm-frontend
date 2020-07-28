@@ -14,7 +14,7 @@ import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock('react-redux');
 
-describe("Search unit test", () => {
+describe("SwotNoteModal test suite initialization.", () => {
     let wrapper;
     let useEffect;
     let useState;
@@ -71,23 +71,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<Categories store={store} />);
+        wrapper = shallow(<SwotNoteModal store={store} />);
     });
 
-    describe("on mount", () => {
+    describe("SwotNoteModal test suite tests.", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<Categories/>);
+    		const component = shallow(<SwotNoteModal/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<Categories/>);
+    		const component = render(<SwotNoteModal/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<Categories/>);
+    		const component = mount(<SwotNoteModal/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

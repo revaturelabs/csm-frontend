@@ -12,20 +12,83 @@ import SwotNotes from "./SwotNotes";
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock("react-redux");
 
-describe("SwotNotes unit test", () => {
-  it("should render component without props", () => {
-    const tree = renderer.create(<SwotNotes />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+describe("SwotNotes test suite.", () => {
+    let wrapper;
+    let useEffect;
+    let useState;
+    let store;
+    let dispatch;
 
-  it("should render component with props", () => {
-    const placeholder='Notes...';
-    const updateNotes = jest.fn();
-    const component = shallow(<SwotNotes onChange={updateNotes} placeholder={placeholder} />);
-    expect(component).toMatchSnapshot();
-  });
+    const mockUseState = () => {
+        useState.mockImplementationOnce();
+    };
 
-  it('should render the initial state', () => {
-    expect(swotReducer).toEqual(swotReducer)
-  });
+    const mockUseEffect = () => {
+        useEffect.mockImplementationOnce(f => f());
+    };
+
+    const mockUseDispatch = () => {
+        useDispatch.mockImplementationOnce();
+    };
+
+    beforeEach(() => {
+        /* mocking store */
+		store = configureStore([thunk])({
+			mockStore
+		});
+
+	    /* mocking useEffect */
+		useEffect = jest.spyOn(React, "useEffect");
+		mockUseEffect(); // 2 times
+		mockUseEffect(); //
+
+		/* mocking useState */
+		useState = jest.spyOn(React, "useState");
+        mockUseState();
+
+    	/* mocking useSelector on our mock store */
+		jest
+	   		.spyOn(ReactReduxHooks, "useSelector")
+            .mockImplementation(state => store.getState());
+
+		/* mocking useDispatch on our mock store  */
+		jest
+	 		.spyOn(ReactReduxHooks, "useDispatch")
+	 		.mockImplementation(() => store.dispatch);
+
+		/* mocking useLocation */
+		jest
+			.spyOn(ReactReduxHooks, "useLocation")
+            .mockImplementation((path) => useLocation({
+                pathname: path
+            }));
+
+        /* mocking useHistory */
+        jest
+            .spyOn(ReactReduxHooks, "useHistory")
+            .mockImplementation(() => useHistory());
+
+        /* shallow rendering */
+        wrapper = shallow(<SwotNotes store={store} />);
+    });
+
+    describe("SwotNotes test suite.", () => {
+
+      	it('Rendering component without props.', () => {
+    		const component = shallow(<SwotNotes/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Rendering component with children.', () => {
+    		const component = render(<SwotNotes/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Mounting, testing list item mapping, and dismounting the component.', () => {
+    		const component = mount(<SwotNotes/>);
+    		expect(component).toMatchSnapshot();
+    		component.unmount();
+      	});
+
+    });
 });

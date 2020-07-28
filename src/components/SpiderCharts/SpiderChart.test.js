@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import mockStore from "../TestHooks/mockStore.js";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import SpiderCharts from './SpiderCharts';
+import SpiderChart from './SpiderChart';
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -71,23 +71,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<SpiderCharts store={store} />);
+        wrapper = shallow(<SpiderChart store={store} />);
     });
 
     describe("on mount", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<SpiderCharts/>);
+    		const component = shallow(<SpiderChart/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<SpiderCharts/>);
+    		const component = render(<SpiderChart/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<SpiderCharts/>);
+    		const component = mount(<SpiderChart/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

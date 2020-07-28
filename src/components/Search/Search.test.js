@@ -5,6 +5,7 @@ import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch, useShallowEqualSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import mockStore from "../TestHooks/mockStore.js";
 import configureStore from 'redux-mock-store';
 import thunk from "redux-thunk";
 import reducer from '../../reducers';

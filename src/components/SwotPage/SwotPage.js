@@ -58,7 +58,6 @@ const SwotPage = (props) => {
   const addSWOT = async () => {
     dispatch({ type: "updateAuthor", author: manager.username });
     const resp = await swotService.sendSWOT(associate.email, SWOT);
-    console.log(resp);
     if (resp.status === 201) {
       dispatch({
         type: "updateAssociate",

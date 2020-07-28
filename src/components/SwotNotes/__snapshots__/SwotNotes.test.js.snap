@@ -1,6 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SwotNotes unit test should render component with props 1`] = `
+exports[`SwotNotes test suite. SwotNotes test suite. Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<SwotNotes>
+  <Form
+    as="form"
+  >
+    <form
+      className="ui form"
+      onSubmit={[Function]}
+    >
+      <Header
+        as="h3"
+        style={
+          Object {
+            "padding": "10px",
+          }
+        }
+      >
+        <h3
+          className="ui header"
+          style={
+            Object {
+              "padding": "10px",
+            }
+          }
+        >
+          Notes
+        </h3>
+      </Header>
+      <TextArea
+        as="textarea"
+        onChange={[Function]}
+        placeholder="Notes..."
+        rows={3}
+      >
+        <Ref
+          innerRef={
+            Object {
+              "current": <textarea
+                placeholder="Notes..."
+                rows="3"
+              />,
+            }
+          }
+        >
+          <RefFindNode
+            innerRef={
+              Object {
+                "current": <textarea
+                  placeholder="Notes..."
+                  rows="3"
+                />,
+              }
+            }
+          >
+            <textarea
+              onChange={[Function]}
+              onInput={[Function]}
+              placeholder="Notes..."
+              rows={3}
+            />
+          </RefFindNode>
+        </Ref>
+      </TextArea>
+    </form>
+  </Form>
+</SwotNotes>
+`;
+
+exports[`SwotNotes test suite. SwotNotes test suite. Rendering component with children. 1`] = `
+<form
+  class="ui form"
+>
+  <h3
+    class="ui header"
+    style="padding:10px"
+  >
+    Notes
+  </h3>
+  <textarea
+    placeholder="Notes..."
+    rows="3"
+  />
+</form>
+`;
+
+exports[`SwotNotes test suite. SwotNotes test suite. Rendering component without props. 1`] = `
 <Fragment>
   <Form
     as="form"
@@ -23,28 +108,4 @@ exports[`SwotNotes unit test should render component with props 1`] = `
     />
   </Form>
 </Fragment>
-`;
-
-exports[`SwotNotes unit test should render component without props 1`] = `
-<form
-  className="ui form"
-  onSubmit={[Function]}
->
-  <h3
-    className="ui header"
-    style={
-      Object {
-        "padding": "10px",
-      }
-    }
-  >
-    Notes
-  </h3>
-  <textarea
-    onChange={[Function]}
-    onInput={[Function]}
-    placeholder="Notes..."
-    rows={3}
-  />
-</form>
 `;

@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<Login>
+  <Grid
+    id="grid"
+  >
+    <div
+      className="ui grid"
+      id="grid"
+    >
+      <GridColumn
+        id="gridcolumn"
+      >
+        <div
+          className="column"
+          id="gridcolumn"
+        >
+          <Image
+            as="img"
+            src="logo.png"
+            ui={true}
+            verticalAlign="middle"
+          >
+            <img
+              className="ui middle aligned image"
+              src="logo.png"
+            />
+          </Image>
+          <Header
+            id="title"
+          >
+            <div
+              className="ui header"
+              id="title"
+            >
+              Log-in to your account
+            </div>
+          </Header>
+          <Form
+            as="form"
+            id="form"
+          >
+            <form
+              className="ui form"
+              id="form"
+              onSubmit={[Function]}
+            >
+              <Segment>
+                <div
+                  className="ui segment"
+                >
+                  <FormInput
+                    as={[Function]}
+                    control={[Function]}
+                    fluid={true}
+                    icon="user"
+                    iconPosition="left"
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    placeholder="E-mail address"
+                  >
+                    <FormField
+                      control={[Function]}
+                      fluid={true}
+                      icon="user"
+                      iconPosition="left"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      placeholder="E-mail address"
+                    >
+                      <div
+                        className="field"
+                      >
+                        <Input
+                          aria-describedby={null}
+                          fluid={true}
+                          icon="user"
+                          iconPosition="left"
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          placeholder="E-mail address"
+                          type="text"
+                        >
+                          <div
+                            className="ui fluid left icon input"
+                          >
+                            <input
+                              aria-describedby={null}
+                              onChange={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="E-mail address"
+                              type="text"
+                            />
+                            <Icon
+                              as="i"
+                              name="user"
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="user icon"
+                                onClick={[Function]}
+                              />
+                            </Icon>
+                          </div>
+                        </Input>
+                      </div>
+                    </FormField>
+                  </FormInput>
+                  <Button
+                    as="button"
+                    fluid={true}
+                    id="btn"
+                    onClick={[Function]}
+                  >
+                    <Ref
+                      innerRef={
+                        Object {
+                          "current": <button
+                            class="ui fluid button"
+                            id="btn"
+                          >
+                            Login
+                          </button>,
+                        }
+                      }
+                    >
+                      <RefFindNode
+                        innerRef={
+                          Object {
+                            "current": <button
+                              class="ui fluid button"
+                              id="btn"
+                            >
+                              Login
+                            </button>,
+                          }
+                        }
+                      >
+                        <button
+                          className="ui fluid button"
+                          id="btn"
+                          onClick={[Function]}
+                        >
+                          Login
+                        </button>
+                      </RefFindNode>
+                    </Ref>
+                  </Button>
+                </div>
+              </Segment>
+            </form>
+          </Form>
+        </div>
+      </GridColumn>
+    </div>
+  </Grid>
+</Login>
+`;
+
+exports[`Search unit test on mount Rendering component with children. 1`] = `
+<div
+  class="ui grid"
+  id="grid"
+>
+  <div
+    class="column"
+    id="gridcolumn"
+  >
+    <img
+      class="ui middle aligned image"
+      src="logo.png"
+    />
+    <div
+      class="ui header"
+      id="title"
+    >
+      Log-in to your account
+    </div>
+    <form
+      class="ui form"
+      id="form"
+    >
+      <div
+        class="ui segment"
+      >
+        <div
+          class="field"
+        >
+          <div
+            class="ui fluid left icon input"
+          >
+            <input
+              placeholder="E-mail address"
+              type="text"
+            />
+            <i
+              aria-hidden="true"
+              class="user icon"
+            />
+          </div>
+        </div>
+        <button
+          class="ui fluid button"
+          id="btn"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Grid
+  id="grid"
+>
+  <GridColumn
+    id="gridcolumn"
+  >
+    <Image
+      as="img"
+      src="logo.png"
+      ui={true}
+      verticalAlign="middle"
+    />
+    <Header
+      id="title"
+    >
+      Log-in to your account
+    </Header>
+    <Form
+      as="form"
+      id="form"
+    >
+      <Segment>
+        <FormInput
+          as={[Function]}
+          control={[Function]}
+          fluid={true}
+          icon="user"
+          iconPosition="left"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="E-mail address"
+        />
+        <Button
+          as="button"
+          fluid={true}
+          id="btn"
+          onClick={[Function]}
+        >
+          Login
+        </Button>
+      </Segment>
+    </Form>
+  </GridColumn>
+</Grid>
+`;

@@ -5,11 +5,11 @@ import Enzyme, { shallow, mount, render, fireEvent } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 import { useSelector, useDispatch, useShallowEqualSelector } from "react-redux";
 import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import swotReducer from "../../reducers/swotReducer";
 import renderer from "react-test-renderer";
 import SwotNotes from "./SwotNotes";
 
-// It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock("react-redux");
 
 describe("SwotNotes test suite.", () => {

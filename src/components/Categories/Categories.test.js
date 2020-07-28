@@ -91,5 +91,7 @@ describe("Search unit test", () => {
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});
+
     });
+
 });

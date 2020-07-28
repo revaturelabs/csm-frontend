@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch, useShallowEqualSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
 import Search from './Search';
@@ -12,6 +13,7 @@ import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock('react-redux');
+jest.mock('react-router-dom');
 
 describe("Search unit test", () => {
 
@@ -78,8 +80,5 @@ describe("Search unit test", () => {
         // expect(findPattern.mock.instances.length).toBe(1);
         expect(mockedDispatch).toBeCalledWith({type: "updateDisplayCategories", getDisplayCategories: ['AWS', 'JavaScript']})
     });
-    //
-    // it('Tests categories service.'), () => {
-    //
-    // }
+
 });

@@ -16,11 +16,19 @@ configure({ adapter: new Adapter() });
 describe("Evaluations initialization", () => {
 	let wrapper;
 	let useEffect;
+	let useState;
 	let store;
 
 	const mockUseEffect = () => {
 		useEffect.mockImplementationOnce(f => f());
 	};
+
+	const mockLocation = {
+		pathname: '/welcome',
+		hash: '',
+		search: '',
+		state: ''
+	}
 
 	beforeEach(() => {
 		/* mocking store */
@@ -32,15 +40,18 @@ describe("Evaluations initialization", () => {
 		mockUseEffect(); // 2 times
 		mockUseEffect(); //
 
-    	/* mocking useSelector on our mock store */
-		jest
-	   		.spyOn(ReactReduxHooks, "useSelector")
-	   		.mockImplementation(state => store.getState());
+		/* mocking useState */
+		useState = jest.spyOn(React, "useState");
 
 		/* mocking useDispatch on our mock store  */
 		jest
 	 		.spyOn(ReactReduxHooks, "useDispatch")
 	 		.mockImplementation(() => store.dispatch);
+
+		/* mocking useLocation on our mock store */
+		jest
+			.spyOn(ReactReduxHooks, "useLocation")
+			.mockReturnValue(mockLocation);
 
 		/* shallow rendering */
 	 	wrapper = shallow(<Evaluations store={store} />);

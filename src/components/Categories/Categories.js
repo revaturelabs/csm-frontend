@@ -36,7 +36,7 @@ const Categories = (props) => {
   return (
     <>
       <Menu id="categories" vertical fluid>
-        <Menu.Item>
+        <Menu.Item className="swot-category-search">
           <Search />
         </Menu.Item>
         {displayCategories.map((category, i) => (

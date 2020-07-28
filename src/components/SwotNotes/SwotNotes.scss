@@ -1,0 +1,11 @@
+@import '../../styles/main.scss';
+
+textarea.swot-overall-notes {
+  height: 5rem !important;
+  transition: height .2 ease-in-out !important;
+
+  &:focus, &:active {
+    height: 15rem !important;
+    transition: height .2 ease-in-out !important;
+  }
+}

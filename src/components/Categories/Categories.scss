@@ -1,5 +1,10 @@
 @import "../../styles/main";
 
+.item.swot-category-search {
+  background-color: $revature-blue !important;
+  border-radius: 0 !important;
+}
+
 .ui.menu#categories::-webkit-scrollbar {
   width: 10px;
 }

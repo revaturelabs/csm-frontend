@@ -15,3 +15,13 @@
 .ui.button#edit:hover {
     background-color:rgb(100, 150, 180);
 }
+
+div.description > button {
+    transition: 0s ease .5s;
+    &#edit, &#delete { display: none; }
+}
+
+div.description:hover > button {
+    transition: 0s ease .5s;
+    &#edit, &#delete { display: inline-block; }
+}

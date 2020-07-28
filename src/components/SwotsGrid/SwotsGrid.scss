@@ -8,12 +8,12 @@
 .ui.open-swot-btn {
     margin: 5px;
     background-color: rgba($revature-orange, 1.0);
-    color: white;
-}
+    color: white !important;
 
-.ui.open-swot-btn:hover {
-    background-color: rgba($revature-orange, 0.7);
-    color: white;
+    &:hover, &:active, &:focus {
+        opacity: 1 !important;
+        background-color: darken($color: $revature-orange, $amount: 5) !important;
+    }
 }
 
 .ui.card.swot-card {

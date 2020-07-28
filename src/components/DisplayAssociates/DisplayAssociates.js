@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Accordion, Icon, Menu, Loader, Button, Segment, Card, Dropdown } from "semantic-ui-react";
+import { Container, Accordion, Icon, Menu, Loader, Segment, Card, Dropdown } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import "./DisplayAssociates.scss";
 import DisplayAssociate from "./DisplayAssociate";
@@ -19,6 +19,8 @@ const DisplayAssociates = (props) => {
     if(!manager.username){
       dispatch({type: 'login', manager: JSON.parse(sessionStorage.getItem('loggedUser'))})
     }
+    dispatch({ type: "updateDisplayBatches", batches: [] });
+    dispatch({ type: "updateFilter", filter: "myAll" })
     const getBatch = async () => {
       let resp = await batchService.getBatches();
       let res = [];
@@ -70,7 +72,6 @@ const DisplayAssociates = (props) => {
       currentDate.getMonth(),
       currentDate.getDate() - currentDate.getDay() - 7
     );
-    console.log(startRange, endRange)
     let res = [];
     for (const batch of batchesState.batches) {
       // YYYY-MM-DD
@@ -121,7 +122,6 @@ const DisplayAssociates = (props) => {
             <Dropdown.Item className="logout" icon='log out' text='Logout' onClick={logout}/>
           </Dropdown.Menu>
         </Dropdown>
-        {/* <Button color="red">Logout</Button> */}
       </Segment>
     
       <Container>

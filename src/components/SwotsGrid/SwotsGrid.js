@@ -67,7 +67,7 @@ const SwotsGrid = (props) => {
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (
-                      <Card fluid>
+                      <Card fluid className="swot-card">
                         <Card.Content>
                           <Card.Description>
                             Trainer SWOT Not Provided

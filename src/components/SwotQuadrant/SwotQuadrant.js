@@ -1,5 +1,5 @@
 import React from "react";
-import "./SwotQuadrant.css";
+import "./SwotQuadrant.scss";
 import { useSelector, useDispatch } from "react-redux";
 import SwotQuadrantTable from "../SwotQuadrantTable/SwotQuadrantTable";
 import SwotNoteModal from "../SwotNoteModal/SwotNoteModal";
@@ -132,7 +132,7 @@ const SwotQuadrant = (props) => {
         onDragEnter={(event) => handleDragEnter(event)}
         onDragLeave={(event) => handleDragLeave(event)}
       >
-        <h2>{props.name}</h2>
+        <h3>{props.name}</h3>
         <SwotQuadrantTable
           name={props.name}
           editHandler={createModal}

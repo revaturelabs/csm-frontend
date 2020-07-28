@@ -3,6 +3,7 @@
 .ui.huge.secondary.view-swots-menu{
     background-color: rgba($revature-dark-gray,1.0);
     display: flex;
+    justify-content: space-evenly;
     flex-flow: row wrap;
 }
 
@@ -20,6 +21,11 @@
     background-color: rgba($revature-orange, 1.0);
     color: white;
 }
+
+.ui.button.new-swot-btn:hover{
+    background-color: rgba($revature-orange, 0.7);
+}
+
 
 .react-datepicker-wrapper .react-datepicker__input-container input {
     border-radius: .5rem;

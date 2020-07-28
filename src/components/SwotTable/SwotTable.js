@@ -1,45 +1,34 @@
 import React from "react";
-import './SwotTable.css';
-import {Table} from "semantic-ui-react";
-import SwotQuadrant from '../SwotQuadrant/SwotQuadrant';
-
+import "./SwotTable.scss";
+import { Grid } from "semantic-ui-react";
+import SwotQuadrant from "../SwotQuadrant/SwotQuadrant";
 
 /**
  * SwotTable is the parent and wrapper component for the SwotQuadrants.
- * It builds the layout of the quadrants, and also names them based on the sections 
+ * It builds the layout of the quadrants, and also names them based on the sections
  * of SWOT analysis
  * It expects no props, and uses no data from the store
  */
 const SwotTable = () => {
-    return (
-        <Table id='quadrant-table'
-        attached='bottom'
-        size='small'>
-              <Table.Body>
-                <Table.Row 
-                id='row1'>
-                  <Table.Cell
-                  className='cell'>
-                    <SwotQuadrant name='Strengths'></SwotQuadrant>
-                  </Table.Cell>
-                  <Table.Cell
-                  className='cell'>
-                    <SwotQuadrant name='Weaknesses'></SwotQuadrant>
-                  </Table.Cell>
-                </Table.Row>
-                <Table.Row
-                id='row2'>
-                  <Table.Cell
-                  className='cell'>
-                    <SwotQuadrant name='Opportunities'></SwotQuadrant>
-                  </Table.Cell>
-                  <Table.Cell
-                  className='cell'>
-                    <SwotQuadrant name='Threats'></SwotQuadrant>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-        </Table>
-    )
-}
+  return (
+    <Grid stackable columns={2} id="swot-table">
+      <Grid.Row>
+        <Grid.Column>
+          <SwotQuadrant name="Strengths"></SwotQuadrant>
+        </Grid.Column>
+        <Grid.Column>
+          <SwotQuadrant name="Weaknesses"></SwotQuadrant>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <SwotQuadrant name="Opportunities"></SwotQuadrant>
+        </Grid.Column>
+        <Grid.Column>
+          <SwotQuadrant name="Threats"></SwotQuadrant>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
+};
 export default SwotTable;

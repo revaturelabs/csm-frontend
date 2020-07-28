@@ -9,8 +9,9 @@ const SwotNotes = () => {
     <>
       <Form>
         <Header as='h3'
-        style={{padding: '10px'}}>Notes</Header>
+        style={{margin: '10px'}}>Notes</Header>
         <TextArea
+          rows="10"
           placeholder="Notes..."
           onChange={(e) =>
             dispatch({ type: "updateNotes", notes: e.target.value })

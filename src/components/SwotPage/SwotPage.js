@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Grid, Container, Header } from "semantic-ui-react";
+import { Button, Grid, Container, Header, Segment } from "semantic-ui-react";
 import Categories from "../Categories/Categories.js";
 import CategoryService from "../../services/categories.service.js";
 import { useHistory, Redirect } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SwotNotes from "../SwotNotes/SwotNotes";
 import SwotTable from "../SwotTable/SwotTable";
 import SwotCharts from "../SwotCharts/SwotCharts";
-import "./SwotPage.css";
+import "./SwotPage.scss";
 
 const SwotPage = (props) => {
   const swotService = new SwotService();
@@ -73,15 +73,17 @@ const SwotPage = (props) => {
     <>
       {SWOT.date_created ? (
         <Container id="swotContainer">
-          <Header as="h1" id="associateNameHeader" fluid>
-            SWOT Analysis for {associate.name}
-          </Header>
+          <Segment className="swot-header">
+            <Header as="h1" id="associateNameHeader" fluid>
+              SWOT Analysis for <span>{associate.name}</span>
+            </Header>
+          </Segment>
           <Grid>
             <Grid.Column width={3}>
               <Categories />
             </Grid.Column>
-            <Grid.Column width={13}>
-              <Grid.Row style={{ overflowY: "scroll", overflowX: "hidden" }}>
+            <Grid.Column width={13} id="swot-table-container">
+              <Grid.Row>
                 <SwotTable />
               </Grid.Row>
               <Grid.Row centered>
@@ -102,7 +104,7 @@ const SwotPage = (props) => {
               <Grid.Row>
                 {edit ? (
                   <>
-                    <Button color="instagram" onClick={addSWOT}>
+                    <Button className="add bottom" onClick={addSWOT}>
                       Add SWOT Analysis to Associate
                     </Button>
                     <Button color="red" onClick={closeSWOT}>
@@ -110,7 +112,7 @@ const SwotPage = (props) => {
                     </Button>
                   </>
                 ) : (
-                  <Button color="red" onClick={closeSWOT}>
+                  <Button className="bottom" color="red" onClick={closeSWOT}>
                     Back
                   </Button>
                 )}
@@ -118,7 +120,7 @@ const SwotPage = (props) => {
             </Grid.Column>
           </Grid>
         </Container>
-      ) : (
+       ) : (
         <Redirect to={{ pathname: "/promotedlastweek" }} />
       )}
     </>

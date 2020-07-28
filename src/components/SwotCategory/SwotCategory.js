@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Item } from "semantic-ui-react";
-import "./SwotCategory.css";
+import "./SwotCategory.scss";
 
 /**
  *  Representation for a single category and it's associated notes in the SWOT Analysis Widget
@@ -54,14 +54,13 @@ const SwotCategory = (props) => {
       onDragStart={itemDrag}>
       <Item.Content>
         <Item.Header>{props.category}</Item.Header>
-        <Item.Meta>Notes</Item.Meta>
         <Item.Description>
           <p>{props.note}</p>
           <br></br>
           {
             edit ?
             <>
-            <Button color="blue" id={"edit"} onClick={handlerWrapper}>
+            <Button id={"edit"} onClick={handlerWrapper}>
               Edit
             </Button>
             <Button color="red" id={"delete"} onClick={handlerWrapper}>

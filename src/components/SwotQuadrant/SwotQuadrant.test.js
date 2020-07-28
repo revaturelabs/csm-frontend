@@ -71,7 +71,7 @@ describe("SwotQuadrant test suite initialization.", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<SwotQuadrantTable store={store} />);
+        wrapper = shallow(<SwotQuadrant store={store} />);
     });
 
     describe("SwotQuadrant test cases.", () => {

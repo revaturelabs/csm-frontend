@@ -1,8 +1,9 @@
 // Component.test.js
 import React from "react";
 import ReactDOM from "react-dom";
-import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
+import Enzyme, { configure, shallow, mount, render, fireEvent } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import mockStore from "../TestHooks/mockStore.js";
 import configureStore from "redux-mock-store";
@@ -11,8 +12,10 @@ import SwotsGrid from './SwotsGrid';
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
-// It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
 jest.mock('react-redux');
+jest.mock('react-router-dom');
+
+configure({ adapter: new Adapter() });
 
 describe("Search unit test", () => {
     let wrapper;

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<SwotCategory>
+  <Item
+    draggable={true}
+    onDragStart={[Function]}
+  >
+    <div
+      className="item"
+      draggable={true}
+      onDragStart={[Function]}
+    >
+      <ItemContent>
+        <div
+          className="content"
+        >
+          <ItemHeader>
+            <div
+              className="header"
+            />
+          </ItemHeader>
+          <ItemDescription>
+            <div
+              className="description"
+            >
+              <p />
+              <br />
+            </div>
+          </ItemDescription>
+        </div>
+      </ItemContent>
+    </div>
+  </Item>
+</SwotCategory>
+`;
+
+exports[`Search unit test on mount Rendering component with children. 1`] = `
+<div
+  class="item"
+  draggable="true"
+>
+  <div
+    class="content"
+  >
+    <div
+      class="header"
+    />
+    <div
+      class="description"
+    >
+      <p />
+      <br />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Item
+  draggable={true}
+  onDragStart={[Function]}
+>
+  <ItemContent>
+    <ItemHeader />
+    <ItemDescription>
+      <p />
+      <br />
+    </ItemDescription>
+  </ItemContent>
+</Item>
+`;

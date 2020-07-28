@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, shallow, render, mount } from "enzyme";
+import Enzyme, { configure, shallow, mount, render, fireEvent } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Evaluations from "./Evaluations";
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
+
+jest.mock('react-redux');
+jest.mock('react-router-dom');
 
 configure({ adapter: new Adapter() });
 

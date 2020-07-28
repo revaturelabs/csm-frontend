@@ -65,23 +65,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<SwotCharts store={store} />);
+        wrapper = shallow(<SwotCategory store={store} />);
     });
 
     describe("on mount", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<SwotCharts/>);
+    		const component = shallow(<SwotCategory/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<SwotCharts/>);
+    		const component = render(<SwotCategory/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<SwotCharts/>);
+    		const component = mount(<SwotCategory/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

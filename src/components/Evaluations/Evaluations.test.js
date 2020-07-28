@@ -6,10 +6,9 @@ import thunk from "redux-thunk";
 import mockStore from "../TestHooks/mockStore.js";
 import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Evaluations from "./Evaluations";
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
-
-import Evaluations from "./Evaluations";
 
 configure({ adapter: new Adapter() });
 

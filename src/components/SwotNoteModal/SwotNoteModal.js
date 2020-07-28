@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
+import "./SwotNoteModal.scss";
 
 /**
  * The SwotNoteModal is the modal that allows a user to add a note to 
@@ -88,7 +89,7 @@ const SwotNoteModal = (props) => {
                         value={swotState.currentNote}
                         />
                     </Form>
-                    <Button color="blue" onClick={setCategory}>
+                    <Button className="add" onClick={setCategory}>
                         Add Note
                     </Button>
                     {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Accordion, Icon, Menu, Loader, Button, Segment, Card, Dropdown } from "semantic-ui-react";
+import { Container, Accordion, Icon, Menu, Loader, Segment, Card, Dropdown } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import "./DisplayAssociates.scss";
 import DisplayAssociate from "./DisplayAssociate";
@@ -19,6 +19,8 @@ const DisplayAssociates = (props) => {
     if(!manager.username){
       dispatch({type: 'login', manager: JSON.parse(sessionStorage.getItem('loggedUser'))})
     }
+    dispatch({ type: "updateDisplayBatches", batches: [] });
+    dispatch({ type: "updateFilter", filter: "myAll" })
     const getBatch = async () => {
       let resp = await batchService.getBatches();
       let res = [];
@@ -78,23 +80,26 @@ const DisplayAssociates = (props) => {
         res.push(batch);
       }
     }
-    allFilter(res, managerName);
+    if (managerName !== '') {
+      allFilter(res, managerName);
+    } else {
+      dispatch({ type: "updateDisplayBatches", batches: res });
+      return
+    }
   };
 
   const handleFilter = (event) => {
     const filter = event.target.id;
     dispatch({ type: "updateFilter", filter: filter });
     const managerName = JSON.parse(sessionStorage.loggedUser).username;
-    const otherName = managerName === "Emily" ? "Julie" : "Emily";
+   
     switch (filter) {
       case "myNew":
         return newFilter(managerName);
       case "myAll":
         return allFilter(batchesState.batches, managerName);
-      case "otherNew":
-        return newFilter(otherName);
-      case "otherAll":
-        return allFilter(batchesState.batches, otherName);
+      case "allNew":
+        return newFilter('')
       case "all":
         return allFilter(batchesState.batches);
       default:
@@ -109,117 +114,110 @@ const DisplayAssociates = (props) => {
   }
 
   return (
-    <Container>
-      <Segment>
+    <Container fluid>
+      <Segment className='top-bar'>
         <header>List of Associates</header>
-        <Dropdown text={manager.username} icon={'user circle'} labeled button className="icon">
+        <Dropdown text={manager.username} icon={'user circle'} labeled button className="user-actions icon">
           <Dropdown.Menu>
-            <Dropdown.Item icon='log out' text='Logout' onClick={logout}/>
+            <Dropdown.Item className="logout" icon='log out' text='Logout' onClick={logout}/>
           </Dropdown.Menu>
         </Dropdown>
-        {/* <Button color="red">Logout</Button> */}
       </Segment>
     
-      <Menu tabular>
-        <Menu.Item
-          id="myNew"
-          active={batchesState.activeFilter === "myNew"}
-          onClick={(e) => handleFilter(e)}
-        >
-          My Newly Promoted Associates
-        </Menu.Item>
-        <Menu.Item
-          id="myAll"
-          active={batchesState.activeFilter === "myAll"}
-          onClick={(e) => handleFilter(e)}
-        >
-          All My Associates
-        </Menu.Item>
-        <Menu.Item
-          id="otherNew"
-          active={batchesState.activeFilter === "otherNew"}
-          onClick={(e) => handleFilter(e)}
-        >
-          {manager.username === "Emily" ? "Julie" : "Emily"}'s Newly Promoted
-          Associates
-        </Menu.Item>
-        <Menu.Item
-          id="otherAll"
-          active={batchesState.activeFilter === "otherAll"}
-          onClick={(e) => handleFilter(e)}
-        >
-          All {manager.username === "Emily" ? "Julie" : "Emily"}'s Associates
-        </Menu.Item>
-        <Menu.Item
-          id="all"
-          active={batchesState.activeFilter === "all"}
-          onClick={(e) => handleFilter(e)}
-        >
-          All Associates
-        </Menu.Item>
-      </Menu>
-      {/* mapping each batch to its own accordion */}
-      {batchesState.displayBatches.length > 0
-        ? batchesState.displayBatches.map((batch, ind) => {
-            return (
-              <Accordion styled className="batch-accordion" key={batch.batchID}>
-                <Accordion.Title
-                  active={activeIndex === ind}
-                  index={ind}
-                  onClick={handleClick}
-                  className="title"
-                >
-                  <Icon name="dropdown" />
-                  <span className="info">{batch.batchName} &emsp; </span>
-                  <span className="trainer">
-                    {batch.trainer.length > 0
-                      ? batch.trainer.map((trainer, ind) => {
+      <Container>
+        <Menu tabular>
+          <Menu.Item
+            id="myNew"
+            active={batchesState.activeFilter === "myNew"}
+            onClick={(e) => handleFilter(e)}
+          >
+            My Newly Promoted Associates
+          </Menu.Item>
+          <Menu.Item
+            id="myAll"
+            active={batchesState.activeFilter === "myAll"}
+            onClick={(e) => handleFilter(e)}
+          >
+            All My Associates
+          </Menu.Item>
+          <Menu.Item
+            id="allNew"
+            active={batchesState.activeFilter === "allNew"}
+            onClick={(e) => handleFilter(e)}
+          >
+            All Newly Promoted Associates
+          </Menu.Item>
+          <Menu.Item
+            id="all"
+            active={batchesState.activeFilter === "all"}
+            onClick={(e) => handleFilter(e)}
+          >
+            All Associates
+          </Menu.Item>
+        </Menu>
+        {/* mapping each batch to its own accordion */}
+        {batchesState.displayBatches.length > 0
+          ? batchesState.displayBatches.map((batch, ind) => {
+              return (
+                <Accordion styled className="batch-accordion" key={batch.batchID}>
+                  <Accordion.Title
+                    active={activeIndex === ind}
+                    index={ind}
+                    onClick={handleClick}
+                    className="title"
+                  >
+                    <Icon name="dropdown" />
+                    <span className="info loud">{batch.batchName} &emsp; </span>
+                    <span className="trainer info">
+                      {batch.trainer.length > 0
+                        ? batch.trainer.map((trainer, ind) => {
+                            return (
+                              <span
+                                key={trainer.employee.email}
+                                className="info inline-join-list"
+                              >
+                                {trainer.employee.firstName}{" "}
+                                {trainer.employee.lastName}
+                              </span>
+                            );
+                          })
+                        : null}
+                    </span>
+                    <span className="info">{batch.promotionDate} </span>
+                    <span className="info">{batch.skill}</span>
+                    <span className="info right">
+                      {batch.associates.length} Associates
+                    </span>
+                    {batchesState.activeFilter === "all" || batchesState.activeFilter === "allNew"? (
+                      <span className="info">
+                        Staging Manager: {batch.manager}
+                      </span>
+                    ) : null}
+                  </Accordion.Title>
+                  <Accordion.Content active={activeIndex === ind}>
+                    {batch.associates.length > 0
+                      ? batch.associates.map((associate) => {
                           return (
-                            <span
-                              key={trainer.employee.email}
-                              className="info inline-join-list"
-                            >
-                              {trainer.employee.firstName}{" "}
-                              {trainer.employee.lastName}
-                            </span>
+                            <DisplayAssociate
+                              key={associate.userID}
+                              associate={associate}
+                              manager={batch.manager}
+                              batchName={batch.batchName}
+                              batchProDate={batch.promotionDate}
+                            />
                           );
                         })
                       : null}
-                  </span>
-                  <span className="info">{batch.promotionDate} </span>
-                  <span className="info">{batch.skill}</span>
-                  <span className="info right">
-                    {batch.associates.length} Associates
-                  </span>
-                  {batchesState.activeFilter === "all" ? (
-                    <span className="info">
-                      Staging Manager: {batch.manager}
-                    </span>
-                  ) : null}
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === ind}>
-                  {batch.associates.length > 0
-                    ? batch.associates.map((associate) => {
-                        return (
-                          <DisplayAssociate
-                            key={associate.userID}
-                            associate={associate}
-                            manager={batch.manager}
-                            batchName={batch.batchName}
-                            batchProDate={batch.promotionDate}
-                          />
-                        );
-                      })
-                    : null}
-                </Accordion.Content>
-              </Accordion>
-            );
-          })
-        : fetching ? <Loader content='Loading' active/> : (<Card>
-        <Card.Content>
-            No batches to show!
-        </Card.Content>
-      </Card>)}
+                  </Accordion.Content>
+                </Accordion>
+              );
+            })
+          : fetching ? <Loader content='Loading' active/> : (<Card>
+          <Card.Content>
+              No batches to show!
+          </Card.Content>
+        </Card>)}
+      </Container>
     </Container>
   );
 };

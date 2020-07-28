@@ -1,0 +1,27 @@
+@import "../../styles/main";
+
+.item {
+    background-color: white !important;
+    border-radius: 0.3rem !important;
+    text-align: left;
+    padding: .5rem !important;
+}
+
+.ui.button#edit {
+    color: white;
+    background-color: $revature-blue;
+}
+
+.ui.button#edit:hover {
+    background-color:rgb(100, 150, 180);
+}
+
+div.swot-category div.description > button {
+    transition: 0s ease .5s;
+    &#edit, &#delete { display: none; }
+}
+
+div.swot-category:hover div.description > button {
+    transition: 0s ease .5s;
+    &#edit, &#delete { display: inline-block; }
+}

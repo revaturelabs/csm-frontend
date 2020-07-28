@@ -26,7 +26,8 @@ const DisplayAssociate = (props) => {
         <Icon name="dropdown" />
         <span className="name loud">{props.associate.name}</span>
         <span className="id">{props.associate.userID}</span>
-        <span className="pro_date right">{props.batchName} &nbsp; | &nbsp; Promoted: {props.batchProDate}</span>
+        <span className="batchName right">{props.batchName}</span>
+        <span className="pro_date right">Promoted: {props.batchProDate}</span>
       </Accordion.Title>
       <Accordion.Content active={assocActiveIndex === props.ind}>
         {assocActiveIndex === props.ind ? (

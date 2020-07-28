@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import "./SwotsGrid.scss"
 
 const SwotsGrid = (props) => {
   const associate = useSelector((state) => state.swotReducer.currentAssociate);
@@ -44,25 +45,29 @@ const SwotsGrid = (props) => {
           displaySwots
             .map((swot, i) => (
               <Grid.Column>
-                <Segment>
+                <Segment className="swot-segment">
                   <Grid>
                     {i === 0 ? (
                       swot.author !== "trainer" ? (
                         <Button
                           onClick={(e) => setCurrentSwot(e, swot)}
                           id="trainer"
+                          className="open-swot-btn"
                         >
                           Trainer Swot
                         </Button>
                       ) : null
                     ) : (
-                      <Button onClick={(e) => setCurrentSwot(e, swot)}>
+                      <Button
+                        className="open-swot-btn"
+                        onClick={(e) => setCurrentSwot(e, swot)}
+                      >
                         {swot.author}: &nbsp;
                         {new Date(swot.date_created).toLocaleDateString()}
                       </Button>
                     )}
                     {i === 0 && swot.author === "trainer" ? (
-                      <Card fluid>
+                      <Card fluid className="swot-card">
                         <Card.Content>
                           <Card.Description>
                             Trainer SWOT Not Provided

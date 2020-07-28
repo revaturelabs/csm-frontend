@@ -1,0 +1,10 @@
+@import "../../styles/main";
+
+.ui.button.add {
+    margin-top: 5px;
+    color: white;
+    background-color: $revature-blue;
+}
+.ui.button.add:hover {
+    background-color:rgb(100, 150, 180);
+}

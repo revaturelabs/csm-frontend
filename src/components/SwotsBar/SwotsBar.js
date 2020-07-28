@@ -65,26 +65,27 @@ const SwotsBar = (props) => {
         history.push("/editSWOT");
     };
 
-    return (
-    <Menu size={"huge"} secondary>
-        <Menu.Item>
-            <Button icon onClick={handleBack}>
-                <Icon name={"arrow left"} />
-            </Button>
-        </Menu.Item>
-        <Menu.Item>{associate.name}</Menu.Item>
-        <Menu.Item>{associate.batch_id}</Menu.Item>
-        <Menu.Item>
-            <Button onClick={() => addSwot()}>+ SWOT</Button>
-        </Menu.Item>
-        <Menu.Item>
-            Start Date: &nbsp;
-            <DatePicker selected={startDate} onChange={handleStartDate}>
-            </DatePicker>
-            &nbsp; End Date: &nbsp;
-            <DatePicker selected={endDate} onChange={handleEndDate}>
-            </DatePicker>
-        </Menu.Item>
+  return (
+    <Menu className="view-swots-menu" size={"huge"} secondary>
+      <Menu.Item>
+        <Button className="back-btn" icon onClick={handleBack}>
+          <Icon name={"arrow left"} />
+        </Button>
+      </Menu.Item>
+      <Menu.Item>{associate.name}</Menu.Item>
+      <Menu.Item>{associate.batch_id}</Menu.Item>
+      <Menu.Item>
+        <Button className="new-swot-btn" onClick={() => addSwot()}>+ SWOT</Button>
+      </Menu.Item>
+      <Menu.Item>
+        Start Date: &nbsp;
+        <DatePicker
+          selected={startDate}
+          onChange={handleStartDate}
+        ></DatePicker>
+        &nbsp; End Date: &nbsp;
+        <DatePicker selected={endDate} onChange={handleEndDate}></DatePicker>
+      </Menu.Item>
     </Menu>
     );
 };

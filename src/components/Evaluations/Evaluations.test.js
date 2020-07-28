@@ -59,22 +59,21 @@ describe("Evaluations initialization", () => {
 
 	describe("Evaluations test suite.", () => {
 
-		it("Renders component without props.", () => {
-			const component = shallow(<Evaluations/>);
-			expect(component).toMatchSnapshot();
-		});
+		it('Rendering component without props.', () => {
+    		const component = shallow(<Evaluations/>);
+    		expect(component).toMatchSnapshot();
+      	});
 
-		it('Renders component with props that match the original component.', () => {
-			const props = store
-			const component = render(<Evaluations />);
-			expect(component).toMatchSnapshot();
-		});
+      	it('Rendering component with children.', () => {
+    		const component = render(<Evaluations/>);
+    		expect(component).toMatchSnapshot();
+      	});
 
-		it("Dispatches search action to store.", () => {
-			const actions = store.getActions();
-			expect(actions).toEqual([{ type: "SEARCH", query: "all" },
-			{ type: "SEARCH_SUCCESS", store }]);
-		});
+      	it('Mounting, testing list item mapping, and dismounting the component.', () => {
+    		const component = mount(<Evaluations/>);
+    		expect(component).toMatchSnapshot();
+    		component.unmount();
+      	});
 
 	});
 });

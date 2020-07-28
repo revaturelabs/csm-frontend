@@ -8,29 +8,84 @@ import configureStore from 'redux-mock-store';
 import reducer from '../../reducers';
 import SwotCategory from './SwotCategory';
 
-jest.mock('react-redux');
+describe("Search unit test", () => {
+    let wrapper;
+    let useEffect;
+    let useState;
+    let store;
+    let dispatch;
 
-describe("Swot Category unit tests", () => {
+    const mockUseState = () => {
+        useState.mockImplementationOnce();
+    };
 
-    it('Rendering component without props.', () => {
-        const component = shallow(<SwotCategory/>);
-        expect(component).toMatchSnapshot();
+    const mockUseEffect = () => {
+        useEffect.mockImplementationOnce(f => f());
+    };
+
+    const mockUseDispatch = () => {
+        useDispatch.mockImplementationOnce();
+    };
+
+    beforeEach(() => {
+        /* mocking store */
+		store = configureStore([thunk])({
+			mockStore
+		});
+
+	    /* mocking useEffect */
+		useEffect = jest.spyOn(React, "useEffect");
+		mockUseEffect(); // 2 times
+		mockUseEffect(); //
+
+		/* mocking useState */
+		useState = jest.spyOn(React, "useState");
+        mockUseState();
+
+    	/* mocking useSelector on our mock store */
+		jest
+	   		.spyOn(ReactReduxHooks, "useSelector")
+            .mockImplementation(state => store.getState());
+
+		/* mocking useDispatch on our mock store  */
+		jest
+	 		.spyOn(ReactReduxHooks, "useDispatch")
+	 		.mockImplementation(() => store.dispatch);
+
+		/* mocking useLocation */
+		jest
+			.spyOn(ReactReduxHooks, "useLocation")
+            .mockImplementation((path) => useLocation({
+                pathname: path
+            }));
+
+        /* mocking useHistory */
+        jest
+            .spyOn(ReactReduxHooks, "useHistory")
+            .mockImplementation(() => useHistory());
+
+        /* shallow rendering */
+        wrapper = shallow(<SwotCharts store={store} />);
     });
 
-    it('Rendering component with props for category and note.', () => {
-        const category="TEST VALUE";
-        const note='Test note for testing';
-        const component = shallow(<SwotCategory category={category} note={note} />);
-        expect(component).toMatchSnapshot();
+    describe("on mount", () => {
+
+      	it('Rendering component without props.', () => {
+    		const component = shallow(<SwotCharts/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Rendering component with children.', () => {
+    		const component = render(<SwotCharts/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Mounting, testing list item mapping, and dismounting the component.', () => {
+    		const component = mount(<SwotCharts/>);
+    		expect(component).toMatchSnapshot();
+    		component.unmount();
+      	});
+
     });
 
-    it('Handles calling the proper handler following a delete button press', () => {
-        const category="TEST VALUE";
-        const note='Test note for testing';
-        const mockEditHandler=jest.fn();
-        const mockDeleteHandler = jest.fn();
-        const component = mount(<SwotCategory category={category} note={note} editHandler={mockEditHandler} deleteHandler={mockDeleteHandler}></SwotCategory>)
-        component.unmount();
-    })
-
-})
+});

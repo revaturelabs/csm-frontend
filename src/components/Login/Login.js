@@ -22,13 +22,13 @@ const Login = (props) => {
   },[])
 
   const login = async () => {
-    let manager = await managerService.login(managerState.email);
-    if (manager.data) {
-      sessionStorage.setItem("loggedUser", JSON.stringify(manager.data));
-      dispatch({ type: "login", manager: manager.data });
+    let resp = await managerService.login(managerState.email);
+    if (resp.status === 200) {
+      sessionStorage.setItem("loggedUser", JSON.stringify(resp.data));
+      dispatch({ type: "login", manager: resp.data });
       history.push("/promotedlastweek");
     } else {
-      alert('Login failed, wrong usename');
+      alert('Login failed, wrong username');
     }
   }
 

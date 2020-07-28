@@ -1,0 +1,24 @@
+@import '../../styles/main';
+
+.ui.segment.swot-segment {
+    background-color: rgba($revature-dark-gray, 1.0);
+    border-radius: 0.5rem;
+}
+
+.ui.open-swot-btn {
+    margin: 5px;
+    background-color: rgba($revature-orange, 1.0);
+    color: white;
+}
+
+.ui.open-swot-btn:hover {
+    background-color: rgba($revature-orange, 0.7);
+    color: white;
+}
+
+.ui.card.swot-card {
+    background-color: rgba($revature-dark-gray, 1.0);
+    .description {
+        color: white;
+    }
+}

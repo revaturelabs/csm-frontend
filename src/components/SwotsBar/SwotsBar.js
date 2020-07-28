@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import { Menu, Button, Icon } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import "./SwotsBar.css";
+import "./SwotsBar.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 const SwotsBar = (props) => {
@@ -62,16 +62,16 @@ const SwotsBar = (props) => {
   };
 
   return (
-    <Menu size={"huge"} secondary>
+    <Menu className="view-swots-menu" size={"huge"} secondary>
       <Menu.Item>
-        <Button icon onClick={handleBack}>
+        <Button className="back-btn" icon onClick={handleBack}>
           <Icon name={"arrow left"} />
         </Button>
       </Menu.Item>
       <Menu.Item>{associate.name}</Menu.Item>
       <Menu.Item>{associate.batch_id}</Menu.Item>
       <Menu.Item>
-        <Button onClick={() => addSwot()}>+ SWOT</Button>
+        <Button className="new-swot-btn" onClick={() => addSwot()}>+ SWOT</Button>
       </Menu.Item>
       <Menu.Item>
         Start Date: &nbsp;

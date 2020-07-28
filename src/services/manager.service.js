@@ -7,11 +7,14 @@ class ManagerService {
 
   login(id) {
     // login to validate manager id
-    return axios({
-      method: "POST", 
+    let config = {
+      method: "POST",
       url: `${this.URI}/${id}`,
-      withCredentials: true,
-    });
+      validateStatus: function (status) {
+        return status >= 200 && status < 400
+      }
+    }
+    return axios(config);
   }
 }
 

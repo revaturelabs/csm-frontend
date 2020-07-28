@@ -128,7 +128,7 @@ const reducer = (state = initialState, action) => {
 	case 'setAssociateLabels':
 		return Object.assign({}, state, {associateLabels: action.associateLabels })
 	case 'setAssociateValues':
-		return Object.assign({}, state, { associateValues: action.associateValues )
+		return Object.assign({}, state, { associateValues: action.associateValues })
 	case 'login':
 		return Object.assign({}, state, { manager: action.manager })
     case 'logout':

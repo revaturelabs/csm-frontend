@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search unit test Rendering component with children. 1`] = `
+exports[`Search unit test on mount Rendering component with children. 1`] = `
 <div
-  class="ui vertical menu"
+  class="ui fluid vertical menu"
   style="height:75vh;overflow-y:scroll"
 >
   <div
@@ -74,9 +74,10 @@ exports[`Search unit test Rendering component with children. 1`] = `
 </div>
 `;
 
-exports[`Search unit test Rendering component without props. 1`] = `
+exports[`Search unit test on mount Rendering component without props. 1`] = `
 <Fragment>
   <Menu
+    fluid={true}
     style={
       Object {
         "height": "75vh",
@@ -98,7 +99,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
         }
       >
         <Card
-          key="AWS"
+          key="0"
           raised={true}
         >
           <ListItem
@@ -111,7 +112,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
           </ListItem>
         </Card>
         <Card
-          key="Python"
+          key="1"
           raised={true}
         >
           <ListItem
@@ -124,7 +125,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
           </ListItem>
         </Card>
         <Card
-          key="JavaScript"
+          key="2"
           raised={true}
         >
           <ListItem

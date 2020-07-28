@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import Enzyme, { shallow, mount, render, fireEvent } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import { useSelector, useDispatch } from 'react-redux';
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import Categories from './Categories';
 
 // It can receive two more parameters, the second one is to specify a factory instead of the jest's automocking feature
@@ -42,54 +44,53 @@ describe("Search unit test", () => {
     });
 
     describe("on mount", () => {
-        it("Dispatch search action to store."), () => {
+
+        it("Dispatch search action to store.", () => {
             const actions = store.getActions();
             expect(actions).toEqual([{type: "SEARCH", query: "all" },
-            { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript" ]});
-        }
+            { type: "SEARCH_SUCCESS", categories: ["AWS", "Python", "JavaScript"]}]);
+        });
+
+      	it('Rendering component without props.', () => {
+    		const { useSelector } = require("react-redux");
+    		useSelector.mockImplementation((callback) => {
+    			return callback({
+    				swotReducer: {
+    					categories: [],
+    					displayCategories: ["AWS", "Python", "JavaScript"],
+    				},
+    			});
+    		});
+    		const component = shallow(<Categories/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Rendering component with children.', () => {
+    		const { useSelector } = require("react-redux");
+    		useSelector.mockImplementation((callback) => {
+    			return callback({
+    				swotReducer: {
+    					categories: [],
+    					displayCategories: ["AWS", "Python", "JavaScript"],
+    				},
+    			});
+    		});
+    		const component = render(<Categories/>);
+    		expect(component).toMatchSnapshot();
+      	});
+
+      	it('Mounting, testing list item mapping, and dismounting the component.', () => {
+            const { useSelector, useDispatch } = require("react-redux");
+            spyOn(React, 'useEffect').mockImplementation(f => f());
+    		useSelector.mockImplementation((callback) => {
+                dispatch({
+                    type: "updateDisplayCategories",
+                    getDisplayCategories: categories,
+                })
+            }, [dispatch]);
+    		const component = mount(<Categories/>);
+    		expect(component).toMatchSnapshot();
+    		component.unmount();
+      	});
     });
-
-  	it('Rendering component without props.', () => {
-		const { useSelector } = require("react-redux");
-		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"],
-				},
-			});
-		});
-		const component = shallow(<Categories/>);
-		expect(component).toMatchSnapshot();
-  	});
-
-  	it('Rendering component with children.', () => {
-		const { useSelector } = require("react-redux");
-		useSelector.mockImplementation((callback) => {
-			return callback({
-				swotReducer: {
-					categories: [],
-					displayCategories: ["AWS", "Python", "JavaScript"],
-				},
-			});
-		});
-		const component = render(<Categories/>);
-		expect(component).toMatchSnapshot();
-  	});
-
-  	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-        const { useSelector, useDispatch } = require("react-redux");
-        spyOn(React, 'useEffect').mockImplementation(f => f());
-		useSelector.mockImplementation((callback) => {
-            dispatch({
-                type: "updateDisplayCategories",
-                getDisplayCategories: categories,
-            })
-        }, [dispatch]);
-		const component = mount(<Categories/>);
-		expect(component).toMatchSnapshot();
-		component.unmount();
-  	});
-
-
 });

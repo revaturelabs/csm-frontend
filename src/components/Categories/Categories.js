@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Menu, List, Card } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import Search from "../Search/Search.js";
@@ -17,7 +17,7 @@ const Categories = (props) => {
     event.dataTransfer.setData("text", "NONE~" + event.target.id);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
       let lst = resp.data.map(cat => cat.skillCategory);

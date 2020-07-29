@@ -18,7 +18,7 @@ const SwotsGrid = (props) => {
     } else {
       dispatch({ type: "updateEditable", editable: true });
     }
-    dispatch({ type: "updateSWOT", SWOT: swot });
+    dispatch({ type: "updateSWOT", SWOT: {...swot, date_created: new Date()} });
     history.push("/editSWOT");
   };
 

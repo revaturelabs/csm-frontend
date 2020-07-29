@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./Login.scss";
@@ -17,7 +17,7 @@ const Login = (props) => {
     return JSON.parse(sessionStorage.getItem("loggedUser")) ? true : false;
   };
 
-  React.useEffect( () => {
+  useEffect( () => {
     if (checkLogin()) { history.push('/promotedlastweek') }
   },[])
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Grid, Button } from "semantic-ui-react";
@@ -13,15 +13,15 @@ const Evaluations = (props) => {
   const dispatch = useDispatch();
   const associateService = new AssociateService();
 
-  const [spiderLabels, setSpiderLabels] = React.useState([]);
-  const [batchSpiderData, setBatchSpiderData] = React.useState([]);
-  const [associateSpiderData, setAssociateSpiderData] = React.useState([]);
+  const [spiderLabels, setSpiderLabels] = useState([]);
+  const [batchSpiderData, setBatchSpiderData] = useState([]);
+  const [associateSpiderData, setAssociateSpiderData] = useState([]);
 
-  const [qcSkills, setQCSkills] = React.useState([]);
-  const [qcData, setQCData] = React.useState([]);
-  const [qcNotes, setQCNotes] = React.useState([]);
+  const [qcSkills, setQCSkills] = useState([]);
+  const [qcData, setQCData] = useState([]);
+  const [qcNotes, setQCNotes] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getEvals = async () => {
       const resp = await associateService.getEvaluations(
         props.associate.userID

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Segment, Grid, Button, Card } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
@@ -28,7 +28,7 @@ const SwotsGrid = (props) => {
     return new Date(date);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     let swots = associate.swot;
     swots = swots.filter(
       (swot) =>

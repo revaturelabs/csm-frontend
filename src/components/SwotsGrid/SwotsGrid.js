@@ -83,7 +83,8 @@ const SwotsGrid = (props) => {
                                 <Card.Header>Strengths</Card.Header>
                                 {swot.Strengths.length !== 0 ? (
                                   <Card.Description>
-                                    {swot.Strengths[0].category}
+                                    {}
+                                    {swot.Strengths.reduce((acc,curr) => acc+=`, ${curr.category}`, "").substring(2)}
                                   </Card.Description>
                                 ) : null}
                               </Card.Content>
@@ -95,7 +96,7 @@ const SwotsGrid = (props) => {
                                 <Card.Header>Weaknesses</Card.Header>
                                 {swot.Weaknesses.length !== 0 ? (
                                   <Card.Description>
-                                    {swot.Weaknesses[0].category}
+                                    {swot.Weaknesses.reduce((acc,curr) => acc+=`, ${curr.category}`, "").substring(2)}
                                   </Card.Description>
                                 ) : null}
                               </Card.Content>
@@ -109,7 +110,7 @@ const SwotsGrid = (props) => {
                                 <Card.Header>Opportunities</Card.Header>
                                 {swot.Opportunities.length !== 0 ? (
                                   <Card.Description>
-                                    {swot.Opportunities[0].category}
+                                    {swot.Opportunities.reduce((acc,curr) => acc+=`, ${curr.category}`, "").substring(2)}
                                   </Card.Description>
                                 ) : null}
                               </Card.Content>
@@ -121,7 +122,7 @@ const SwotsGrid = (props) => {
                                 <Card.Header>Threats</Card.Header>
                                 {swot.Threats.length !== 0 ? (
                                   <Card.Description>
-                                    {swot.Threats[0].category}
+                                    {swot.Threats.reduce((acc,curr) => acc+=`, ${curr.category}`, "").substring(2)}
                                   </Card.Description>
                                 ) : null}
                               </Card.Content>

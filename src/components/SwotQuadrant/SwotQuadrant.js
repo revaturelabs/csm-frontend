@@ -65,7 +65,7 @@ const SwotQuadrant = (props) => {
     let type = "create";
     if (edit && section !== props.name) {
       if (section !== "NONE") {
-        deleteCategory(section);
+        deleteCategory(section, category);
         type = "move";
       }
       dispatch({ type: "updateMoveType", move: type });

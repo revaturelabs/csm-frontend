@@ -18,7 +18,7 @@ const Categories = (props) => {
     event.dataTransfer.setData("text", "NONE~" + event.target.id);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function getCat() {
       const resp = await cat.getCategories();
       let lst = resp.data.map((cat) => cat.skillCategory);
@@ -31,7 +31,7 @@ const Categories = (props) => {
       });
     }
     getCat();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

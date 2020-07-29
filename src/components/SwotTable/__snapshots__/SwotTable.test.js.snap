@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Table
+  as="table"
+  attached="bottom"
+  id="quadrant-table"
+  size="small"
+>
+  <TableBody
+    as="tbody"
+  >
+    <TableRow
+      as="tr"
+      cellAs="td"
+      id="row1"
+    >
+      <TableCell
+        as="td"
+        className="cell"
+      >
+        <SwotQuadrant
+          name="Strengths"
+        />
+      </TableCell>
+      <TableCell
+        as="td"
+        className="cell"
+      >
+        <SwotQuadrant
+          name="Weaknesses"
+        />
+      </TableCell>
+    </TableRow>
+    <TableRow
+      as="tr"
+      cellAs="td"
+      id="row2"
+    >
+      <TableCell
+        as="td"
+        className="cell"
+      >
+        <SwotQuadrant
+          name="Opportunities"
+        />
+      </TableCell>
+      <TableCell
+        as="td"
+        className="cell"
+      >
+        <SwotQuadrant
+          name="Threats"
+        />
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+`;

@@ -1,66 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Swot Category unit tests Rendering component with props for category and note. 1`] = `
-<Item>
-  <ItemContent>
-    <ItemHeader>
-      TEST VALUE
-    </ItemHeader>
-    <ItemMeta>
-      Notes
-    </ItemMeta>
-    <ItemDescription>
-      <p>
-        Test note for testing
-      </p>
-      <br />
-      <Button
-        as="button"
-        color="blue"
-        id="edit"
-        onClick={[Function]}
-      >
-        Edit
-      </Button>
-      <Button
-        as="button"
-        color="red"
-        id="delete"
-        onClick={[Function]}
-      >
-        Delete
-      </Button>
-    </ItemDescription>
-  </ItemContent>
-</Item>
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<SwotCategory>
+  <Item
+    draggable={true}
+    onDragStart={[Function]}
+  >
+    <div
+      className="item"
+      draggable={true}
+      onDragStart={[Function]}
+    >
+      <ItemContent>
+        <div
+          className="content"
+        >
+          <ItemHeader>
+            <div
+              className="header"
+            />
+          </ItemHeader>
+          <ItemDescription>
+            <div
+              className="description"
+            >
+              <p />
+              <br />
+            </div>
+          </ItemDescription>
+        </div>
+      </ItemContent>
+    </div>
+  </Item>
+</SwotCategory>
 `;
 
-exports[`Swot Category unit tests Rendering component without props. 1`] = `
-<Item>
+exports[`Search unit test on mount Rendering component with children. 1`] = `
+<div
+  class="item"
+  draggable="true"
+>
+  <div
+    class="content"
+  >
+    <div
+      class="header"
+    />
+    <div
+      class="description"
+    >
+      <p />
+      <br />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Item
+  draggable={true}
+  onDragStart={[Function]}
+>
   <ItemContent>
     <ItemHeader />
-    <ItemMeta>
-      Notes
-    </ItemMeta>
     <ItemDescription>
       <p />
       <br />
-      <Button
-        as="button"
-        color="blue"
-        id="edit"
-        onClick={[Function]}
-      >
-        Edit
-      </Button>
-      <Button
-        as="button"
-        color="red"
-        id="delete"
-        onClick={[Function]}
-      >
-        Delete
-      </Button>
     </ItemDescription>
   </ItemContent>
 </Item>

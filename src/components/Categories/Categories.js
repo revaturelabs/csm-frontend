@@ -31,7 +31,7 @@ const Categories = (props) => {
       });
     }
     getCat();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

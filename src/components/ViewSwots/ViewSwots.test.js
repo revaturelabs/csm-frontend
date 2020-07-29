@@ -3,12 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Enzyme, { configure, shallow, mount, render, fireEvent } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import mockStore from "../TestHooks/mockStore.js";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import Categories from './Categories';
+import ViewSwots from './ViewSwots';
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -17,7 +17,7 @@ jest.mock('react-router-dom');
 
 configure({ adapter: new Adapter() });
 
-describe("Search unit test", () => {
+describe("Search unit test.", () => {
     let wrapper;
     let useEffect;
     let useState;
@@ -74,23 +74,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<Categories store={store} />);
+        wrapper = shallow(<ViewSwots store={store} />);
     });
 
     describe("on mount", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<Categories/>);
+    		const component = shallow(<ViewSwots/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<Categories/>);
+    		const component = render(<ViewSwots/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<Categories/>);
+    		const component = mount(<ViewSwots/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

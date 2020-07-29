@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import mockStore from "../TestHooks/mockStore.js";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import Categories from './Categories';
+import Login from './Login';
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -74,23 +74,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<Categories store={store} />);
+        wrapper = shallow(<Login store={store} />);
     });
 
     describe("on mount", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<Categories/>);
+    		const component = shallow(<Login/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<Categories/>);
+    		const component = render(<Login/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<Categories/>);
+    		const component = mount(<Login/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

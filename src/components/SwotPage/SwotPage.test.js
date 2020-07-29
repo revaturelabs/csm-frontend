@@ -3,12 +3,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Enzyme, { configure, shallow, mount, render, fireEvent } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import mockStore from "../TestHooks/mockStore.js";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import Categories from './Categories';
+import SwotPage from './SwotPage';
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -17,7 +16,7 @@ jest.mock('react-router-dom');
 
 configure({ adapter: new Adapter() });
 
-describe("Search unit test", () => {
+describe("SwotPage test suite initialization.", () => {
     let wrapper;
     let useEffect;
     let useState;
@@ -74,23 +73,23 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<Categories store={store} />);
+        wrapper = shallow(<SwotPage store={store} />);
     });
 
-    describe("on mount", () => {
+    describe("SwotPage test suite.", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<Categories/>);
+    		const component = shallow(<SwotPage/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<Categories/>);
+    		const component = render(<SwotPage/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<Categories/>);
+    		const component = mount(<SwotPage/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});

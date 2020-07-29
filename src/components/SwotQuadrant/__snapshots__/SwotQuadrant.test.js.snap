@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SwotQuadrant test suite initialization. SwotQuadrant test cases. Rendering component without props. 1`] = `
+<Fragment>
+  <SwotNoteModal />
+  <div
+    className="dragDropZone"
+    id="undefinedZone"
+    onDragEnter={[Function]}
+    onDragLeave={[Function]}
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <h2 />
+    <SwotQuadrantTable
+      deleteHandler={[Function]}
+      editHandler={[Function]}
+    />
+  </div>
+</Fragment>
+`;

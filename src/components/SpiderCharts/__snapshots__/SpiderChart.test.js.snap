@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<SpiderChart>
+  <div
+    className="chart container"
+  >
+    <h4
+      className="chart heading4"
+    >
+       — Technical Status
+    </h4>
+    <Placeholder
+      className="chart"
+    >
+      <div
+        className="ui placeholder chart"
+      >
+        <PlaceholderImage
+          className="associate-chart"
+        >
+          <div
+            className="image associate-chart"
+          />
+        </PlaceholderImage>
+      </div>
+    </Placeholder>
+  </div>
+</SpiderChart>
+`;
+
+exports[`Search unit test on mount Rendering component with children. 1`] = `
+<div
+  class="chart container"
+>
+  <h4
+    class="chart heading4"
+  >
+     — Technical Status
+  </h4>
+  <div
+    class="ui placeholder chart"
+  >
+    <div
+      class="image associate-chart"
+    />
+  </div>
+</div>
+`;
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Fragment>
+  <div
+    className="chart container"
+  >
+    <h4
+      className="chart heading4"
+    >
+       — Technical Status
+    </h4>
+    <Placeholder
+      className="chart"
+    >
+      <PlaceholderImage
+        className="associate-chart"
+      />
+    </Placeholder>
+  </div>
+</Fragment>
+`;

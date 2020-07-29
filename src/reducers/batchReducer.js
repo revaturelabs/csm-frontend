@@ -2,7 +2,7 @@ const initialState = {
     batches:[], //batches will each contain an array of associates
     displayBatches:[],
     activeFilter: 'myAll'
-    
+
 }
 
 function batchReducer(state = initialState, action) {

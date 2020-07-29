@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<Routing>
+  <BrowserRouter />
+</Routing>
+`;
+
+exports[`Search unit test on mount Rendering component with children. 1`] = `null`;
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<BrowserRouter>
+  <Component
+    component={[Function]}
+    exact={true}
+    path="/"
+  />
+  <Component
+    component={[Function]}
+    exact={true}
+    path="/login"
+  />
+  <PrivateRoute
+    component={[Function]}
+    exact={true}
+    path="/promotedlastweek"
+  />
+  <PrivateRoute
+    component={[Function]}
+    path="/viewSwots"
+  />
+  <PrivateRoute
+    component={[Function]}
+    path="/editSwot"
+  />
+</BrowserRouter>
+`;

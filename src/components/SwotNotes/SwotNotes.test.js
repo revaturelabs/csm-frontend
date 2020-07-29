@@ -2,14 +2,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Enzyme, { configure, shallow, mount, render, fireEvent } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import Adapter from "enzyme-adapter-react-16";
+import { useSelector, useDispatch, useShallowEqualSelector } from "react-redux";
 import mockStore from "../TestHooks/mockStore.js";
-import configureStore from 'redux-mock-store';
+import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import reducer from '../../reducers';
-import SwotCategory from './SwotCategory';
+import swotReducer from "../../reducers/swotReducer";
+import renderer from "react-test-renderer";
+import SwotNotes from "./SwotNotes";
 
 import * as ReactReduxHooks from "../TestHooks/react-redux-hooks";
 
@@ -18,7 +18,7 @@ jest.mock('react-router-dom');
 
 configure({ adapter: new Adapter() });
 
-describe("Search unit test", () => {
+describe("SwotNotes test suite.", () => {
     let wrapper;
     let useEffect;
     let useState;
@@ -75,27 +75,26 @@ describe("Search unit test", () => {
             .mockImplementation(() => useHistory());
 
         /* shallow rendering */
-        wrapper = shallow(<SwotCategory store={store} />);
+        wrapper = shallow(<SwotNotes store={store} />);
     });
 
-    describe("on mount", () => {
+    describe("SwotNotes test suite.", () => {
 
       	it('Rendering component without props.', () => {
-    		const component = shallow(<SwotCategory/>);
+    		const component = shallow(<SwotNotes/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Rendering component with children.', () => {
-    		const component = render(<SwotCategory/>);
+    		const component = render(<SwotNotes/>);
     		expect(component).toMatchSnapshot();
       	});
 
       	it('Mounting, testing list item mapping, and dismounting the component.', () => {
-    		const component = mount(<SwotCategory/>);
+    		const component = mount(<SwotNotes/>);
     		expect(component).toMatchSnapshot();
     		component.unmount();
       	});
 
     });
-
 });

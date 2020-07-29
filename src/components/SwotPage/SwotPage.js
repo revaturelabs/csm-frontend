@@ -34,7 +34,7 @@ const SwotPage = (props) => {
     }
     getCategories();
     dispatch({ type: "updateAuthor", author: manager.username });
-  }, [dispatch]);
+  }, []);
 
   /**
    * @todo Refactor functionality

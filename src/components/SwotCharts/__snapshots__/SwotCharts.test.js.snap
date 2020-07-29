@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test on mount Rendering component without props. 1`] = `
+<Fragment>
+  <Accordion>
+    <AccordionTitle
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="dropdown"
+      />
+      Additional Associate Information
+    </AccordionTitle>
+    <AccordionContent>
+      <Evaluations
+        showNotes={false}
+        showYLabels={false}
+      />
+    </AccordionContent>
+  </Accordion>
+</Fragment>
+`;

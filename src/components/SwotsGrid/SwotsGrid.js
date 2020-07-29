@@ -27,11 +27,11 @@ const SwotsGrid = (props) => {
     date += new Date().getTimezoneOffset() * 60 * 1000;//add on the timezone offset
     return new Date(date);
   }
-  
+
   useEffect(() => {
     let swots = associate.swot;
     swots = swots.filter(
-      (swot) => 
+      (swot) =>
       roundDate(new Date(swot.date_created)) >= roundDate(new Date(startDate)) &&
       roundDate(new Date(swot.date_created)) <= roundDate(new Date(endDate))
     );

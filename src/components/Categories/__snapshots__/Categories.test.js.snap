@@ -1,8 +1,182 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search unit test Rendering component with children. 1`] = `
+exports[`Search unit test on mount Mounting, testing list item mapping, and dismounting the component. 1`] = `
+<Categories>
+  <Menu
+    fluid={true}
+    style={
+      Object {
+        "height": "75vh",
+        "overflowY": "scroll",
+      }
+    }
+    vertical={true}
+  >
+    <div
+      className="ui fluid vertical menu"
+      style={
+        Object {
+          "height": "75vh",
+          "overflowY": "scroll",
+        }
+      }
+    >
+      <MenuItem>
+        <div
+          className="item"
+          onClick={[Function]}
+        >
+          <Search>
+            <Input
+              fluid={true}
+              icon="search"
+              id="search"
+              onChange={[Function]}
+              placeholder="Search..."
+              type="text"
+            >
+              <div
+                className="ui fluid icon input"
+              >
+                <input
+                  id="search"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                />
+                <Icon
+                  as="i"
+                  name="search"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="search icon"
+                    onClick={[Function]}
+                  />
+                </Icon>
+              </div>
+            </Input>
+          </Search>
+        </div>
+      </MenuItem>
+      <MenuItem>
+        <div
+          className="item"
+          onClick={[Function]}
+        >
+          <List
+            as="ul"
+            style={
+              Object {
+                "marginLeft": 0,
+              }
+            }
+          >
+            <ul
+              className="ui list"
+              role="list"
+              style={
+                Object {
+                  "marginLeft": 0,
+                }
+              }
+            >
+              <Card
+                key="0"
+                raised={true}
+              >
+                <div
+                  className="ui raised card"
+                  onClick={[Function]}
+                >
+                  <ListItem
+                    draggable={true}
+                    id="AWS"
+                    name="category"
+                    onDragStart={[Function]}
+                  >
+                    <div
+                      className="item"
+                      draggable={true}
+                      id="AWS"
+                      name="category"
+                      onClick={[Function]}
+                      onDragStart={[Function]}
+                      role="listitem"
+                    >
+                      AWS
+                    </div>
+                  </ListItem>
+                </div>
+              </Card>
+              <Card
+                key="1"
+                raised={true}
+              >
+                <div
+                  className="ui raised card"
+                  onClick={[Function]}
+                >
+                  <ListItem
+                    draggable={true}
+                    id="Python"
+                    name="category"
+                    onDragStart={[Function]}
+                  >
+                    <div
+                      className="item"
+                      draggable={true}
+                      id="Python"
+                      name="category"
+                      onClick={[Function]}
+                      onDragStart={[Function]}
+                      role="listitem"
+                    >
+                      Python
+                    </div>
+                  </ListItem>
+                </div>
+              </Card>
+              <Card
+                key="2"
+                raised={true}
+              >
+                <div
+                  className="ui raised card"
+                  onClick={[Function]}
+                >
+                  <ListItem
+                    draggable={true}
+                    id="JavaScript"
+                    name="category"
+                    onDragStart={[Function]}
+                  >
+                    <div
+                      className="item"
+                      draggable={true}
+                      id="JavaScript"
+                      name="category"
+                      onClick={[Function]}
+                      onDragStart={[Function]}
+                      role="listitem"
+                    >
+                      JavaScript
+                    </div>
+                  </ListItem>
+                </div>
+              </Card>
+            </ul>
+          </List>
+        </div>
+      </MenuItem>
+    </div>
+  </Menu>
+</Categories>
+`;
+
+exports[`Search unit test on mount Rendering component with children. 1`] = `
 <div
-  class="ui vertical menu"
+  class="ui fluid vertical menu"
   style="height:75vh;overflow-y:scroll"
 >
   <div
@@ -74,9 +248,10 @@ exports[`Search unit test Rendering component with children. 1`] = `
 </div>
 `;
 
-exports[`Search unit test Rendering component without props. 1`] = `
+exports[`Search unit test on mount Rendering component without props. 1`] = `
 <Fragment>
   <Menu
+    fluid={true}
     style={
       Object {
         "height": "75vh",
@@ -98,7 +273,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
         }
       >
         <Card
-          key="AWS"
+          key="0"
           raised={true}
         >
           <ListItem
@@ -111,7 +286,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
           </ListItem>
         </Card>
         <Card
-          key="Python"
+          key="1"
           raised={true}
         >
           <ListItem
@@ -124,7 +299,7 @@ exports[`Search unit test Rendering component without props. 1`] = `
           </ListItem>
         </Card>
         <Card
-          key="JavaScript"
+          key="2"
           raised={true}
         >
           <ListItem

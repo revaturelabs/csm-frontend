@@ -20,7 +20,7 @@ const SwotPage = (props) => {
   const edit = useSelector((state) => state.swotReducer.editable);
   const batchTopics = useSelector((state) => state.swotReducer.batchTopics);
   const manager = useSelector((state) => state.managerReducer.manager);
-  React.useEffect(() => {
+  useEffect(() => {
     async function getCategories() {
       const resp = await categoryService.getCategories();
       let lst = resp.data.map((cat) => cat.skillCategory);
@@ -34,7 +34,7 @@ const SwotPage = (props) => {
     }
     getCategories();
     dispatch({ type: "updateAuthor", author: manager.username });
-  }, [dispatch]);
+  }, []);
 
   /**
    * @todo Refactor functionality

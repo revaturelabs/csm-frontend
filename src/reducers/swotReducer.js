@@ -43,75 +43,81 @@ const swotReducer = (state = initialState, action) => {
     case "setEndDate":
       return Object.assign({}, state, { endDate: action.date });
     case "updateStartDate":
-        return action.startDate > state.endDate
-            ? Object.assign({}, state, {
+      return action.startDate > state.endDate
+        ? Object.assign({}, state, {
             startDate: action.startDate,
             endDate: action.startDate,
-            })
-            : Object.assign({}, state, { startDate: action.startDate });
+          })
+        : Object.assign({}, state, { startDate: action.startDate });
     case "updateEndDate":
-        return action.endDate < state.startDate
-            ? Object.assign({}, state, { endDate: state.startDate })
-            : Object.assign({}, state, { endDate: action.endDate });
+      return action.endDate < state.startDate
+        ? Object.assign({}, state, { endDate: state.startDate })
+        : Object.assign({}, state, { endDate: action.endDate });
     case "updateSWOT":
-        return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT) });
-    case "updateSwots":
-        return Object.assign({}, state, { swots: action.getSwots });
-    case "updateDisplaySwots":
-        return Object.assign({}, state, { displaySwots: action.getDisplaySwots});
+      return Object.assign({}, state, { SWOT: Object.assign({}, action.SWOT) });
     case "updateEditable":
-      return Object.assign({}, state, {editable: action.editable});
+      return Object.assign({}, state, { editable: action.editable });
     case "updateMoveType":
-      return Object.assign({}, state, {moveType: action.move});
+      return Object.assign({}, state, { moveType: action.move });
     case "updateCategories":
-        return Object.assign({}, state, { categories: action.getCategories });
+      return Object.assign({}, state, { categories: action.getCategories });
     case "updateDisplayCategories":
-        return Object.assign({}, state, {
-            displayCategories: action.getDisplayCategories});
+      return Object.assign({}, state, {
+        displayCategories: action.getDisplayCategories,
+      });
     case "updateDisabledField":
-        return Object.assign({}, state, { disabled: action.getDisabledField });
+      return Object.assign({}, state, { disabled: action.getDisabledField });
     case "updateNewCategory":
-        return Object.assign({}, state, { newCategory: action.getNewCategory });
+      return Object.assign({}, state, { newCategory: action.getNewCategory });
     case "updateDropZone":
-        return Object.assign({}, state, { dropZone: action.dropZone });
+      return Object.assign({}, state, { dropZone: action.dropZone });
     case "updateDropDepth":
-        return Object.assign({}, state, { dropDepth: action.dropDepth });
+      return Object.assign({}, state, { dropDepth: action.dropDepth });
+    case "updateAuthor":
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { author: action.author }),
+      });
     case "updateStrengths":
-        return Object.assign({}, state, {
-            SWOT: Object.assign({}, state.SWOT, { Strengths: action.data }),});
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { Strengths: action.data }),
+      });
     case "updateWeaknesses":
-        return Object.assign({}, state, {
-            SWOT: Object.assign({}, state.SWOT, { Weaknesses: action.data }),});
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { Weaknesses: action.data }),
+      });
     case "updateOpportunities":
-        return Object.assign({}, state, {
-            SWOT: Object.assign({}, state.SWOT, { Opportunities: action.data }),});
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { Opportunities: action.data }),
+      });
     case "updateThreats":
-        return Object.assign({}, state, {
-            SWOT: Object.assign({}, state.SWOT, { Threats: action.data }),});
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { Threats: action.data }),
+      });
     case "toggleStrengthsModal":
-        return Object.assign({}, state, { StrengthsModal: action.toggle });
+      return Object.assign({}, state, { StrengthsModal: action.toggle });
     case "toggleWeaknessesModal":
-        return Object.assign({}, state, { WeaknessesModal: action.toggle });
+      return Object.assign({}, state, { WeaknessesModal: action.toggle });
     case "toggleOpportunitiesModal":
-        return Object.assign({}, state, { OpportunitiesModal: action.toggle });
+      return Object.assign({}, state, { OpportunitiesModal: action.toggle });
     case "toggleThreatsModal":
-        return Object.assign({}, state, { ThreatsModal: action.toggle });
+      return Object.assign({}, state, { ThreatsModal: action.toggle });
     case "updateCurrentNote":
-        return Object.assign({}, state, { currentNote: action.note });
+      return Object.assign({}, state, { currentNote: action.note });
     case "updateCategory":
-        return Object.assign({}, state, { currentCategory: action.category });
+      return Object.assign({}, state, { currentCategory: action.category });
     case "updateNotes":
-        return Object.assign({}, state, {
-            SWOT: Object.assign({}, state.SWOT, { Notes: action.notes }),});
+      return Object.assign({}, state, {
+        SWOT: Object.assign({}, state.SWOT, { Notes: action.notes }),
+      });
     case "toggleSwotModal":
-        return Object.assign({}, state, { swotModal: action.toggle });
+      return Object.assign({}, state, { swotModal: action.toggle });
     case "toggleSwotCharts":
       return Object.assign({}, state, { swotCharts: action.toggle });
     case "updateBatchTopics":
       return Object.assign({}, state, { batchTopics: action.topics });
     default:
-        return state;
-    }
+      return state;
+  }
 };
 
 export default swotReducer;

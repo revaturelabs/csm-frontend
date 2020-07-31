@@ -1,0 +1,59 @@
+// src/styles/_variables.scss
+
+
+
+/* Colors */
+// primary
+$revature-orange:     #F26925;
+$revature-dark-gray:  #474C55;
+// secondary
+$revature-blue:       #72A4C2;
+$revature-yellow:     #FCB414;
+$revature-light-gray: #B9B9BA;
+
+/* Typography Sizing 
+*
+* The following are sizes for standardizing typography. */
+// body typography sizes
+$body-xs:         0.75rem;  // 12px
+$body-s:          0.875rem; // 14px
+$body-m:          1rem;     // 16px
+$body-basic:      1rem;     // 16px
+$body-l:          1.125rem; // 18px
+// heading typography sizes
+$heading-xs:      1rem;     // 16px
+$heading-s:       1.25rem;  // 20px
+$heading-m:       1.5rem;   // 24px
+$heading-l:       2rem;     // 32px
+$heading-xl:      2.5rem;   // 40px
+$heading-xxl:     3rem;     // 48px
+$heading-giant:   3.75rem;  // 60px
+
+/* UI Sizing 
+*
+* These sizes are for padding and margins around UI elements, 
+* such as inputs, buttons, headings, etc. */
+$ui-nano:    0.125rem;  // 2px
+$ui-micro:   0.25rem;   // 4px
+$ui-mini:    0.5rem;    // 8px
+$ui-xs:      0.75rem;   // 12px
+$ui-s:       1rem;      // 16px
+$ui-m:       1.25rem;   // 20px
+$ui-l:       1.5rem;    // 24px
+$ui-xl:      2rem;      // 32px
+$ui-xxl:     2.5rem;    // 40px
+$ui-xxxl:    3rem;      // 48px
+
+/* Layout Sizing
+*
+* These sizes are for padding, margins, and static secondary 
+* axis sizes (i.e. height if width is dynamically calculated) 
+* for elements like cards, forms, grid elements, etc. */
+$layout-xs:    1rem;    // 16px
+$layout-s:     1.5rem;  // 24px
+$layout-m:     2rem;    // 32px
+$layout-l:     2.5rem;  // 40px
+$layout-xl:    3rem;    // 48px
+$layout-xxl:   4rem;    // 64px
+$layout-xxxl:  6rem;    // 96px
+$layout-giant: 8rem;    // 128px

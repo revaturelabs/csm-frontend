@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search unit test Rendering component with children. 1`] = `
+<div
+  class="ui vertical menu"
+  style="height:75vh;overflow-y:scroll"
+>
+  <div
+    class="item"
+  >
+    <div
+      class="ui fluid icon input"
+    >
+      <input
+        id="search"
+        placeholder="Search..."
+        type="text"
+      />
+      <i
+        aria-hidden="true"
+        class="search icon"
+      />
+    </div>
+  </div>
+  <div
+    class="item"
+  >
+    <ul
+      class="ui list"
+      role="list"
+      style="margin-left:0"
+    >
+      <div
+        class="ui raised card"
+      >
+        <div
+          class="item"
+          draggable="true"
+          id="AWS"
+          name="category"
+          role="listitem"
+        >
+          AWS
+        </div>
+      </div>
+      <div
+        class="ui raised card"
+      >
+        <div
+          class="item"
+          draggable="true"
+          id="Python"
+          name="category"
+          role="listitem"
+        >
+          Python
+        </div>
+      </div>
+      <div
+        class="ui raised card"
+      >
+        <div
+          class="item"
+          draggable="true"
+          id="JavaScript"
+          name="category"
+          role="listitem"
+        >
+          JavaScript
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Search unit test Rendering component without props. 1`] = `
+<Fragment>
+  <Menu
+    style={
+      Object {
+        "height": "75vh",
+        "overflowY": "scroll",
+      }
+    }
+    vertical={true}
+  >
+    <MenuItem>
+      <Search />
+    </MenuItem>
+    <MenuItem>
+      <List
+        as="ul"
+        style={
+          Object {
+            "marginLeft": 0,
+          }
+        }
+      >
+        <Card
+          key="AWS"
+          raised={true}
+        >
+          <ListItem
+            draggable={true}
+            id="AWS"
+            name="category"
+            onDragStart={[Function]}
+          >
+            AWS
+          </ListItem>
+        </Card>
+        <Card
+          key="Python"
+          raised={true}
+        >
+          <ListItem
+            draggable={true}
+            id="Python"
+            name="category"
+            onDragStart={[Function]}
+          >
+            Python
+          </ListItem>
+        </Card>
+        <Card
+          key="JavaScript"
+          raised={true}
+        >
+          <ListItem
+            draggable={true}
+            id="JavaScript"
+            name="category"
+            onDragStart={[Function]}
+          >
+            JavaScript
+          </ListItem>
+        </Card>
+      </List>
+    </MenuItem>
+  </Menu>
+</Fragment>
+`;

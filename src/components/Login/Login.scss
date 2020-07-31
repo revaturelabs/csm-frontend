@@ -1,0 +1,32 @@
+@import '../../styles/main';
+
+#grid{
+    text-align: center;
+    height: 100vh;
+    vertical-align: middle;
+    margin-top: 100px;
+}
+
+#gridcolumn{
+    text-align: center;
+    max-width: 50%;
+    min-width: 250px;
+    vertical-align: middle;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#btn{
+    color: white;
+    background-color: $revature-orange;
+    size: large;
+}
+
+#title{
+    color: $revature-orange;
+    text-align:center;
+}
+
+#form{
+    size: large;
+}

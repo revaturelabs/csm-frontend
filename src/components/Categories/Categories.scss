@@ -1,0 +1,17 @@
+@import "../../styles/main";
+
+.item.swot-category-search {
+  background-color: $revature-blue !important;
+  border-radius: 0 !important;
+}
+
+.ui.menu#categories::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ui.menu#categories {
+  height: 85vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: 3px; 
+}

@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
-// import reducer1
-// import reducer2... etc.
+import batchReducer from './batchReducer';
+import managerReducer from './managerReducer';
+import evalReducer from './evalReducer';
+import swotReducer from "./swotReducer";
 
-/* export default combineReducers({
-    reducer1,
-    reducer2
-})*/
-export default combineReducers({/* imported reducers go here */})
+export default combineReducers({
+  batchReducer,
+  managerReducer,
+  evalReducer,
+  swotReducer,
+});
